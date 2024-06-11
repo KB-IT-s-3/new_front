@@ -29,6 +29,7 @@
             <button class="save-button">저장</button>
         </div>
     </div>
+
 </template>
 <script>
 import { ref } from 'vue';
