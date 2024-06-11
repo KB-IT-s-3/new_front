@@ -1,13 +1,13 @@
 <template>
   <div class="app">
-    <header>
-      <div class="header-title">
-        <h1>My Budget Tracker</h1>
-        <div class="user-info">
-          <span>User</span>
-        </div>
-      </div>
-    </header>
+<!--    <header>-->
+<!--      <div class="header-title">-->
+<!--        <h1>My Budget Tracker</h1>-->
+<!--        <div class="user-info">-->
+<!--          <span>User</span>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </header>-->
     <div class="chart-info">
       <div class="chart pie-chart">
         <button @click="showMonth('May')">5월 보기</button>
