@@ -3,38 +3,41 @@
         <div class="add-wrap">
             <!-- + 버튼을 클릭하면 addEntry 함수를 호출 -->
             <button class="add-entry" @click="addEntry">+</button>
-            <div class="header-bar">
-                <!-- 각 항목의 헤더 -->
-                <span class="date-header">날짜</span>
-                <span class="content-header">내용</span>
-                <span class="amount-header">금액</span>
-                <span class="deposit-header">수입/지출</span>
-                <span class="category-header">카테고리</span>
-
-            </div>
-            <div class="entries">
-                <!-- entries 배열을 순회하며 입력 폼을 생성 -->
-                <div v-for="(entry, index) in entries" :key="index" class="entry">
-                    <input v-model="entry.date" placeholder="날짜" required />
-                    <input v-model="entry.content" placeholder="내용" required />
-                    <input v-model="entry.amount" placeholder="금액" required />
-                    <select v-model="entry.deposit">
-                        <!-- 수입/지출을 선택할 수 있는 드롭다운 -->
-                        <option value="" selected>수입/지출 선택</option>
-                        <option value="수입">수입</option>
-                        <option value="지출">지출</option>
-                    </select>
-                    <select v-model="entry.category">
-                        <!-- 카테고리를 선택할 수 있는 드롭다운 -->
-                        <option value="" selected>카테고리 선택</option>
-                        <option value="food">외식</option>
-                        <option value="cafe">카페</option>
-                        <option value="saving">저축</option>
-                        <option value="leisure">레저</option>
-                        <option value="shopping">쇼핑</option>
-                    </select>
-                </div>
-            </div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th class="date-header">날짜</th>
+                        <th class="content-header">내용</th>
+                        <th class="amount-header">금액</th>
+                        <th class="deposit-header">수입/지출</th>
+                        <th class="category-header">카테고리</th>
+                    </tr>
+                </thead>
+                <tbody class="entries">
+                    <tr v-for="(entry, index) in entries" :key="index" class="entry">
+                        <td><input v-model="entry.date" placeholder="날짜" required /></td>
+                        <td><input v-model="entry.content" placeholder="내용" required /></td>
+                        <td><input v-model="entry.amount" placeholder="금액" required /></td>
+                        <td>
+                            <select v-model="entry.deposit">
+                                <option value="" selected>수입/지출 선택</option>
+                                <option value="수입">수입</option>
+                                <option value="지출">지출</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select v-model="entry.category">
+                                <option value="" selected>카테고리 선택</option>
+                                <option value="food">외식</option>
+                                <option value="cafe">카페</option>
+                                <option value="saving">저축</option>
+                                <option value="leisure">레저</option>
+                                <option value="shopping">쇼핑</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <!-- 저장 버튼을 클릭하면 saveEntry 함수를 호출 -->
             <button class="save-button" @click="saveEntry">저장</button>
         </div>
@@ -95,46 +98,27 @@ export default {
 }
 </script>
 <style scoped>
+.container {
+    height: 100vh;
+}
+
 .add-wrap {
     width: 90%;
 }
 
-.header-bar {
+.data-table {
     width: 100%;
-    height: 64px;
-    background: rgba(251, 255, 156, 1);
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+    border-collapse: collapse;
 }
 
-.deposit-header,
-.amount-header,
-.date-header,
-.content-header,
-.category-header {
-    color: rgba(90, 91, 46, 1);
-    font-size: 20px;
+.data-table th, .data-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
     text-align: center;
 }
-
-.entries {
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-}
-
-.entry {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 5px;
-}
-
-.entry input {
-    width: 100%;
-    padding: 8px;
-    font-size: 16px;
+.data-table th {
+    background-color: rgba(251, 255, 156, 1);
+    color: rgba(90, 91, 46, 1);
 }
 
 .add-entry {
