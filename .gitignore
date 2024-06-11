@@ -28,3 +28,6 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+
+# MOCK_DATA.json
+MOCK_DATA.json
