@@ -3,40 +3,44 @@
         <div class="add-wrap">
             <!-- + 버튼을 클릭하면 addEntry 함수를 호출 -->
             <button class="add-entry" @click="addEntry">+</button>
-            <div class="header-bar">
-                <!-- 각 항목의 헤더 -->
-                <span class="date-header">날짜</span>
-                <span class="content-header">내용</span>
-                <span class="amount-header">금액</span>
-                <span class="deposit-header">수입/지출</span>
-                <span class="category-header">카테고리</span>
-
-            </div>
-            <div class="entries">
-                <!-- entries 배열을 순회하며 입력 폼을 생성 -->
-                <div v-for="(entry, index) in entries" :key="index" class="entry">
-                    <input v-model="entry.date" placeholder="날짜" required />
-                    <input v-model="entry.content" placeholder="내용" required />
-                    <input v-model="entry.amount" placeholder="금액" required />
-                    <select v-model="entry.deposit">
-                        <!-- 수입/지출을 선택할 수 있는 드롭다운 -->
-                        <option value="" selected>수입/지출 선택</option>
-                        <option value="수입">수입</option>
-                        <option value="지출">지출</option>
-                    </select>
-                    <select v-model="entry.category">
-                        <!-- 카테고리를 선택할 수 있는 드롭다운 -->
-                        <option value="" selected>카테고리 선택</option>
-                        <option value="food">외식</option>
-                        <option value="cafe">카페</option>
-                        <option value="saving">저축</option>
-                        <option value="leisure">레저</option>
-                        <option value="shopping">쇼핑</option>
-                    </select>
-                </div>
-            </div>
+            <button class="delete-entry" @click="deleteEntry">-</button>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th class="date-header">날짜</th>
+                        <th class="content-header">내용</th>
+                        <th class="amount-header">금액</th>
+                        <th class="deposit-header">수입/지출</th>
+                        <th class="category-header">카테고리</th>
+                    </tr>
+                </thead>
+                <tbody class="entries">
+                    <tr v-for="(entry, index) in entries" :key="index" class="entry">
+                        <td><input v-model="entry.date" placeholder="날짜" required /></td>
+                        <td><input v-model="entry.content" placeholder="내용" required /></td>
+                        <td><input v-model="entry.amount" placeholder="금액" required /></td>
+                        <td>
+                            <select v-model="entry.deposit">
+                                <option value="" selected>수입/지출 선택</option>
+                                <option value="수입">수입</option>
+                                <option value="지출">지출</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select v-model="entry.category">
+                                <option value="" selected>카테고리 선택</option>
+                                <option value="food">외식</option>
+                                <option value="cafe">카페</option>
+                                <option value="saving">저축</option>
+                                <option value="leisure">레저</option>
+                                <option value="shopping">쇼핑</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <!-- 저장 버튼을 클릭하면 saveEntry 함수를 호출 -->
-            <button class="save-button" @click="saveEntry">저장</button>
+            <button id="save-button" @click="saveEntry" class="btn btn-success">저장</button>
         </div>
     </div>
 
@@ -59,19 +63,36 @@ export default {
             entries.value.push({ date: '', content: '', amount: '', deposit: '', category: '' });
         };
 
+        const deleteEntry = () => {
+            if (entries.value.length > 1) {
+                entries.value.pop();
+            } else {
+                alert('삭제할 항목이 없습니다.');
+            }
+        };
+
         // 입력된 항목들을 서버에 저장하는 함수
         const saveEntry = async () => {
             try {
                 // 저장된 항목들을 담을 배열
                 const savedEntries = []
 
+                const nonEmptyEntries = entries.value.filter(entry => {
+                    return Object.values(entry).every(value => value.trim() != '')
+                })
+
+                if (nonEmptyEntries.length === 0) {
+                    alert('입력된 데이터가 없습니다.');
+                    return;
+                }
+
                 // 각 항목의 deposit 값을 true/false로 수정
                 entries.value.forEach(entry => {
                     entry.deposit = entry.deposit === '수입' ? true : false;
                 });
 
-                // 각 항목을 순회하며 서버에 각각 저장
-                for (const entry of entries.value) {
+                // 각 항목을 순회하며 빈 데이터가 아닌 경우에만 서버에 전송
+                for (const entry of nonEmptyEntries) {
                     const response = await axios.post('http://localhost:3001/user1', entry);
                     savedEntries.push(response.data);
                 }
@@ -89,70 +110,55 @@ export default {
             }
         }
         return {
-            entries, addEntry, saveEntry
+            entries, addEntry, deleteEntry, saveEntry
         };
     }
 }
 </script>
 <style scoped>
+.container {
+    width: 100%;
+}
 .add-wrap {
-    width: 90%;
-}
-
-.header-bar {
     width: 100%;
-    height: 64px;
-    background: rgba(251, 255, 156, 1);
-    position: relative;
+    padding: 10px;
     display: flex;
-    align-items: center;
-    justify-content: space-around;
+    flex-direction: column; 
 }
 
-.deposit-header,
-.amount-header,
-.date-header,
-.content-header,
-.category-header {
-    color: rgba(90, 91, 46, 1);
-    font-size: 20px;
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.data-table th, .data-table td {
+    width: 20%;
+    border: 1px solid #ddd;
     text-align: center;
+    display: inline-block;
+}
+.data-table th {
+    background-color: rgba(251, 255, 156, 1);
+    color: rgba(90, 91, 46, 1);
 }
 
-.entries {
+input, select {
     width: 100%;
-    position: relative;
-    overflow: hidden;
-}
-
-.entry {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 5px;
-}
-
-.entry input {
-    width: 100%;
-    padding: 8px;
-    font-size: 16px;
+    height: 100%;
 }
 
 .add-entry {
-    width: 50px;
-    height: 50px;
     margin-bottom: 10px;
     background: rgba(251, 255, 156, 1);
-    border-radius: 8px;
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
-    float: right;
+    align-self: flex-end;
+}
+.delete-entry {
+    margin-bottom: 10px;
+    background: rgba(251, 255, 156, 1);
+    align-self: flex-end;
 }
 
-.save-button {
-    width: 87px;
-    height: 50px;
-    background: rgba(251, 255, 156, 1);
-    border-radius: 8px;
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
-    float: right
-}
+#save-button {
+    width: 10%;
+    align-self: flex-end;
+} 
 </style>
