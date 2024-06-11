@@ -1,0 +1,40 @@
+{
+    "user": [
+    {
+        "id":1,
+        "name": "user1",
+        "email": "abcee@gmail.com",
+        "target": 29000,
+        "gender": "Male",
+        "age": "27",
+        "image": "../../public/user1.png"
+    },
+    {
+        "id":2,
+        "name": "user2",
+        "email": "dvsdfg@gmail.com",
+        "target": 300000,
+        "gender": "Female",
+        "age": "20",
+        "image": "../../public/user2.jpg"
+    },
+    {
+        "id":3,
+        "name": "user3",
+        "email": "ggve@gmail.com",
+        "target": 111100,
+        "gender": "Male",
+        "age": "31",
+        "image": "../../public/user3.jpg"
+    },
+    {
+        "id":4,
+        "name": "user4",
+        "email": "htsf@gmail.com",
+        "target": 2122200,
+        "gender": "Female",
+        "age": "25",
+        "image": "../../public/user4.jpg"
+    }
+    ]
+}
