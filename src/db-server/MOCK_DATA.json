@@ -1,283 +1,322 @@
 {
-    "user1": [
-        {
-            "date": "2023-05-01",
-            "content": "예시2",
-            "amount": 29000,
-            "deposit": false,
-            "category": "food"
-        },
-        {
-            "date": "2024-02-13",
-            "content": "예시3",
-            "amount": 3000,
-            "deposit": true,
-            "category": "cafe"
-        },
-        {
-            "date": "2023-09-10",
-            "content": "예시4",
-            "amount": 6600,
-            "deposit": false,
-            "category": "leisure"
-        },
-        {
-            "date": "2023-09-12",
-            "content": "예시5",
-            "amount": 9400,
-            "deposit": true,
-            "category": "saving"
-        },
-        {
-            "date": "2024-05-18",
-            "content": "예시6",
-            "amount": 88000,
-            "deposit": true,
-            "category": "cafe"
-        },
-        {
-            "date": "2024-03-29",
-            "content": "예시7",
-            "amount": 15610,
-            "deposit": true,
-            "category": "saving"
-        },
-        {
-            "date": "2023-08-19",
-            "content": "예시8",
-            "amount": 27030,
-            "deposit": true,
-            "category": "leisure"
-        },
-        {
-            "date": "2023-05-15",
-            "content": "예시9",
-            "amount": 92110,
-            "deposit": false,
-            "category": "food"
-        },
-        {
-            "date": "2024-04-03",
-            "content": "예시10",
-            "amount": 98160,
-            "deposit": false,
-            "category": "shopping"
-        }
-    ],
-    "user2": [
-        {
-            "date": "2024-03-23",
-            "content": "예시",
-            "amount": 95430,
-            "deposit": false,
-            "category": "food"
-        },
-        {
-            "date": "2023-08-15",
-            "content": "예시",
-            "amount": 92360,
-            "deposit": false,
-            "category": "cafe"
-        },
-        {
-            "date": "2024-02-09",
-            "content": "예시",
-            "amount": 63090,
-            "deposit": true,
-            "category": "saving"
-        },
-        {
-            "date": "2024-02-09",
-            "content": "예시",
-            "amount": 73120,
-            "deposit": true,
-            "category": "leisure"
-        },
-        {
-            "date": "2024-01-22",
-            "content": "예시",
-            "amount": 29490,
-            "deposit": true,
-            "category": "shopping"
-        },
-        {
-            "date": "2024-02-23",
-            "content": "예시",
-            "amount": 75660,
-            "deposit": true,
-            "category": "cafe"
-        },
-        {
-            "date": "2024-03-15",
-            "content": "예시",
-            "amount": 93690,
-            "deposit": false,
-            "category": "shopping"
-        },
-        {
-            "date": "2024-05-10",
-            "content": "예시",
-            "amount": 48030,
-            "deposit": false,
-            "category": "leisure"
-        },
-        {
-            "date": "2023-09-11",
-            "content": "예시",
-            "amount": 31550,
-            "deposit": true,
-            "category": "food"
-        },
-        {
-            "date": "2023-09-07",
-            "content": "예시",
-            "amount": 65660,
-            "deposit": true,
-            "category": "food"
-        }
-    ],
-    "user3": [
-        {
-            "date": "2023-06-21",
-            "content": "예시",
-            "amount": 70010,
-            "deposit": false,
-            "category": "shopping"
-        },
-        {
-            "date": "2023-05-04",
-            "content": "예시",
-            "amount": 91700,
-            "deposit": true,
-            "category": "cafe"
-        },
-        {
-            "date": "2024-04-21",
-            "content": "예시",
-            "amount": 46710,
-            "deposit": false,
-            "category": "food"
-        },
-        {
-            "date": "2023-12-10",
-            "content": "예시",
-            "amount": 55910,
-            "deposit": true,
-            "category": "saving"
-        },
-        {
-            "date": "2024-02-11",
-            "content": "예시",
-            "amount": 36730,
-            "deposit": false,
-            "category": "leisure"
-        },
-        {
-            "date": "2024-05-02",
-            "content": "예시",
-            "amount": 69580,
-            "deposit": false,
-            "category": "leisure"
-        },
-        {
-            "date": "2024-05-05",
-            "content": "예시",
-            "amount": 36190,
-            "deposit": false,
-            "category": "food"
-        },
-        {
-            "date": "2023-07-20",
-            "content": "예시",
-            "amount": 62600,
-            "deposit": false,
-            "category": "cafe"
-        },
-        {
-            "date": "2023-06-22",
-            "content": "예시",
-            "amount": 71830,
-            "deposit": false,
-            "category": "food"
-        },
-        {
-            "date": "2023-12-12",
-            "content": "예시",
-            "amount": 54840,
-            "deposit": true,
-            "category": "saving"
-        }
-    ],
-    "user4": [
-        {
-            "date": "2023-11-20",
-            "content": "예시",
-            "amount": 44170,
-            "deposit": true,
-            "category": "leisure"
-        },
-        {
-            "date": "2024-01-16",
-            "content": "예시",
-            "amount": 34050,
-            "deposit": false,
-            "category": "food"
-        },
-        {
-            "date": "2023-09-06",
-            "content": "예시",
-            "amount": 63120,
-            "deposit": false,
-            "category": "shopping"
-        },
-        {
-            "date": "2024-05-20",
-            "content": "예시",
-            "amount": 39990,
-            "deposit": true,
-            "category": "shopping"
-        },
-        {
-            "date": "2023-10-23",
-            "content": "예시",
-            "amount": 40680,
-            "deposit": true,
-            "category": "cafe"
-        },
-        {
-            "date": "2023-10-31",
-            "content": "예시",
-            "amount": 17020,
-            "deposit": true,
-            "category": "food"
-        },
-        {
-            "date": "2023-08-31",
-            "content": "예시",
-            "amount": 60270,
-            "deposit": true,
-            "category": "saving"
-        },
-        {
-            "date": "2023-09-10",
-            "content": "예시",
-            "amount": 9080,
-            "deposit": false,
-            "category": "cafe"
-        },
-        {
-            "date": "2023-10-18",
-            "content": "예시",
-            "amount": 31900,
-            "deposit": false,
-            "category": "cafe"
-        },
-        {
-            "date": "2023-11-04",
-            "content": "예시",
-            "amount": 59680,
-            "deposit": true,
-            "category": "saving"
-        }
-    ]
+  "user1": [
+    {
+      "date": "2023-05-01",
+      "content": "예시2",
+      "amount": 29000,
+      "deposit": false,
+      "category": "food",
+      "id": "f0aa"
+    },
+    {
+      "date": "2024-02-13",
+      "content": "예시3",
+      "amount": 3000,
+      "deposit": true,
+      "category": "cafe",
+      "id": "43f8"
+    },
+    {
+      "date": "2023-09-10",
+      "content": "예시4",
+      "amount": 6600,
+      "deposit": false,
+      "category": "leisure",
+      "id": "93b2"
+    },
+    {
+      "date": "2023-09-12",
+      "content": "예시5",
+      "amount": 9400,
+      "deposit": true,
+      "category": "saving",
+      "id": "ef02"
+    },
+    {
+      "date": "2024-05-18",
+      "content": "예시6",
+      "amount": 88000,
+      "deposit": true,
+      "category": "cafe",
+      "id": "875a"
+    },
+    {
+      "date": "2024-03-29",
+      "content": "예시7",
+      "amount": 15610,
+      "deposit": true,
+      "category": "saving",
+      "id": "1eb2"
+    },
+    {
+      "date": "2023-08-19",
+      "content": "예시8",
+      "amount": 27030,
+      "deposit": true,
+      "category": "leisure",
+      "id": "f6b3"
+    },
+    {
+      "date": "2023-05-15",
+      "content": "예시9",
+      "amount": 92110,
+      "deposit": false,
+      "category": "food",
+      "id": "1ffe"
+    },
+    {
+      "date": "2024-04-03",
+      "content": "예시10",
+      "amount": 98160,
+      "deposit": false,
+      "category": "shopping",
+      "id": "a404"
+    }
+  ],
+  "user2": [
+    {
+      "date": "2024-03-23",
+      "content": "예시",
+      "amount": 95430,
+      "deposit": false,
+      "category": "food",
+      "id": "1836"
+    },
+    {
+      "date": "2023-08-15",
+      "content": "예시",
+      "amount": 92360,
+      "deposit": false,
+      "category": "cafe",
+      "id": "79f1"
+    },
+    {
+      "date": "2024-02-09",
+      "content": "예시",
+      "amount": 63090,
+      "deposit": true,
+      "category": "saving",
+      "id": "b900"
+    },
+    {
+      "date": "2024-02-09",
+      "content": "예시",
+      "amount": 73120,
+      "deposit": true,
+      "category": "leisure",
+      "id": "95e6"
+    },
+    {
+      "date": "2024-01-22",
+      "content": "예시",
+      "amount": 29490,
+      "deposit": true,
+      "category": "shopping",
+      "id": "a293"
+    },
+    {
+      "date": "2024-02-23",
+      "content": "예시",
+      "amount": 75660,
+      "deposit": true,
+      "category": "cafe",
+      "id": "8aa7"
+    },
+    {
+      "date": "2024-03-15",
+      "content": "예시",
+      "amount": 93690,
+      "deposit": false,
+      "category": "shopping",
+      "id": "a0e9"
+    },
+    {
+      "date": "2024-05-10",
+      "content": "예시",
+      "amount": 48030,
+      "deposit": false,
+      "category": "leisure",
+      "id": "b1f2"
+    },
+    {
+      "date": "2023-09-11",
+      "content": "예시",
+      "amount": 31550,
+      "deposit": true,
+      "category": "food",
+      "id": "74f8"
+    },
+    {
+      "date": "2023-09-07",
+      "content": "예시",
+      "amount": 65660,
+      "deposit": true,
+      "category": "food",
+      "id": "6b18"
+    }
+  ],
+  "user3": [
+    {
+      "date": "2023-06-21",
+      "content": "예시",
+      "amount": 70010,
+      "deposit": false,
+      "category": "shopping",
+      "id": "86d2"
+    },
+    {
+      "date": "2023-05-04",
+      "content": "예시",
+      "amount": 91700,
+      "deposit": true,
+      "category": "cafe",
+      "id": "7e82"
+    },
+    {
+      "date": "2024-04-21",
+      "content": "예시",
+      "amount": 46710,
+      "deposit": false,
+      "category": "food",
+      "id": "6f57"
+    },
+    {
+      "date": "2023-12-10",
+      "content": "예시",
+      "amount": 55910,
+      "deposit": true,
+      "category": "saving",
+      "id": "f8b0"
+    },
+    {
+      "date": "2024-02-11",
+      "content": "예시",
+      "amount": 36730,
+      "deposit": false,
+      "category": "leisure",
+      "id": "0549"
+    },
+    {
+      "date": "2024-05-02",
+      "content": "예시",
+      "amount": 69580,
+      "deposit": false,
+      "category": "leisure",
+      "id": "c2b8"
+    },
+    {
+      "date": "2024-05-05",
+      "content": "예시",
+      "amount": 36190,
+      "deposit": false,
+      "category": "food",
+      "id": "4d19"
+    },
+    {
+      "date": "2023-07-20",
+      "content": "예시",
+      "amount": 62600,
+      "deposit": false,
+      "category": "cafe",
+      "id": "ec93"
+    },
+    {
+      "date": "2023-06-22",
+      "content": "예시",
+      "amount": 71830,
+      "deposit": false,
+      "category": "food",
+      "id": "598b"
+    },
+    {
+      "date": "2023-12-12",
+      "content": "예시",
+      "amount": 54840,
+      "deposit": true,
+      "category": "saving",
+      "id": "4b66"
+    }
+  ],
+  "user4": [
+    {
+      "date": "2023-11-20",
+      "content": "예시",
+      "amount": 44170,
+      "deposit": true,
+      "category": "leisure",
+      "id": "9160"
+    },
+    {
+      "date": "2024-01-16",
+      "content": "예시",
+      "amount": 34050,
+      "deposit": false,
+      "category": "food",
+      "id": "ffe9"
+    },
+    {
+      "date": "2023-09-06",
+      "content": "예시",
+      "amount": 63120,
+      "deposit": false,
+      "category": "shopping",
+      "id": "4360"
+    },
+    {
+      "date": "2024-05-20",
+      "content": "예시",
+      "amount": 39990,
+      "deposit": true,
+      "category": "shopping",
+      "id": "cb8f"
+    },
+    {
+      "date": "2023-10-23",
+      "content": "예시",
+      "amount": 40680,
+      "deposit": true,
+      "category": "cafe",
+      "id": "2094"
+    },
+    {
+      "date": "2023-10-31",
+      "content": "예시",
+      "amount": 17020,
+      "deposit": true,
+      "category": "food",
+      "id": "021e"
+    },
+    {
+      "date": "2023-08-31",
+      "content": "예시",
+      "amount": 60270,
+      "deposit": true,
+      "category": "saving",
+      "id": "ce33"
+    },
+    {
+      "date": "2023-09-10",
+      "content": "예시",
+      "amount": 9080,
+      "deposit": false,
+      "category": "cafe",
+      "id": "456c"
+    },
+    {
+      "date": "2023-10-18",
+      "content": "예시",
+      "amount": 31900,
+      "deposit": false,
+      "category": "cafe",
+      "id": "e9a3"
+    },
+    {
+      "date": "2023-11-04",
+      "content": "예시",
+      "amount": 59680,
+      "deposit": true,
+      "category": "saving",
+      "id": "5787"
+    }
+  ]
 }
