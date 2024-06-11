@@ -2,8 +2,10 @@
     <div class="container">
         <div class="add-wrap">
             <!-- + 버튼을 클릭하면 addEntry 함수를 호출 -->
-            <button class="add-entry" @click="addEntry">+</button>
-            <button class="delete-entry" @click="deleteEntry">-</button>
+            <div class="button-row">
+                <button class="delete-entry" @click="deleteEntry">-</button>
+                <button class="add-entry" @click="addEntry">+</button>
+            </div>
             <table class="data-table">
                 <thead>
                     <tr>
@@ -16,7 +18,7 @@
                 </thead>
                 <tbody class="entries">
                     <tr v-for="(entry, index) in entries" :key="index" class="entry">
-                        <td><input v-model="entry.date" placeholder="날짜" required /></td>
+                        <td><input type="date" v-model="entry.date" placeholder="날짜" required /></td>
                         <td><input v-model="entry.content" placeholder="내용" required /></td>
                         <td><input v-model="entry.amount" placeholder="금액" required /></td>
                         <td>
@@ -49,10 +51,15 @@
 import { ref } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
+import { useUserStore } from "@/stores/userStore.js";
+
 export default {
     setup() {
         // Vue Router를 사용하기 위해 useRouter를 가져옴
         const router = useRouter();
+
+        const userStore = useUserStore();;
+        const NowUser = userStore.getUser();
 
         // 입력된 항목들을 담을 배열
         const entries = ref([
@@ -93,7 +100,8 @@ export default {
 
                 // 각 항목을 순회하며 빈 데이터가 아닌 경우에만 서버에 전송
                 for (const entry of nonEmptyEntries) {
-                    const response = await axios.post('http://localhost:3001/user1', entry);
+                    // ${NowUser.id}
+                    const response = await axios.post(`http://localhost:3000/user1`, entry);
                     savedEntries.push(response.data);
                 }
 
@@ -103,7 +111,7 @@ export default {
 
                 // Entries를 초기화
                 entries.value = [{ date: '', content: '', amount: '', deposit: '', category: '' }];
-                
+
                 router.push(`/`);
             } catch (err) {
                 console.error('Error saving entries:', err);
@@ -119,46 +127,55 @@ export default {
 .container {
     width: 100%;
 }
+
 .add-wrap {
     width: 100%;
     padding: 10px;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
+}
+.button-row {
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: flex-end;
+}
+
+.delete-entry {
+    margin-right: 5px;
+}
+
+.add-entry {
+    margin-left: 5px;
 }
 
 .data-table {
     width: 100%;
     border-collapse: collapse;
 }
-.data-table th, .data-table td {
+
+.data-table th,
+.data-table td {
     width: 20%;
     border: 1px solid #ddd;
     text-align: center;
     display: inline-block;
 }
+
 .data-table th {
     background-color: rgba(251, 255, 156, 1);
     color: rgba(90, 91, 46, 1);
 }
 
-input, select {
+input,
+select {
     width: 100%;
     height: 100%;
 }
 
-.add-entry {
-    margin-bottom: 10px;
-    background: rgba(251, 255, 156, 1);
-    align-self: flex-end;
-}
-.delete-entry {
-    margin-bottom: 10px;
-    background: rgba(251, 255, 156, 1);
-    align-self: flex-end;
-}
+
 
 #save-button {
     width: 10%;
     align-self: flex-end;
-} 
+}
 </style>

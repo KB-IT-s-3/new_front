@@ -44,10 +44,6 @@ export default{
 
         const userStore = useUserStore();
         console.log(userStore.getUser())
-        const gettingname = userStore.getUser;
-        const numberString = gettingname.replace(/\D/g, '');
-        const number = parseInt(numberString, 10);
-        console.log(number)
 
         onMounted( async ()=>{  
             const result = await requestList()
