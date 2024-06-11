@@ -2,21 +2,11 @@
   "user1": [
     {
       "date": "2024-02-13",
-      "content": "예시3s",
+      "content": "예시3",
       "amount": 3000,
       "deposit": true,
       "category": "cafe",
-      "id": "fee0",
-      "selected": true
-    },
-    {
-      "date": "2023-09-10",
-      "content": "예시99",
-      "amount": 6600,
-      "deposit": false,
-      "category": "leisure",
-      "id": "b61b",
-      "selected": false
+      "id": "fee0"
     },
     {
       "date": "2023-09-12",
@@ -24,17 +14,15 @@
       "amount": 9400,
       "deposit": true,
       "category": "saving",
-      "id": "9a6e",
-      "selected": false
+      "id": "9a6e"
     },
     {
       "date": "2024-05-18",
-      "content": "예시68",
+      "content": "예시6",
       "amount": 88000,
       "deposit": true,
       "category": "cafe",
-      "id": "e49b",
-      "selected": false
+      "id": "e49b"
     },
     {
       "date": "2024-03-29",
@@ -42,8 +30,7 @@
       "amount": 15610,
       "deposit": true,
       "category": "saving",
-      "id": "7290",
-      "selected": false
+      "id": "7290"
     },
     {
       "date": "2023-08-19",
@@ -51,8 +38,7 @@
       "amount": 27030,
       "deposit": true,
       "category": "leisure",
-      "id": "8f5d",
-      "selected": false
+      "id": "8f5d"
     },
     {
       "date": "2023-05-15",
@@ -60,8 +46,7 @@
       "amount": 92110,
       "deposit": false,
       "category": "food",
-      "id": "48d1",
-      "selected": false
+      "id": "48d1"
     },
     {
       "date": "2024-04-03",
@@ -69,8 +54,7 @@
       "amount": 98160,
       "deposit": false,
       "category": "shopping",
-      "id": "f346",
-      "selected": false
+      "id": "f346"
     }
   ],
   "user2": [
@@ -320,3 +304,4 @@
     }
   ]
 }
+    
