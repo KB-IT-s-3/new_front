@@ -136,7 +136,7 @@ const showMonth = (month) => {
 
 onMounted(async () => {
   try {
-    const response = await axios.get('http://localhost:3001/user1');
+    const response = await axios.get('http://localhost:3000/user1');
     console.log('API response:', response.data); // 데이터 확인용 로그
     processData(response.data); // user1 데이터를 사용
   } catch (error) {

@@ -93,7 +93,7 @@ export default {
 
                 // 각 항목을 순회하며 빈 데이터가 아닌 경우에만 서버에 전송
                 for (const entry of nonEmptyEntries) {
-                    const response = await axios.post('http://localhost:3001/user1', entry);
+                    const response = await axios.post('http://localhost:3000/user1', entry);
                     savedEntries.push(response.data);
                 }
 

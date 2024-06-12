@@ -49,6 +49,7 @@ export default {
 
 .User_button {
     padding: 14px 24px;
+    margin-right: 40px;
     border-radius: 8px;
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
     background: rgba(251, 255, 156, 1);
@@ -59,5 +60,12 @@ export default {
     font-family: Inter;
     font-weight: medium;
     font-size: 25px;
+}
+.User_buttonText:hover, .Title_text:hover{
+    cursor: pointer;
+}
+.User_button:hover, .Title:hover{
+    transition: transform 0.3s ease;
+    transform: scale(1.1);
 }
 </style>
