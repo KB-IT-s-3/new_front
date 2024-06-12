@@ -1,17 +1,39 @@
 {
+    "login": [
+        {
+            "id": "admin1",
+            "pwd": "pwd1",
+            "key": "user1"
+        },
+        {
+            "id": "admin2",
+            "pwd": "pwd2",
+            "key": "user2"
+        },
+        {
+            "id": "admin3",
+            "pwd": "pwd3",
+            "key": "user3"
+        },
+        {
+            "id": "admin4",
+            "pwd": "pwd4",
+            "key": "user4"
+        }
+    ],
+
   "user": [
-  {
-      "id":1,
-      "tag": "user1",
-      "name": "Ageo",
+    {
+      "age": "27",
+      "name": "Age",
       "email": "abcee@gmail.com",
       "target": 29000,
       "gender": "Male",
-      "age": "27",
-      "image": "../../public/user1.png"
-  },
-  {
-      "id":2,
+      "image": "../../public/user1.png",
+      "id": "1"
+    },
+    {
+      "id": "2",
       "tag": "user2",
       "name": "Bibi",
       "email": "dvsdfg@gmail.com",
@@ -19,9 +41,9 @@
       "gender": "Female",
       "age": "20",
       "image": "../../public/user2.png"
-  },
-  {
-      "id":3,
+    },
+    {
+      "id": "3",
       "tag": "user3",
       "name": "Ccoli",
       "email": "ggve@gmail.com",
@@ -29,9 +51,9 @@
       "gender": "Male",
       "age": "31",
       "image": "../../public/user3.png"
-  },
-  {
-      "id":4,
+    },
+    {
+      "id": "4",
       "tag": "user4",
       "name": "Kiki",
       "email": "htsf@gmail.com",
@@ -39,6 +61,6 @@
       "gender": "Female",
       "age": "25",
       "image": "../../public/user4.png"
-  }
+    }
   ]
 }

@@ -61,6 +61,14 @@
       "amount": "1000",
       "deposit": true,
       "category": "yongdon"
+    },
+    {
+      "id": "22b3",
+      "date": "2024-06-09",
+      "content": "6월의 용돈이다",
+      "amount": "30000",
+      "deposit": true,
+      "category": "yongdon"
     }
   ],
   "user2": [
@@ -84,29 +92,11 @@
     },
     {
       "date": "2024-06-09",
-      "content": "로또 맞음",
-      "amount": 63090,
-      "deposit": true,
-      "category": "Lotto",
-      "id": "608d",
-      "selected": false
-    },
-    {
-      "date": "2024-06-09",
       "content": "월급",
       "amount": 73120,
       "deposit": true,
       "category": "salary",
       "id": "b094",
-      "selected": false
-    },
-    {
-      "date": "2024-06-22",
-      "content": "신발 사기",
-      "amount": 29490,
-      "deposit": false,
-      "category": "shopping",
-      "id": "6303",
       "selected": false
     },
     {
@@ -148,10 +138,11 @@
     {
       "date": "2024-05-07",
       "content": "외식",
-      "amount": 65660,
+      "amount": 656601,
       "deposit": false,
       "category": "food",
-      "id": "dcd3"
+      "id": "dcd3",
+      "selected": false
     },
     {
       "id": "4d93",
@@ -159,7 +150,16 @@
       "content": "돈 주음",
       "amount": "1",
       "deposit": true,
-      "category": "etc"
+      "category": "etc",
+      "selected": false
+    },
+    {
+      "id": "c2f5",
+      "date": "2024-06-11",
+      "content": "커피",
+      "amount": "1000",
+      "deposit": false,
+      "category": "cafe"
     }
   ],
   "user3": [

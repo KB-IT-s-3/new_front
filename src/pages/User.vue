@@ -17,14 +17,7 @@
 
         <div class="sidebar">
             <div class="sidebar-content">
-                <div class="User1Box" ></div>
-                <div class="User2Box" ></div>
-                <div class="User3Box" ></div>
-                <div class="User4Box" ></div>
-                <span class="User1Text" @click = "ChangeUser(1)">User1</span>
-                <span class="User2Text" @click = "ChangeUser(2)">User2</span>
-                <span class="User3Text" @click = "ChangeUser(3)">User3</span>
-                <span class="User4Text" @click = "ChangeUser(4)">User4</span>
+                <div class="logout" @click = "Logout">Logout</div>
             </div>
             <div class="Point">
                 <img src = "../../public/point.png">
@@ -39,6 +32,7 @@
 import { onMounted, reactive } from 'vue';
 import axios from 'axios';
 import {useUserStore} from "@/stores/userStore.js";
+import { useRouter } from 'vue-router';
 export default{
     setup(){
         let Lists = reactive([])
@@ -46,8 +40,6 @@ export default{
         const url = 'http://localhost:3002/user'
         let usernumber 
         const userStore = useUserStore();
-
-        
 
         const ChangeNumber = ()=>{
             const str = userStore.getUser()
@@ -70,14 +62,6 @@ export default{
             return response.data
         }
 
-        const ChangeUser = (number)=>{
-            usernumber = number
-            Object.assign(NowUser, Lists[usernumber-1])
-            userStore.setUser(NowUser.tag)
-            console.log(usernumber)
-        }
-
-
         const UpdateData = async(e)=>{
             try{
                 const response = await axios.put(`${url}/${NowUser.id}`, {age:NowUser.age, name:NowUser.name, email:NowUser.email, target:NowUser.target, gender:NowUser.gender, image:NowUser.image}) 
@@ -89,9 +73,15 @@ export default{
                     alert(err.response.data)
                 }
         }
+
+        const router = useRouter()
+        const Logout = ()=>{
+            userStore.setLogout();
+            router.push('./')
+        }
         
 
-        return{ NowUser, requestList, ChangeUser, UpdateData, userStore}
+        return{ NowUser, requestList, UpdateData, userStore, Logout}
     }
 }
 </script>
