@@ -66,6 +66,7 @@
       <button @click="updateItems">Update</button>
       <button @click="confirmDelete">Delete</button>
     </div>
+    <img src="../../public/character.png" class="character">
   </div>
 </template>
 
@@ -174,6 +175,14 @@ export default {
   padding: 20px;
   border-radius: 8px; 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.character{
+    width: 13%;
+    position: absolute;
+    top: 780px;
+    left: 85%;
+
 }
 
 .search {
