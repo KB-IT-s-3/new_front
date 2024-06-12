@@ -4,24 +4,29 @@
       <div class="chart pie-chart" @click="handleChartClick('pie')">
         <button @click="showMonth('May')">5월 보기</button>
         <button @click="showMonth('June')">6월 보기</button>
-        <Pie :chart-data="pieChartData" :options="chartOptions" />
+        <Pie :chart-data="pieChartData" :options="chartOptions"/>
       </div>
       <div class="chart bar-chart" @click="handleChartClick('bar')">
-        <Bar :chart-data="barChartData" :options="chartOptions" />
+        <Bar :chart-data="barChartData" :options="chartOptions"/>
       </div>
     </div>
-    <div class="spending-info">
-      <p>당신의 소비 금액은 {{ totalAmount }} 원 입니다.</p>
-      <p>{{ remainingAmount }} 원 남았습니다.</p>
+    <div class="spending-info" @click="goToDetailsAdd"
+         @mouseover="onMouseOver"
+         @mouseleave="onMouseLeave"
+    >
+      <p v-if="isHovered">또 돈 쓸꺼야?</p>
+      <p v-else>당신의 소비 금액은 {{ totalAmount }} 원 입니다.<br>{{ remainingAmount }} 원 남았습니다.</p>
     </div>
+    <!--      <p>당신의 소비 금액은 {{ totalAmount }} 원 입니다.</p>-->
+    <!--      <p>{{ remainingAmount }} 원 남았습니다.</p>-->
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
-import { Pie, Bar } from 'vue-chartjs';
-import { useUserStore } from "@/stores/userStore";
+import {ref, onMounted} from 'vue';
+import {useRouter} from 'vue-router';
+import {Pie, Bar} from 'vue-chartjs';
+import {useUserStore} from "@/stores/userStore";
 import {
   Chart as ChartJS,
   Title,
@@ -34,6 +39,7 @@ import {
 } from 'chart.js';
 import axios from 'axios';
 
+const isHovered = ref(false);
 ChartJS.register(Title, Tooltip, Legend, ArcElement, BarElement, CategoryScale, LinearScale);
 
 const router = useRouter();
@@ -46,6 +52,20 @@ const pieChartData = ref({
     backgroundColor: ['#FFCE56', '#FF6384', '#36A2EB', '#FFCD56', '#FF9F40']
   }]
 });
+
+//소비 정리 부분 라우터 연결
+const goToDetailsAdd = () => {
+  router.push('/detailsadd');
+};
+//커서 올라가면 바뀌도록 설정
+const onMouseOver = () => {
+  isHovered.value = true;
+};
+
+const onMouseLeave = () => {
+  isHovered.value = false;
+};
+
 
 const barChartData = ref({
   labels: [],
@@ -86,8 +106,8 @@ const selectedMonth = ref('May'); // 초기 선택 월은 5월로 설정
 
 const processData = (data) => {
   const categories = ['cafe', 'food', 'leisure', 'saving', 'shopping'];
-  const categoryTotalsMay = { 'cafe': 0, 'food': 0, 'leisure': 0, 'saving': 0, 'shopping': 0 };
-  const categoryTotalsJune = { 'cafe': 0, 'food': 0, 'leisure': 0, 'saving': 0, 'shopping': 0 };
+  const categoryTotalsMay = {'cafe': 0, 'food': 0, 'leisure': 0, 'saving': 0, 'shopping': 0};
+  const categoryTotalsJune = {'cafe': 0, 'food': 0, 'leisure': 0, 'saving': 0, 'shopping': 0};
 
   totalAmount.value = data.reduce((sum, entry) => sum + entry.amount, 0);
   remainingAmount.value -= totalAmount.value;
@@ -252,6 +272,8 @@ button:hover {
   .chart-info {
     flex-direction: column;
     align-items: center;
+    background-color: white;
+    cursor: pointer;
   }
 
   .chart {
