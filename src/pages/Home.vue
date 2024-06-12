@@ -1,24 +1,23 @@
 <template>
   <div class="app">
     <div class="chart-info">
-      <div class="chart pie-chart" @click="handleChartClick('pie')">
-        <button @click="showMonth('May')">5월 보기</button>
-        <button @click="showMonth('June')">6월 보기</button>
-        <Pie :chart-data="pieChartData" :options="chartOptions"/>
+      <div class="chart pie-chart">
+        <button @click.stop="showMonth('May')">5월 보기</button>
+        <button @click.stop="showMonth('June')">6월 보기</button>
+        <Pie :chart-data="pieChartData" :options="chartOptions" @click.stop="handleChartClick('pie')"/>
       </div>
       <div class="chart bar-chart" @click="handleChartClick('bar')">
         <Bar :chart-data="barChartData" :options="chartOptions"/>
       </div>
     </div>
-    <div class="spending-info" @click="goToDetailsAdd"
+    <div class="spending-info"
+         @click="goToDetailsAdd"
          @mouseover="onMouseOver"
          @mouseleave="onMouseLeave"
     >
       <p v-if="isHovered">또 돈 쓸꺼야?</p>
       <p v-else>당신의 소비 금액은 {{ totalAmount }} 원 입니다.<br>{{ remainingAmount }} 원 남았습니다.</p>
     </div>
-    <!--      <p>당신의 소비 금액은 {{ totalAmount }} 원 입니다.</p>-->
-    <!--      <p>{{ remainingAmount }} 원 남았습니다.</p>-->
   </div>
 </template>
 
@@ -65,7 +64,6 @@ const onMouseOver = () => {
 const onMouseLeave = () => {
   isHovered.value = false;
 };
-
 
 const barChartData = ref({
   labels: [],
@@ -216,14 +214,15 @@ h1 {
 
 .chart-info {
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* Center align the charts */
+  gap: 20px; /* Add gap between the charts */
   width: 100%;
   height: 100%;
   margin-bottom: 1px;
 }
 
 .chart {
-  width: 40%;
+  width: 45%;
   max-width: 500px;
   margin: 10px;
   height: 250px; /* 높이를 250px로 줄였습니다 */
@@ -235,8 +234,8 @@ h1 {
   border-radius: 8px;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
   text-align: center;
-  width: 100%;
-  margin-top: 20px;
+  width: 50%;
+  margin-bottom: 100px;
 }
 
 .spending-info p {
