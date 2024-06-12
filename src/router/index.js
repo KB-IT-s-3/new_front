@@ -4,7 +4,8 @@ import Details from '@/pages/Details.vue'
 import DetailsAdd from '@/pages/DetailsAdd.vue'
 import DetailsCombined from '@/pages/DetailsCombined.vue';
 import Home from '@/pages/Home.vue'
-import User from '@/pages/User.vue'  
+import User from '@/pages/User.vue'
+import Login from '@/pages/Login.vue'  
 
 
 const router = createRouter({
@@ -14,7 +15,8 @@ const router = createRouter({
         {path:'/detailsadd', component:DetailsAdd},
         { path: '/detailscombined', component: DetailsCombined },
         {path:'/user', component:User},
-        {path:'/', component:Home},
+        {path:'/home', component:Home},
+        {path:'/', component:Login},
     ]   
 })
 export default router;
