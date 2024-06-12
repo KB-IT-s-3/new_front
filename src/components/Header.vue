@@ -5,6 +5,15 @@
         <div class="Detail_button" @click="GoDetail"><span class="Detail_buttonText">Detail</span></div>
         <div class="User_button" @click="GoUser"><span class="User_buttonText">User</span></div>
     </div>
+    <div class="sidebar">
+        <div class="sidebar-content">
+            <div class="logout" @click = "Logout">Logout</div>
+        </div>
+        <div class="Point">
+            <img src = "../../public/point.png">
+        </div>
+        <img src="../../public/character.png" class="character">
+    </div>
 </template>
 <script>
 import { useUserStore } from "@/stores/userStore.js";
@@ -33,7 +42,7 @@ export default {
         const GoDetail = () => {
             if(userStore.getLogin() == true)
             {
-                router.push('./details')
+                router.push('./detailscombined')
             }
         }
 
@@ -103,4 +112,72 @@ export default {
     transition: transform 0.3s ease;
     transform: scale(1.1);
 } */
+
+.sidebar>.character{
+    width: 13%;
+    position: absolute;
+    top: 770px;
+    left: 4%
+}
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -98%;
+    width: 100%;
+    height: 100%;
+    background-color:rgba(254, 255, 226, 1);
+    transition: right 0.5s ease;
+}
+.sidebar:hover {
+    right: -80%;
+    background-color: rgba(251, 255, 156, 1);
+}
+.sidebar-content>span:hover{
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    transform: scale(1.1);
+}
+
+.sidebar-content {
+    padding: 20px;
+}
+.Point{
+    position: relative;
+    top: 420px;
+}
+.Point>img{
+    width: 2%;
+    transform: scaleX(-1);
+}
+.User1Box, .User2Box, .User3Box, .User4Box{
+    /* width: 300px; */
+    width:12%;
+    height: 84px;
+    background: rgba(255, 255, 255, 1);
+    opacity: 1;
+    position: absolute;
+    border: 1px solid rgba(90, 91, 46, 1);
+    border-radius: 8px;
+}
+.User1Box { top: 106px; left: 4%; }
+.User2Box { top: 236px; left: 4%; }
+.User3Box { top: 366px; left: 4%; }
+.User4Box { top: 496px; left: 4%; }
+
+.User1Text, .User2Text, .User3Text, .User4Text{
+    /* width: 299px; */
+    width:10%;
+    color: rgba(90, 91, 46, 1);
+    position: absolute;
+    font-family: Inter;
+    font-weight: Medium;
+    font-size: 250%;
+    opacity: 1;
+    text-align: center;
+}
+.User1Text { top: 121px; left: 5%; }
+.User2Text { top: 251px; left: 5%; }
+.User3Text { top: 381px; left: 5%; }
+.User4Text { top: 511px; left: 5%; }
+
 </style>

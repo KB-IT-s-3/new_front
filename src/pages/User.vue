@@ -15,7 +15,7 @@
             <img src="../../public/character.png" class="character">
         </div>
 
-        <div class="sidebar">
+        <!-- <div class="sidebar">
             <div class="sidebar-content">
                 <div class="logout" @click = "Logout">Logout</div>
             </div>
@@ -23,7 +23,7 @@
                 <img src = "../../public/point.png">
             </div>
             <img src="../../public/character.png" class="character">
-        </div>
+        </div> -->
     </div>
 
 </template>
