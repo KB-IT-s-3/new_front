@@ -231,7 +231,8 @@ h1 {
 .spending-info {
   background: rgba(255, 255, 255, 1);
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 100px;
+  border: 2px solid black; /* 태두리를 까맣게 설정 */
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
   text-align: center;
   width: 50%;
