@@ -48,7 +48,7 @@
 
 </template>
 <script>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 import { useUserStore } from "@/stores/userStore.js";
@@ -59,7 +59,7 @@ export default {
         const router = useRouter();
 
         const userStore = useUserStore();;
-        const NowUser = userStore.getUser();
+        const NowUser = ref(userStore.getUser());
 
         // 입력된 항목들을 담을 배열
         const entries = ref([
@@ -98,10 +98,16 @@ export default {
                     entry.deposit = entry.deposit === '수입' ? true : false;
                 });
 
+                // NowUser.id가 정의되었는지 확인
+                if (!NowUser.value) {
+                    console.error('User ID가 정의되지 않았습니다.');
+                    return;
+                }
+
                 // 각 항목을 순회하며 빈 데이터가 아닌 경우에만 서버에 전송
                 for (const entry of nonEmptyEntries) {
                     // ${NowUser.id}
-                    const response = await axios.post(`http://localhost:3000/user1`, entry);
+                    const response = await axios.post(`http://localhost:3000/${NowUser.value}`, entry);
                     savedEntries.push(response.data);
                 }
 

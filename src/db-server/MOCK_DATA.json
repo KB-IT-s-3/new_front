@@ -137,6 +137,14 @@
       "deposit": true,
       "category": "food",
       "id": "dcd3"
+    },
+    {
+      "id": "88b6",
+      "date": "2024-06-12",
+      "content": "여가",
+      "amount": "50000",
+      "deposit": false,
+      "category": "leisure"
     }
   ],
   "user3": [
