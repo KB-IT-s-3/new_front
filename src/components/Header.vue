@@ -26,7 +26,7 @@ export default {
 
 .Guide {
     width: 100%;
-    height: 180px;
+    height: 80px;
     background: rgba(254, 255, 226, 1);
     display: flex;
     justify-content: space-between;
