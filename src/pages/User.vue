@@ -73,7 +73,7 @@ export default{
         const ChangeUser = (number)=>{
             usernumber = number
             Object.assign(NowUser, Lists[usernumber-1])
-            userStore.setUser(NowUser.name)
+            userStore.setUser(NowUser.tag)
             console.log(usernumber)
         }
 
@@ -111,7 +111,7 @@ export default{
     width: 13%;
     position: absolute;
     top: 710px;
-    left: 1600px;
+    left: 85%;
 
 }
 .sidebar>.character{
@@ -243,11 +243,15 @@ img{
     }
     .Name_tag, .Age_tag, .Gender_tag, .Email_tag, .Target_tag {
         width: 20%;
+        font-size: 150%;
     }
 }
 @media screen and (max-width: 1000px) {
 	.Image{width: 38%;}
     .User1Text, .User2Text, .User3Text, .User4Text{
+        font-size: 100%;
+    }
+    .Name_tag, .Age_tag, .Gender_tag, .Email_tag, .Target_tag {
         font-size: 100%;
     }
 }

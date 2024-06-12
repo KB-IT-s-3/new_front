@@ -2,7 +2,8 @@
   "user": [
   {
       "id":1,
-      "name": "user1",
+      "tag": "user1",
+      "name": "Ageo",
       "email": "abcee@gmail.com",
       "target": 29000,
       "gender": "Male",
@@ -11,30 +12,33 @@
   },
   {
       "id":2,
-      "name": "user2",
+      "tag": "user2",
+      "name": "Bibi",
       "email": "dvsdfg@gmail.com",
       "target": 300000,
       "gender": "Female",
       "age": "20",
-      "image": "../../public/user2.jpg"
+      "image": "../../public/user2.png"
   },
   {
       "id":3,
-      "name": "user3",
+      "tag": "user3",
+      "name": "Ccoli",
       "email": "ggve@gmail.com",
       "target": 111100,
       "gender": "Male",
       "age": "31",
-      "image": "../../public/user3.jpg"
+      "image": "../../public/user3.png"
   },
   {
       "id":4,
-      "name": "user4",
+      "tag": "user4",
+      "name": "Kiki",
       "email": "htsf@gmail.com",
       "target": 2122200,
       "gender": "Female",
       "age": "25",
-      "image": "../../public/user4.jpg"
+      "image": "../../public/user4.png"
   }
   ]
 }

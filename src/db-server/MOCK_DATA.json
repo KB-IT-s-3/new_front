@@ -1,15 +1,6 @@
 {
   "user1": [
     {
-      "date": "2024-05-13",
-      "content": "커피",
-      "amount": 3000,
-      "deposit": true,
-      "category": "cafe",
-      "id": "fee0",
-      "selected": false
-    },
-    {
       "date": "2024-06-12",
       "content": "월급 저축",
       "amount": 9400,
