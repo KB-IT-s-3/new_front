@@ -9,12 +9,12 @@
 <!--      </div>-->
 <!--    </header>-->
     <div class="chart-info">
-      <div class="chart pie-chart">
+      <div class="chart pie-chart" @click="handleChartClick('pie')">
         <button @click="showMonth('May')">5월 보기</button>
         <button @click="showMonth('June')">6월 보기</button>
         <Pie :chart-data="pieChartData" :options="chartOptions" />
       </div>
-      <div class="chart bar-chart">
+      <div class="chart bar-chart" @click="handleChartClick('bar')">
         <Bar :chart-data="barChartData" :options="chartOptions" />
       </div>
     </div>
@@ -27,7 +27,9 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 import { Pie, Bar } from 'vue-chartjs';
+import {useUserStore} from "@/stores/userStore.js";
 import {
   Chart as ChartJS,
   Title,
@@ -42,6 +44,8 @@ import axios from 'axios';
 
 ChartJS.register(Title, Tooltip, Legend, ArcElement, BarElement, CategoryScale, LinearScale);
 
+const router = useRouter();
+
 const pieChartData = ref({
   labels: [],
   datasets: [{
@@ -49,6 +53,7 @@ const pieChartData = ref({
     backgroundColor: ['#FFCE56', '#FF6384', '#36A2EB', '#FFCD56', '#FF9F40']
   }]
 });
+
 
 const barChartData = ref({
   labels: [],
@@ -88,8 +93,6 @@ const remainingAmount = ref(1000000); // 예시로 1,000,000원을 설정
 const selectedMonth = ref('May'); // 초기 선택 월은 5월로 설정
 
 const processData = (data) => {
-  console.log('Received data:', data); // 데이터 확인용 로그
-
   const categories = ['cafe', 'food', 'leisure', 'saving', 'shopping'];
   const categoryTotalsMay = { 'cafe': 0, 'food': 0, 'leisure': 0, 'saving': 0, 'shopping': 0 };
   const categoryTotalsJune = { 'cafe': 0, 'food': 0, 'leisure': 0, 'saving': 0, 'shopping': 0 };
@@ -111,9 +114,6 @@ const processData = (data) => {
   barChartData.value.datasets[1].data = Object.values(categoryTotalsJune);
 
   updatePieChart(selectedMonth.value, categoryTotalsMay, categoryTotalsJune);
-
-  console.log('Pie chart data:', pieChartData.value); // 데이터 확인용 로그
-  console.log('Bar chart data:', barChartData.value); // 데이터 확인용 로그
 };
 
 const updatePieChart = (month, totalsMay, totalsJune) => {
@@ -134,9 +134,16 @@ const showMonth = (month) => {
   updatePieChart(month, totalsMay, totalsJune);
 };
 
+const handleChartClick = (type) => {
+  router.push(`/details?chart=${type}`);
+};
+
 onMounted(async () => {
   try {
-    const response = await axios.get('http://localhost:3000/user1');
+    const userStore = useUserStore();
+    const NowUser = userStore.getUser()
+    const response = await axios.get('http://localhost:3000/NowUser');
+    console.log(NowUser)
     console.log('API response:', response.data); // 데이터 확인용 로그
     processData(response.data); // user1 데이터를 사용
   } catch (error) {
