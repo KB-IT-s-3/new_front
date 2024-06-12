@@ -17,6 +17,7 @@
       <p v-if="isHovered">또 돈 쓸꺼야?</p>
       <p v-else>당신의 소비 금액은 {{ totalAmount }} 원 입니다.<br>{{ remainingAmount }} 원 남았습니다.</p>
     </div>
+    <img src="../../public/character.png" class="character">
   </div>
 </template>
 
@@ -180,6 +181,14 @@ onMounted(async () => {
   width: 100vw;
   padding: 20px;
   box-sizing: border-box;
+}
+
+.character{
+    width: 13%;
+    position: absolute;
+    top: 780px;
+    left: 85%;
+
 }
 
 .header-title {
