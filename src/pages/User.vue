@@ -12,6 +12,7 @@
             <input class="Gender_tag" v-model="NowUser.gender" @change = "UpdateData"></input>
             <input class="Email_tag" v-model="NowUser.email" @change = "UpdateData"></input>
             <input class="Target_tag" v-model="NowUser.target" @change = "UpdateData"></input>
+            <img src="../../public/character.png" class="character">
         </div>
 
         <div class="sidebar">
@@ -28,6 +29,7 @@
             <div class="Point">
                 <img src = "../../public/point.png">
             </div>
+            <img src="../../public/character.png" class="character">
         </div>
     </div>
 
@@ -105,6 +107,19 @@ export default{
     overflow: hidden;
 }
 
+.Body>.character{
+    width: 13%;
+    position: absolute;
+    top: 710px;
+    left: 1600px;
+
+}
+.sidebar>.character{
+    width: 13%;
+    position: absolute;
+    top: 770px;
+    left: 4%
+}
 
 
 .Image {
