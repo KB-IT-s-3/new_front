@@ -48,7 +48,7 @@
 
 </template>
 <script>
-import { ref, computed } from 'vue';
+import { ref, reactive } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 import { useUserStore } from "@/stores/userStore.js";
@@ -58,21 +58,21 @@ export default {
         // Vue Router를 사용하기 위해 useRouter를 가져옴
         const router = useRouter();
 
-        const userStore = useUserStore();;
+        const userStore = useUserStore();
         const NowUser = ref(userStore.getUser());
 
         // 입력된 항목들을 담을 배열
-        const entries = ref([
+        const entries = reactive([
             { date: '', content: '', amount: '', deposit: '', category: '' },
         ]);
         // 새로운 항목을 추가하는 함수
         const addEntry = () => {
-            entries.value.push({ date: '', content: '', amount: '', deposit: '', category: '' });
+            entries.push({ date: '', content: '', amount: '', deposit: '', category: '' });
         };
 
         const deleteEntry = () => {
-            if (entries.value.length > 1) {
-                entries.value.pop();
+            if (entries.length > 1) {
+                entries.pop();
             } else {
                 alert('삭제할 항목이 없습니다.');
             }
@@ -84,7 +84,7 @@ export default {
                 // 저장된 항목들을 담을 배열
                 const savedEntries = []
 
-                const nonEmptyEntries = entries.value.filter(entry => {
+                const nonEmptyEntries = entries.filter(entry => {
                     return Object.values(entry).every(value => value.trim() != '')
                 })
 
@@ -94,7 +94,7 @@ export default {
                 }
 
                 // 각 항목의 deposit 값을 true/false로 수정
-                entries.value.forEach(entry => {
+                entries.forEach(entry => {
                     entry.deposit = entry.deposit === '수입' ? true : false;
                 });
 
@@ -116,7 +116,7 @@ export default {
                 alert('가계부가 추가되었습니다.');
 
                 // Entries를 초기화
-                entries.value = [{ date: '', content: '', amount: '', deposit: '', category: '' }];
+                entries.splice(0, entries.length);
 
                 router.push(`/`);
             } catch (err) {
