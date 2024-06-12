@@ -10,39 +10,39 @@
     </div>
     <table>
       <thead>
-        <tr>
-          <th>
-            <input type="checkbox" v-model="selectAll" @change="toggleAll" />
-          </th>
-          <th>날짜</th>
-          <th>내용</th>
-          <th>금액</th>
-          <th>수입/지출</th>
-          <th>카테고리</th>
-        </tr>
+      <tr>
+        <th>
+          <input type="checkbox" v-model="selectAll" @change="toggleAll" />
+        </th>
+        <th>날짜</th>
+        <th>내용</th>
+        <th>금액</th>
+        <th>수입/지출</th>
+        <th>카테고리</th>
+      </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, index) in filteredItems" :key="index">
-          <td><input type="checkbox" v-model="item.selected" /></td>
-          <td>
-            <input type="date" v-model="item.date">
-          </td>
-          <td>
-            <input type="text" v-model="item.content">
-          </td>
-          <td>
-            <input type="number" v-model="item.amount">
-          </td>
-          <td>
-            <select v-model="item.deposit">
-              <option :value="true">수입</option>
-              <option :value="false">지출</option>
-            </select>
-          </td>
-          <td>
-            <input type="text" v-model="item.category">
-          </td>
-        </tr>
+      <tr v-for="(item, index) in filteredItems" :key="index">
+        <td><input type="checkbox" v-model="item.selected" /></td>
+        <td>
+          <input type="date" v-model="item.date">
+        </td>
+        <td>
+          <input type="text" v-model="item.content">
+        </td>
+        <td>
+          <input type="number" v-model="item.amount">
+        </td>
+        <td>
+          <select v-model="item.deposit">
+            <option :value="true">수입</option>
+            <option :value="false">지출</option>
+          </select>
+        </td>
+        <td>
+          <input type="text" v-model="item.category">
+        </td>
+      </tr>
       </tbody>
     </table>
     <div class="totals">
@@ -50,8 +50,8 @@
       <span>입금: {{ totalIncome }}</span>
     </div>
     <div class="actions">
-        <button @click="updateItems">Update</button>
-        <button @click="deleteItems">Delete</button>
+      <button @click="updateItems">Update</button>
+      <button @click="confirmDelete">Delete</button>
     </div>
   </div>
 </template>
@@ -125,7 +125,7 @@ export default {
     };
 
     onMounted(fetchData);
-    
+
     // 반환
     return {
       searchTerm,
@@ -147,7 +147,6 @@ export default {
 
 <style>
 .details {
-  height:1200px;
   text-align: left;
   background-color: #FEFFE2;
   padding: 20px;
