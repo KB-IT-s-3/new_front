@@ -4,17 +4,16 @@
       <div class="chart pie-chart">
         <button @click.stop="showMonth('May')">5월 보기</button>
         <button @click.stop="showMonth('June')">6월 보기</button>
-        <Pie :chart-data="pieChartData" :options="chartOptions" @click.stop="handleChartClick('pie')"/>
+        <Pie :chart-data="pieChartData" :options="chartOptions" @click.stop="handleChartClick('pie')" />
       </div>
       <div class="chart bar-chart" @click="handleChartClick('bar')">
-        <Bar :chart-data="barChartData" :options="chartOptions"/>
+        <Bar :chart-data="barChartData" :options="chartOptions" />
       </div>
     </div>
     <div class="spending-info"
          @click="goToDetailsAdd"
          @mouseover="onMouseOver"
-         @mouseleave="onMouseLeave"
-    >
+         @mouseleave="onMouseLeave">
       <p v-if="isHovered">또 돈 쓸꺼야?</p>
       <p v-else>당신의 소비 금액은 {{ totalAmount }} 원 입니다.<br>{{ remainingAmount }} 원 남았습니다.</p>
     </div>
@@ -22,10 +21,10 @@
 </template>
 
 <script setup>
-import {ref, onMounted} from 'vue';
-import {useRouter} from 'vue-router';
-import {Pie, Bar} from 'vue-chartjs';
-import {useUserStore} from "@/stores/userStore";
+import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import { Pie, Bar } from 'vue-chartjs';
+import { useUserStore } from "@/stores/userStore";
 import {
   Chart as ChartJS,
   Title,
@@ -104,8 +103,8 @@ const selectedMonth = ref('May'); // 초기 선택 월은 5월로 설정
 
 const processData = (data) => {
   const categories = ['cafe', 'food', 'leisure', 'saving', 'shopping'];
-  const categoryTotalsMay = {'cafe': 0, 'food': 0, 'leisure': 0, 'saving': 0, 'shopping': 0};
-  const categoryTotalsJune = {'cafe': 0, 'food': 0, 'leisure': 0, 'saving': 0, 'shopping': 0};
+  const categoryTotalsMay = { 'cafe': 0, 'food': 0, 'leisure': 0, 'saving': 0, 'shopping': 0 };
+  const categoryTotalsJune = { 'cafe': 0, 'food': 0, 'leisure': 0, 'saving': 0, 'shopping': 0 };
 
   totalAmount.value = data.reduce((sum, entry) => sum + entry.amount, 0);
   remainingAmount.value -= totalAmount.value;
@@ -226,6 +225,7 @@ h1 {
   max-width: 500px;
   margin: 10px;
   height: 250px; /* 높이를 250px로 줄였습니다 */
+  cursor: pointer; /* 차트에 커서가 올라가면 포인터로 변경 */
 }
 
 .spending-info {
@@ -237,11 +237,12 @@ h1 {
   text-align: center;
   width: 50%;
   margin-bottom: 100px;
+  cursor: pointer; /* spending-info에 커서가 올라가면 포인터로 변경 */
 }
 
 .spending-info p {
   font-size: 24px;
-  font-family: 'Anaheim', sans-serif;
+  font-family: ‘Anaheim’, sans-serif;
   margin: 10px 0;
 }
 
@@ -272,12 +273,16 @@ button:hover {
   .chart-info {
     flex-direction: column;
     align-items: center;
-    background-color: white;
-    cursor: pointer;
+    gap: 20px; /* 차트 사이의 간격을 유지 */
   }
 
   .chart {
-    width: 80%;
+    width: 100%; /* 작은 화면에서는 차트가 가로로 꽉 차도록 설정 /
+height: auto; / 차트의 높이를 자동으로 설정 */
+  }
+
+  .spending-info {
+    width: 80%; /* 작은 화면에서는 spending-info의 가로 크기를 80%로 설정 */
   }
 
   .spending-info p {
