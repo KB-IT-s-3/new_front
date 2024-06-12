@@ -169,9 +169,7 @@ export default {
 
 <style>
 .details {
-  height: 1200px;
   text-align: left;
-  background-color: #FEFFE2;
   padding: 20px;
   border-radius: 8px; 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

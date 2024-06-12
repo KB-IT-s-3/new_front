@@ -149,9 +149,7 @@ export default {
 </script>
 <style scoped>
 .container {
-    height: 1200px;
-    background-color: #FEFFE2;
-    margin: 0 auto;
+    max-width: none;
 }
 
 .add-wrap {
