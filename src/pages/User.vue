@@ -104,9 +104,9 @@ export default{
     position: relative;
     overflow: hidden;
 }
-.Body{
-    margin-left: 100%;
-}
+
+
+
 .Image {
     width: 382px;
     height: 537px;
@@ -157,6 +157,7 @@ img{
 .Gender_tag { top: 332px;  }
 .Email_tag { top: 446px;  }
 .Target_tag { top: 564px; }
+
 
 .sidebar {
     position: fixed;
@@ -210,7 +211,6 @@ img{
     position: absolute;
     font-family: Inter;
     font-weight: Medium;
-    /* font-size: 32px; */
     font-size: 250%;
     opacity: 1;
     text-align: center;
@@ -219,4 +219,22 @@ img{
 .User2Text { top: 251px; left: 5%; }
 .User3Text { top: 381px; left: 5%; }
 .User4Text { top: 511px; left: 5%; }
+
+
+
+@media screen and (max-width: 1640px) {
+    .Name, .Age, .Gender, .Email, .Target {
+        visibility: hidden;
+    }
+    .Name_tag, .Age_tag, .Gender_tag, .Email_tag, .Target_tag {
+        width: 20%;
+    }
+}
+@media screen and (max-width: 1000px) {
+	.Image{width: 38%;}
+    .User1Text, .User2Text, .User3Text, .User4Text{
+        font-size: 100%;
+    }
+}
+
 </style>
