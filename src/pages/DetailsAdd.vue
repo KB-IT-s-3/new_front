@@ -22,7 +22,7 @@
                         <td><input v-model="entry.content" placeholder="내용" required /></td>
                         <td><input v-model="entry.amount" placeholder="금액" required /></td>
                         <td>
-                            <select v-model="entry.deposit">
+                            <select v-model="entry.deposit" @change="updateCategories(entry)">
                                 <option value="" selected>수입/지출 선택</option>
                                 <option value="수입">수입</option>
                                 <option value="지출">지출</option>
@@ -31,11 +31,8 @@
                         <td>
                             <select v-model="entry.category">
                                 <option value="" selected>카테고리 선택</option>
-                                <option value="food">외식</option>
-                                <option value="cafe">카페</option>
-                                <option value="saving">저축</option>
-                                <option value="leisure">레저</option>
-                                <option value="shopping">쇼핑</option>
+                                <option v-for="category in availableCategories" :value="category">{{ category }}
+                                </option>
                             </select>
                         </td>
                     </tr>
@@ -57,6 +54,7 @@ export default {
     setup() {
         // Vue Router를 사용하기 위해 useRouter를 가져옴
         const router = useRouter();
+        const availableCategories = reactive([]);
 
         const userStore = useUserStore();
         const NowUser = ref(userStore.getUser());
@@ -75,6 +73,19 @@ export default {
                 entries.pop();
             } else {
                 alert('삭제할 항목이 없습니다.');
+            }
+        };
+
+        // 수입/지출에 따라 카테고리 내용 전환하는 함수
+        const updateCategories = (entry) => {
+            if (entry.deposit === '수입') {
+                availableCategories.splice(0); // 기존 요소 삭제
+                availableCategories.push('용돈', '월급', '로또', '기타'); // 새로운 요소 추가
+            } else if (entry.deposit === '지출') {
+                availableCategories.splice(0); // 기존 요소 삭제
+                availableCategories.push('외식', '카페', '저축', '레저', '쇼핑'); // 새로운 요소 추가
+            } else {
+                availableCategories.splice(0); // 기타 선택 사항에 대한 처리
             }
         };
 
@@ -124,19 +135,18 @@ export default {
             }
         }
         return {
-            entries, addEntry, deleteEntry, saveEntry
+            entries, addEntry, deleteEntry, saveEntry,
+            availableCategories,
+            updateCategories
         };
     }
 }
 </script>
 <style scoped>
-* {
-    box-sizing: border-box;
-}
 .container {
-    width: 100%;
     height: 1200px;
-    background: rgba(254, 255, 226, 1);
+    background-color: #FEFFE2;
+    margin: 0 auto;
 }
 
 .add-wrap {
@@ -145,6 +155,7 @@ export default {
     display: flex;
     flex-direction: column;
 }
+
 .button-row {
     display: flex;
     margin-bottom: 10px;
@@ -169,7 +180,6 @@ export default {
     width: 20%;
     border: 1px solid #ddd;
     text-align: center;
-    display: inline-block;
 }
 
 .data-table th {
@@ -182,8 +192,6 @@ select {
     width: 100%;
     height: 100%;
 }
-
-
 
 #save-button {
     width: 10%;

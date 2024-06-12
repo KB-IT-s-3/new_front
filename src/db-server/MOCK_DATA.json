@@ -53,6 +53,14 @@
       "category": "shopping",
       "id": "f346",
       "selected": false
+    },
+    {
+      "id": "cb11",
+      "date": "2024-06-12",
+      "content": "ex",
+      "amount": "100",
+      "deposit": false,
+      "category": "카페"
     }
   ],
   "user2": [
