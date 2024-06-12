@@ -1,13 +1,5 @@
 <template>
   <div class="app">
-<!--    <header>-->
-<!--      <div class="header-title">-->
-<!--        <h1>My Budget Tracker</h1>-->
-<!--        <div class="user-info">-->
-<!--          <span>User</span>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </header>-->
     <div class="chart-info">
       <div class="chart pie-chart" @click="handleChartClick('pie')">
         <button @click="showMonth('May')">5월 보기</button>
@@ -29,7 +21,7 @@
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { Pie, Bar } from 'vue-chartjs';
-import {useUserStore} from "@/stores/userStore.js";
+import { useUserStore } from "@/stores/userStore";
 import {
   Chart as ChartJS,
   Title,
@@ -45,6 +37,7 @@ import axios from 'axios';
 ChartJS.register(Title, Tooltip, Legend, ArcElement, BarElement, CategoryScale, LinearScale);
 
 const router = useRouter();
+const userStore = useUserStore();
 
 const pieChartData = ref({
   labels: [],
@@ -53,7 +46,6 @@ const pieChartData = ref({
     backgroundColor: ['#FFCE56', '#FF6384', '#36A2EB', '#FFCD56', '#FF9F40']
   }]
 });
-
 
 const barChartData = ref({
   labels: [],
@@ -140,10 +132,14 @@ const handleChartClick = (type) => {
 
 onMounted(async () => {
   try {
-    const userStore = useUserStore();
-    const NowUser = userStore.getUser()
-    const response = await axios.get('http://localhost:3000/NowUser');
-    console.log(NowUser)
+    const NowUser = userStore.getUser();
+    if (!NowUser) {
+      console.error('User is not defined');
+      return;
+    }
+    //리터럴을 받을땐 백틱! `으로 할것
+    const response = await axios.get(`http://localhost:3000/${NowUser}`);
+    console.log(NowUser);
     console.log('API response:', response.data); // 데이터 확인용 로그
     processData(response.data); // user1 데이터를 사용
   } catch (error) {
