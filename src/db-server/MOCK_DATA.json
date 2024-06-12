@@ -2,10 +2,10 @@
   "user1": [
     {
       "date": "2024-06-12",
-      "content": "월급 저축",
-      "amount": 9400,
-      "deposit": true,
-      "category": "saving",
+      "content": "6월 용돈",
+      "amount": 90400,
+      "deposit": true,  
+      "category": "yongdon",
       "id": "9a6e",
       "selected": false
     },
@@ -13,26 +13,26 @@
       "date": "2024-06-18",
       "content": "아아",
       "amount": 88000,
-      "deposit": true,
+      "deposit": false,
       "category": "cafe",
       "id": "e49b",
       "selected": false
     },
     {
-      "date": "2024-06-29",
+      "date": "2024-05-29",
       "content": "용돈 저축",
       "amount": 15610,
-      "deposit": true,
+      "deposit": false,
       "category": "saving",
       "id": "7290",
       "selected": false
     },
     {
       "date": "2024-05-19",
-      "content": "워터파크",
+      "content": "돈 주음",
       "amount": 27030,
       "deposit": true,
-      "category": "leisure",
+      "category": "etc",
       "id": "8f5d",
       "selected": false
     },
@@ -57,7 +57,7 @@
   ],
   "user2": [
     {
-      "date": "2024-05-23",
+      "date": "2024-06-23",
       "content": "피자",
       "amount": 95430,
       "deposit": false,
@@ -79,16 +79,16 @@
       "content": "로또 맞음",
       "amount": 63090,
       "deposit": true,
-      "category": "saving",
+      "category": "Lotto",
       "id": "608d",
       "selected": false
     },
     {
       "date": "2024-06-09",
-      "content": "등산",
+      "content": "월급",
       "amount": 73120,
       "deposit": true,
-      "category": "leisure",
+      "category": "salary",
       "id": "b094",
       "selected": false
     },
@@ -96,7 +96,7 @@
       "date": "2024-06-22",
       "content": "신발 사기",
       "amount": 29490,
-      "deposit": true,
+      "deposit": false,
       "category": "shopping",
       "id": "6303",
       "selected": false
@@ -105,7 +105,7 @@
       "date": "2024-05-23",
       "content": "아바라",
       "amount": 75660,
-      "deposit": true,
+      "deposit": false,
       "category": "cafe",
       "id": "1b07",
       "selected": false
@@ -132,7 +132,7 @@
       "date": "2024-05-11",
       "content": "스테이크",
       "amount": 31550,
-      "deposit": true,
+      "deposit": false,
       "category": "food",
       "id": "3086",
       "selected": false
@@ -141,17 +141,17 @@
       "date": "2024-05-07",
       "content": "외식",
       "amount": 65660,
-      "deposit": true,
+      "deposit": false,
       "category": "food",
       "id": "dcd3"
     },
     {
       "id": "4d93",
       "date": "2024-06-12",
-      "content": "reactive",
+      "content": "돈 주음",
       "amount": "1",
       "deposit": true,
-      "category": "food"
+      "category": "etc"
     }
   ],
   "user3": [
@@ -167,7 +167,7 @@
       "date": "2024-05-04",
       "content": "카페",
       "amount": 91700,
-      "deposit": true,
+      "deposit": false,
       "category": "cafe",
       "id": "b3ab"
     },
@@ -181,10 +181,10 @@
     },
     {
       "date": "2024-06-10",
-      "content": "6월 저축",
-      "amount": 55910,
+      "content": "6월 월급",
+      "amount": 559100,
       "deposit": true,
-      "category": "saving",
+      "category": "salary",
       "id": "a669"
     },
     {
@@ -229,19 +229,19 @@
     },
     {
       "date": "2024-05-12",
-      "content": "용돈 저축",
-      "amount": 54840,
+      "content": "로또",
+      "amount": 5484000,
       "deposit": true,
-      "category": "saving",
+      "category": "Lotto",
       "id": "a98b"
     }
   ],
   "user4": [
     {
-      "date": "2024-05-20",
+      "date": "2024-06-20",
       "content": "등산",
       "amount": 44170,
-      "deposit": true,
+      "deposit": false,
       "category": "leisure",
       "id": "2c5c"
     },
@@ -263,17 +263,17 @@
     },
     {
       "date": "2024-06-20",
-      "content": "옷 구매",
+      "content": "월급",
       "amount": 39990,
       "deposit": true,
-      "category": "shopping",
+      "category": "salary",
       "id": "5c7f"
     },
     {
       "date": "2024-06-23",
       "content": "커피",
       "amount": 40680,
-      "deposit": true,
+      "deposit": false,
       "category": "cafe",
       "id": "1702"
     },
@@ -281,16 +281,16 @@
       "date": "2024-05-31",
       "content": "외식",
       "amount": 17020,
-      "deposit": true,
+      "deposit": false,
       "category": "food",
       "id": "9f07"
     },
     {
       "date": "2024-06-31",
-      "content": "용돈 저축",
+      "content": "용돈",
       "amount": 60270,
       "deposit": true,
-      "category": "saving",
+      "category": "yongdon",
       "id": "ceef"
     },
     {
@@ -313,7 +313,7 @@
       "date": "2024-05-04",
       "content": "5월 저축",
       "amount": 59680,
-      "deposit": true,
+      "deposit": false,
       "category": "saving",
       "id": "8203"
     }

@@ -180,7 +180,7 @@ export default {
 .character{
     width: 13%;
     position: absolute;
-    top: 780px;
+    top: 830px;
     left: 85%;
 
 }
