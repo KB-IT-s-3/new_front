@@ -31,8 +31,7 @@
                         <td>
                             <select v-model="entry.category">
                                 <option value="" selected>카테고리 선택</option>
-                                <option v-for="category in availableCategories" :value="category">{{ category }}
-                                </option>
+                                <option v-for="category in availableCategories[entry.deposit]" :value="category.value">{{ category.label }}</option>
                             </select>
                         </td>
                     </tr>
@@ -54,8 +53,21 @@ export default {
     setup() {
         // Vue Router를 사용하기 위해 useRouter를 가져옴
         const router = useRouter();
-        const availableCategories = reactive([]);
-
+        const availableCategories = reactive({
+            '수입': [
+                { label: '용돈', value: 'yongdon' },
+                { label: '월급', value: 'salary' },
+                { label: '로또', value: 'Lotto' },
+                { label: '기타', value: 'etc' }
+            ],
+            '지출': [
+                { label: '외식', value: 'food' },
+                { label: '카페', value: 'cafe' },
+                { label: '저축', value: 'saving' },
+                { label: '레저', value: 'leisure' },
+                { label: '쇼핑', value: 'shopping' }
+            ]
+        });
         const userStore = useUserStore();
         const NowUser = ref(userStore.getUser());
 
@@ -73,19 +85,6 @@ export default {
                 entries.pop();
             } else {
                 alert('삭제할 항목이 없습니다.');
-            }
-        };
-
-        // 수입/지출에 따라 카테고리 내용 전환하는 함수
-        const updateCategories = (entry) => {
-            if (entry.deposit === '수입') {
-                availableCategories.splice(0); // 기존 요소 삭제
-                availableCategories.push('용돈', '월급', '로또', '기타'); // 새로운 요소 추가
-            } else if (entry.deposit === '지출') {
-                availableCategories.splice(0); // 기존 요소 삭제
-                availableCategories.push('외식', '카페', '저축', '레저', '쇼핑'); // 새로운 요소 추가
-            } else {
-                availableCategories.splice(0); // 기타 선택 사항에 대한 처리
             }
         };
 
@@ -134,6 +133,12 @@ export default {
                 console.error('Error saving entries:', err);
             }
         }
+        const updateCategories = (entry) => {
+            if (entry.deposit === '수입') {
+                entry.category = ''; // 수입 선택 시 카테고리 초기화
+            }
+        };
+
         return {
             entries, addEntry, deleteEntry, saveEntry,
             availableCategories,

@@ -4,7 +4,7 @@
       "date": "2024-06-12",
       "content": "6월 용돈",
       "amount": 90400,
-      "deposit": true,  
+      "deposit": true,
       "category": "yongdon",
       "id": "9a6e",
       "selected": false
@@ -55,12 +55,12 @@
       "selected": false
     },
     {
-      "id": "cb11",
+      "id": "5461",
       "date": "2024-06-12",
-      "content": "ex",
-      "amount": "100",
-      "deposit": false,
-      "category": "카페"
+      "content": "ex2",
+      "amount": "1000",
+      "deposit": true,
+      "category": "yongdon"
     }
   ],
   "user2": [
