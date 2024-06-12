@@ -57,68 +57,90 @@
 </template>
 
 <script>
+import { ref, computed, onMounted } from 'vue';
 import axios from "axios";
+import { useUserStore } from "@/stores/userStore.js";
 
 export default {
-  data() {
-    return {
-      searchTerm: "",
-      startDate: "",
-      endDate: "",
-      category: "",
-      userId: "user1", // 현재 사용자 ID를 지정
-      items: [],
-      selectAll: false, // 전체 선택 체크박스 상태
+  setup() {
+    const userStore = useUserStore();
+    const searchTerm = ref("");
+    const startDate = ref("");
+    const endDate = ref("");
+    const category = ref("");
+    const selectAll = ref(false); // 전체 선택 체크박스 상태
+    const items = ref([]);
+
+    const NowUser = userStore.getUser();
+
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/${NowUser}`);
+        items.value = response.data.map((item) => ({ ...item, selected: false }));
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
     };
-  },
-  computed: {
-    filteredItems() {
-      return this.items.filter((item) => {
+
+    const filteredItems = computed(() => {
+      return items.value.filter((item) => {
         return (
-          (!this.searchTerm || item.content.includes(this.searchTerm)) &&
-          (!this.startDate ||
-            new Date(item.date) >= new Date(this.startDate)) &&
-          (!this.endDate || new Date(item.date) <= new Date(this.endDate)) &&
-          (!this.category || item.category.includes(this.category))
+          (!searchTerm.value || item.content.includes(searchTerm.value)) &&
+          (!startDate.value || new Date(item.date) >= new Date(startDate.value)) &&
+          (!endDate.value || new Date(item.date) <= new Date(endDate.value)) &&
+          (!category.value || item.category.includes(category.value))
         );
       });
-    },
-    totalExpense() {
-      return this.filteredItems
+    });
+
+    const totalExpense = computed(() => {
+      return filteredItems.value
         .filter((item) => !item.deposit)
         .reduce((total, item) => total + item.amount, 0);
-    },
-    totalIncome() {
-      return this.filteredItems
+    });
+
+    const totalIncome = computed(() => {
+      return filteredItems.value
         .filter((item) => item.deposit)
         .reduce((total, item) => total + item.amount, 0);
-    },
-  },
-  methods: {
-    async fetchData() {
-      const response = await axios.get(`http://localhost:3000/${this.userId}`);
-      this.items = response.data.map((item) => ({ ...item, selected: false }));
-    },
-    async updateItems() {
-      for (const item of this.items) {
-        await axios.put(`http://localhost:3000/${this.userId}/${item.id}`, item);
+    });
+
+    const updateItems = async () => {
+      for (const item of items.value) {
+        await axios.put(`http://localhost:3000/${NowUser}/${item.id}`, item);
       }
       alert('Items updated successfully!');
-    },
-    async deleteItems() {
-      // 선택된 항목만 삭제
-      const selectedItems = this.items.filter((item) => item.selected);
+    };
+
+    const deleteItems = async () => {
+      const selectedItems = items.value.filter((item) => item.selected);
       for (const item of selectedItems) {
-        await axios.delete(`http://localhost:3000/${this.userId}/${item.id}`);
+        await axios.delete(`http://localhost:3000/${NowUser}/${item.id}`);
       }
-      this.fetchData(); // 데이터 다시 불러오기
-    },
-    toggleAll() {
-      this.filteredItems.forEach((item) => (item.selected = this.selectAll));
-    },
-  },
-  mounted() {
-    this.fetchData();
+      fetchData(); // Reload data
+    };
+
+    const toggleAll = () => {
+      filteredItems.value.forEach((item) => (item.selected = selectAll.value));
+    };
+
+    onMounted(fetchData);
+    
+    // 반환
+    return {
+      searchTerm,
+      startDate,
+      endDate,
+      category,
+      selectAll,
+      items,
+      filteredItems,
+      totalExpense,
+      totalIncome,
+      updateItems,
+      deleteItems,
+      toggleAll,
+    };
   },
 };
 </script>

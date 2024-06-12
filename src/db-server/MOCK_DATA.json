@@ -144,6 +144,14 @@
       "deposit": true,
       "category": "food",
       "id": "dcd3"
+    },
+    {
+      "id": "4d93",
+      "date": "2024-06-12",
+      "content": "reactive",
+      "amount": "1",
+      "deposit": true,
+      "category": "food"
     }
   ],
   "user3": [
