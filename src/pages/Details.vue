@@ -1,12 +1,18 @@
 <template>
   <div class="details">
-    <h1>My Budget Tracker</h1>
     <div class="search">
       <input type="text" v-model="searchTerm" placeholder="검색" />
       <input type="date" v-model="startDate" placeholder="시작 날짜" />
       <span> ~ </span>
       <input type="date" v-model="endDate" placeholder="종료 날짜" />
-      <input type="text" v-model="category" placeholder="카테고리" />
+      <select v-model="categoryFilter">
+        <option value="">전체</option>
+        <option value="food">외식</option>
+        <option value="cafe">카페</option>
+        <option value="saving">저축</option>
+        <option value="leisure">레저</option>
+        <option value="shopping">쇼핑</option>
+      </select>
     </div>
     <table>
       <thead>
@@ -22,27 +28,34 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="(item, index) in filteredItems" :key="index">
-        <td><input type="checkbox" v-model="item.selected" /></td>
-        <td>
-          <input type="date" v-model="item.date">
-        </td>
-        <td>
-          <input type="text" v-model="item.content">
-        </td>
-        <td>
-          <input type="number" v-model="item.amount">
-        </td>
-        <td>
-          <select v-model="item.deposit">
-            <option :value="true">수입</option>
-            <option :value="false">지출</option>
-          </select>
-        </td>
-        <td>
-          <input type="text" v-model="item.category">
-        </td>
-      </tr>
+        <tr v-for="(item, index) in filteredItems" :key="index">
+          <td><input type="checkbox" v-model="item.selected" /></td>
+          <td>
+            <input type="date" v-model="item.date">
+          </td>
+          <td>
+            <input type="text" v-model="item.content">
+          </td>
+          <td>
+            <input type="number" v-model="item.amount">
+          </td>
+          <td>
+            <select v-model="item.deposit">
+              <option :value="true">수입</option>
+              <option :value="false">지출</option>
+            </select>
+          </td>
+          <td>
+            <select v-model="item.category">
+              <option value="">카테고리 선택</option>
+              <option value="food">외식</option>
+              <option value="cafe">카페</option>
+              <option value="saving">저축</option>
+              <option value="leisure">레저</option>
+              <option value="shopping">쇼핑</option>
+            </select>
+          </td>
+        </tr>
       </tbody>
     </table>
     <div class="totals">
@@ -57,7 +70,7 @@
 </template>
 
 <script>
-import { ref, computed, onMounted } from 'vue';
+import { ref, reactive, computed, onMounted } from 'vue';
 import axios from "axios";
 import { useUserStore } from "@/stores/userStore.js";
 
@@ -67,28 +80,30 @@ export default {
     const searchTerm = ref("");
     const startDate = ref("");
     const endDate = ref("");
-    const category = ref("");
+    const categoryFilter = ref("");
     const selectAll = ref(false); // 전체 선택 체크박스 상태
-    const items = ref([]);
+    const state = reactive({
+      items: [],
+    });
 
     const NowUser = userStore.getUser();
 
     const fetchData = async () => {
       try {
         const response = await axios.get(`http://localhost:3000/${NowUser}`);
-        items.value = response.data.map((item) => ({ ...item, selected: false }));
+        state.items = response.data.map((item) => ({ ...item, selected: false }));
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
 
     const filteredItems = computed(() => {
-      return items.value.filter((item) => {
+      return state.items.filter((item) => {
         return (
           (!searchTerm.value || item.content.includes(searchTerm.value)) &&
           (!startDate.value || new Date(item.date) >= new Date(startDate.value)) &&
           (!endDate.value || new Date(item.date) <= new Date(endDate.value)) &&
-          (!category.value || item.category.includes(category.value))
+          (!categoryFilter.value || item.category === categoryFilter.value)
         );
       });
     });
@@ -106,14 +121,14 @@ export default {
     });
 
     const updateItems = async () => {
-      for (const item of items.value) {
+      for (const item of state.items) {
         await axios.put(`http://localhost:3000/${NowUser}/${item.id}`, item);
       }
-      alert('Items updated successfully!');
+      alert('수정되었습니다!');
     };
 
     const deleteItems = async () => {
-      const selectedItems = items.value.filter((item) => item.selected);
+      const selectedItems = state.items.filter((item) => item.selected);
       for (const item of selectedItems) {
         await axios.delete(`http://localhost:3000/${NowUser}/${item.id}`);
       }
@@ -124,6 +139,12 @@ export default {
       filteredItems.value.forEach((item) => (item.selected = selectAll.value));
     };
 
+    const confirmDelete = () => {
+      if (confirm("정말로 삭제하시겠습니까?")) {
+        deleteItems();
+      }
+    };
+
     onMounted(fetchData);
 
     // 반환
@@ -131,14 +152,14 @@ export default {
       searchTerm,
       startDate,
       endDate,
-      category,
+      categoryFilter,
       selectAll,
-      items,
+      state,
       filteredItems,
       totalExpense,
       totalIncome,
       updateItems,
-      deleteItems,
+      confirmDelete,
       toggleAll,
     };
   },

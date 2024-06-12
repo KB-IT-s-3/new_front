@@ -71,7 +71,8 @@
       "amount": 95430,
       "deposit": false,
       "category": "food",
-      "id": "e99c"
+      "id": "e99c",
+      "selected": false
     },
     {
       "date": "2024-05-15",
@@ -79,7 +80,8 @@
       "amount": 92360,
       "deposit": false,
       "category": "cafe",
-      "id": "3748"
+      "id": "3748",
+      "selected": false
     },
     {
       "date": "2024-06-09",
@@ -87,7 +89,8 @@
       "amount": 63090,
       "deposit": true,
       "category": "saving",
-      "id": "608d"
+      "id": "608d",
+      "selected": false
     },
     {
       "date": "2024-06-09",
@@ -95,7 +98,8 @@
       "amount": 73120,
       "deposit": true,
       "category": "leisure",
-      "id": "b094"
+      "id": "b094",
+      "selected": false
     },
     {
       "date": "2024-06-22",
@@ -103,7 +107,8 @@
       "amount": 29490,
       "deposit": true,
       "category": "shopping",
-      "id": "6303"
+      "id": "6303",
+      "selected": false
     },
     {
       "date": "2024-05-23",
@@ -111,7 +116,8 @@
       "amount": 75660,
       "deposit": true,
       "category": "cafe",
-      "id": "1b07"
+      "id": "1b07",
+      "selected": false
     },
     {
       "date": "2024-06-15",
@@ -119,7 +125,8 @@
       "amount": 93690,
       "deposit": false,
       "category": "shopping",
-      "id": "af89"
+      "id": "af89",
+      "selected": false
     },
     {
       "date": "2024-05-10",
@@ -127,7 +134,8 @@
       "amount": 48030,
       "deposit": false,
       "category": "leisure",
-      "id": "432e"
+      "id": "432e",
+      "selected": false
     },
     {
       "date": "2024-05-11",
@@ -135,7 +143,8 @@
       "amount": 31550,
       "deposit": true,
       "category": "food",
-      "id": "3086"
+      "id": "3086",
+      "selected": false
     },
     {
       "date": "2024-05-07",
