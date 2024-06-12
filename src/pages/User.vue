@@ -1,6 +1,6 @@
 <template>
     <div class="Guide">
-        <div class="Position">
+        <div class="Body">
             <div class="Image"><img :src = "NowUser.image" alt="User Image"></div>
             <span class="Name">이름: </span>
             <span class="Email">이메일:</span>
@@ -97,9 +97,6 @@ export default{
 * {
     box-sizing: border-box;
 }
-body {
-    font-size: 14px;
-}
 .Guide {
     width: 100%;
     height: 1200px;
@@ -107,16 +104,16 @@ body {
     position: relative;
     overflow: hidden;
 }
-.Position{
-    margin-left: 50%;
+.Body{
+    margin-left: 100%;
 }
 .Image {
     width: 382px;
     height: 537px;
     background: rgba(253, 253, 253, 1);
     position: absolute;
-    top: 74px;
-    left: 49px;
+    top: 74px;  /*74*/
+    left: 15%;
     border: 1px solid rgba(90, 91, 46, 1);
     border-radius: 15px;
     display: flex;
@@ -133,11 +130,12 @@ img{
     font-size: 40px;
     text-align: center;
 }
-.Name { top: 74px; left: 589px; }
-.Age { top: 203px; left: 589px; }
-.Gender { top: 332px; left: 589px; }
-.Email { top: 446px; left: 573px; }
-.Target { top: 564px; left: 559px; }
+.Name { top: 74px; left: 45%; } 
+.Age { top: 203px; left: 45%; }
+.Gender { top: 332px; left: 45%; }
+.Email { top: 446px; left: 44%; }
+.Target { top: 564px; left: 43%; } 
+
 .Name_tag, .Age_tag, .Gender_tag, .Email_tag, .Target_tag {
     width: 357px;
     height: 66px;
@@ -151,12 +149,14 @@ img{
     font-weight: bold;
     font-size: 35px;
     text-align: center;
+    left: 56%;
+    margin-left: 5%;
 }
-.Name_tag { top: 74px; left: 899px; }
-.Age_tag { top: 203px; left: 899px; }
-.Gender_tag { top: 332px; left: 899px; }
-.Email_tag { top: 446px; left: 899px; }
-.Target_tag { top: 564px; left: 899px; }
+.Name_tag { top: 74px; } 
+.Age_tag { top: 203px; }
+.Gender_tag { top: 332px;  }
+.Email_tag { top: 446px;  }
+.Target_tag { top: 564px; }
 
 .sidebar {
     position: fixed;
@@ -182,14 +182,15 @@ img{
 }
 .Point{
     position: relative;
-    top: 550px;
+    top: 420px;
 }
 .Point>img{
     width: 2%;
     transform: scaleX(-1);
 }
 .User1Box, .User2Box, .User3Box, .User4Box{
-    width: 353px;
+    /* width: 300px; */
+    width:12%;
     height: 84px;
     background: rgba(255, 255, 255, 1);
     opacity: 1;
@@ -197,23 +198,25 @@ img{
     border: 1px solid rgba(90, 91, 46, 1);
     border-radius: 8px;
 }
-.User1Box { top: 106px; left: 75px; }
-.User2Box { top: 236px; left: 75px; }
-.User3Box { top: 366px; left: 75px; }
-.User4Box { top: 496px; left: 75px; }
+.User1Box { top: 106px; left: 4%; }
+.User2Box { top: 236px; left: 4%; }
+.User3Box { top: 366px; left: 4%; }
+.User4Box { top: 496px; left: 4%; }
 
 .User1Text, .User2Text, .User3Text, .User4Text{
-    width: 299px;
+    /* width: 299px; */
+    width:10%;
     color: rgba(90, 91, 46, 1);
     position: absolute;
     font-family: Inter;
     font-weight: Medium;
-    font-size: 32px;
+    /* font-size: 32px; */
+    font-size: 250%;
     opacity: 1;
     text-align: center;
 }
-.User1Text { top: 125px; left: 98px; }
-.User2Text { top: 255px; left: 98px; }
-.User3Text { top: 384px; left: 98px; }
-.User4Text { top: 522px; left: 98px; }
+.User1Text { top: 121px; left: 5%; }
+.User2Text { top: 251px; left: 5%; }
+.User3Text { top: 381px; left: 5%; }
+.User4Text { top: 511px; left: 5%; }
 </style>
