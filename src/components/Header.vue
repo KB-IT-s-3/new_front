@@ -64,7 +64,7 @@ export default {
 .User_buttonText:hover, .Title_text:hover{
     cursor: pointer;
 }
-.User_button:hover, .Title:hover{
+.User_button:hover{
     transition: transform 0.3s ease;
     transform: scale(1.1);
 }
