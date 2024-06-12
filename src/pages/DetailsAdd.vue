@@ -132,6 +132,8 @@ export default {
 <style scoped>
 .container {
     width: 100%;
+    height: 1200px;
+    background: rgba(254, 255, 226, 1);
 }
 
 .add-wrap {

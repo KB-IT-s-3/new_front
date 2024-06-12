@@ -32,6 +32,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
+    border-bottom: 2px solid rgba(90, 91, 45, 1);
 }
 
 .Title {
@@ -52,7 +53,8 @@ export default {
     margin-right: 40px;
     border-radius: 8px;
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
-    background: rgba(251, 255, 156, 1);
+    background: rgba(251, 255, 226, 1);
+    border :2px solid rgba(90, 91, 45, 1);
 }
 
 .User_buttonText {
