@@ -48,19 +48,17 @@
           <td>
             <select v-model="item.category">
               <option value="">카테고리 선택</option>
-              <option value="food">외식</option>
-              <option value="cafe">카페</option>
-              <option value="saving">저축</option>
-              <option value="leisure">레저</option>
-              <option value="shopping">쇼핑</option>
+              <option v-for="category in getCategories(item.deposit)" :key="category.value" :value="category.value">
+                {{ category.label }}
+              </option>
             </select>
           </td>
         </tr>
       </tbody>
     </table>
     <div class="totals">
-      <span>출금: {{ totalExpense }}</span>
-      <span>입금: {{ totalIncome }}</span>
+      <span>지출: {{ totalExpense }}</span>
+      <span>수입: {{ totalIncome }}</span>
     </div>
     <div class="actions">
       <button @click="updateItems">Update</button>
@@ -71,9 +69,9 @@
 </template>
 
 <script>
-import { ref, reactive, computed, onMounted } from 'vue';
-import axios from "axios";
 import { useUserStore } from "@/stores/userStore.js";
+import axios from "axios";
+import { computed, onMounted, reactive, ref } from 'vue';
 
 export default {
   setup() {
@@ -85,6 +83,22 @@ export default {
     const selectAll = ref(false); // 전체 선택 체크박스 상태
     const state = reactive({
       items: [],
+    });
+
+    const availableCategories = reactive({
+      수입: [
+        { label: '용돈', value: 'yongdon' },
+        { label: '월급', value: 'salary' },
+        { label: '로또', value: 'lotto' },
+        { label: '기타', value: 'etc' }
+      ],
+      지출: [
+        { label: '외식', value: 'food' },
+        { label: '카페', value: 'cafe' },
+        { label: '저축', value: 'saving' },
+        { label: '레저', value: 'leisure' },
+        { label: '쇼핑', value: 'shopping' }
+      ]
     });
 
     const NowUser = userStore.getUser();
@@ -146,6 +160,14 @@ export default {
       }
     };
 
+    const getCategories = (isIncome) => {
+      return isIncome ? availableCategories.수입 : availableCategories.지출;
+    };
+
+    const allCategories = computed(() => {
+      return [...availableCategories.수입, ...availableCategories.지출];
+    });
+
     onMounted(fetchData);
 
     // 반환
@@ -162,6 +184,8 @@ export default {
       updateItems,
       confirmDelete,
       toggleAll,
+      getCategories,
+      allCategories,
     };
   },
 };
