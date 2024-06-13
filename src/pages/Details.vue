@@ -86,8 +86,6 @@
         </div>
       </div>
     </div>
-
-    <!-- <img src="../../public/character.png" class="character img-fluid"> -->
   </div>
 </template>
 
@@ -231,11 +229,23 @@ export default {
       closeModal(); // 모달 닫기
     };
 
+    
+    watch(()=>userStore.getTargerChange(),(newVal) => {
+      if(newVal){
+        checkTargetExceeded();
+      }
+      else{
+        checkTargetExceeded();
+      }
+      
+  })
+
     const checkTargetExceeded = () => {
+      const NewUserTarget = userStore.getTargerValue();
       const totalExpenses = totalExpense.value;
-      if (totalExpenses > NowUserTarget) {
+      if (totalExpenses > NewUserTarget) {
         showAlert.value = true;
-        alertMessage.value = `목표 금액 ${NowUserTarget}원을 ${totalExpenses - NowUserTarget}원 초과했습니다!`;
+        alertMessage.value = `목표 금액 ${NewUserTarget}원을 ${totalExpenses - NewUserTarget}원 초과했습니다!`;
       }
       else {
         showAlert.value = false;
@@ -396,4 +406,5 @@ button {
   padding: 10px;
   box-sizing: border-box;
 }
+
 </style>

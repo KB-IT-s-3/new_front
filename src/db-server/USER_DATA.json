@@ -8,9 +8,8 @@
       "age": "27",
       "email": "abcee@gmail.com",
       "gender": "Male",
-      "target": 29000,
+      "target": "290000",
       "image": "/assets/user1.png"
-
     },
     {
       "id": "admin2",
@@ -20,9 +19,8 @@
       "age": "20",
       "email": "dvsdfg@gmail.com",
       "gender": "Female",
-      "target": 300000,
+      "target": "300000",
       "image": "../public/user2.png"
-
     },
     {
       "id": "admin3",
@@ -32,7 +30,7 @@
       "age": "31",
       "email": "ggve@gmail.com",
       "gender": "Male",
-      "target": 111100,
+      "target": "1111000",
       "image": "../public/user3.png"
     },
     {
@@ -43,7 +41,7 @@
       "age": "25",
       "email": "htsf@gmail.com",
       "gender": "Male",
-      "target": 2122200,
+      "target": "2122200",
       "image": "../public/user4.png"
     }
   ]

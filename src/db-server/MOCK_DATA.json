@@ -130,7 +130,7 @@
     {
       "date": "2024-06-15",
       "content": "아이패드 구매",
-      "amount": 93690,
+      "amount": 93691,
       "deposit": false,
       "category": "shopping",
       "id": "af89",
@@ -167,7 +167,7 @@
       "id": "4d93",
       "date": "2024-06-12",
       "content": "돈 주음",
-      "amount": "1",
+      "amount": 1,
       "deposit": true,
       "category": "etc",
       "selected": false
@@ -179,6 +179,15 @@
       "amount": "1000",
       "deposit": false,
       "category": "cafe",
+      "selected": false
+    },
+    {
+      "id": "51f7",
+      "date": "2024-06-13",
+      "content": "test",
+      "amount": "1",
+      "deposit": false,
+      "category": "food",
       "selected": false
     }
   ],

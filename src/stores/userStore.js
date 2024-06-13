@@ -4,9 +4,19 @@ import { reactive } from 'vue';
 export const useUserStore = defineStore('user', ()=>{
     const Login = reactive({login: false})
     const User = reactive({})
+    const TargetChange = reactive({change: false, value:""})
+    const setTargetChange = (nowtarget)=>{
+        TargetChange.value = nowtarget;
+        TargetChange.change = !TargetChange.change;
+    }
+    const getTargerChange = ()=>{
+        return TargetChange.change;
+    }
+    const getTargerValue = ()=>{
+        return TargetChange.value;
+    }
     const setUser=(Nowuser) =>{
             Object.assign(User, Nowuser);
-            console.log(User)
         }
     const getUser = () => {
             return User.key;
@@ -14,6 +24,9 @@ export const useUserStore = defineStore('user', ()=>{
     const getUserAll = ()=>{
             return User;
     }
+    const gettarget = ()=>{
+        return User.target;
+}
     const setLogin=() =>{
             Login.login = true;
             console.log("login");
@@ -27,5 +40,5 @@ export const useUserStore = defineStore('user', ()=>{
         };
 
     
-    return {Login, User, setUser, getUser, getUserAll, setLogin, setLogout, getLogin}
+    return {Login, User, setUser, getUser, getUserAll, gettarget, setLogin, setLogout, getLogin, TargetChange, setTargetChange, getTargerChange, getTargerValue}
 });

@@ -75,10 +75,9 @@ export default {
 
 //// 사이드 바 사용자 정보 업데이트
         const UpdateData = async(e)=>{
-            console.log(NowUser)
             try{
                 const response = await axios.put(`${url}/${NowUser.id}`, {id:NowUser.id, pwd:NowUser.pwd, key:NowUser.key, name:NowUser.name, age:NowUser.age, email:NowUser.email, gender:NowUser.gender, target:NowUser.target, image:NowUser.image}) 
-                console.log(response)
+                userStore.setTargetChange(NowUser.target)
             }catch(err){
                     alert(err.response) 
                 }
