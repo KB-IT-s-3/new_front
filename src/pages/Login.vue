@@ -78,13 +78,14 @@ ul {
     font-size: 16px;
 }
 h1{
+    width: 33%;
     color: rgba(90, 91, 45, 1);
     font-family: Inika;
     font-weight: bold;
     font-size: 32px;
     position: absolute;
     top: 40%;
-    left: 27%;
+    left: 10%;
     text-align: right;
 }
 p{
@@ -149,5 +150,22 @@ input::placeholder {
     top:10%;
     left:35%;
 }
+
+@media (max-width: 1500px) {
+    .button{
+        font-size: 15px;
+    }
+}
+@media (max-width: 1300px) {
+    .button{
+        font-size: 10px;
+    }
+}
+@media (max-width: 1100px) {
+    .button{
+        font-size: 5px;
+    }
+}
+
 
 </style>
