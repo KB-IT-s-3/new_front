@@ -153,6 +153,11 @@ const updatePieChart = (month, totalsPrevious, totalsCurrent) => {
     pieChartData.value.labels = categories.map(category => category.charAt(0).toUpperCase() + category.slice(1));
     pieChartData.value.datasets[0].data = Object.values(totalsCurrent);
     selectedMonthName.value = currentMonthName.value;
+  } else {
+    // 초기 상태에서 빈 차트를 표시하도록 설정
+    pieChartData.value.labels = categories.map(category => category.charAt(0).toUpperCase() + category.slice(1));
+    pieChartData.value.datasets[0].data = [0, 0, 0, 0, 0];
+    selectedMonthName.value = '';
   }
 };
 
@@ -211,7 +216,7 @@ onMounted(async () => {
 }
 
 h1 {
-  font-family: 'Inika', serif;
+  font-family: ‘Inika’, serif;
   font-size: 36px;
   color: rgba(90, 91, 46, 1);
   margin: 0;
@@ -249,15 +254,16 @@ cursor: pointer; / 차트에 커서가 올라가면 포인터로 변경 */
 }
 
 .spending-info {
-  background: rgba(255, 255, 255, 1);
-  padding: 20px;
-  border-radius: 100px;
-  border: 2px solid black; /* 태두리를 까맣게 설정 /
-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
-text-align: center;
-width: 50%;
-margin-bottom: 100px;
-cursor: pointer; / spending-info에 커서가 올라가면 포인터로 변경 */
+  position: absolute;
+  bottom: 20px;
+    background: rgba(255, 255, 255, 1);
+    padding: 20px;
+    border-radius: 100px;
+    border: 2px solid black;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    width: 50%;
+    cursor: pointer;
 }
 
 .spending-info p {
