@@ -84,10 +84,10 @@
       "id": "2254",
       "date": "2024-06-13",
       "content": "윈드서핑땡겨",
-      "amount": "100000",
+      "amount": 100000,
       "deposit": false,
       "category": "leisure",
-      "selected": false
+      "selected": true
     }
   ],
   "user2": [
