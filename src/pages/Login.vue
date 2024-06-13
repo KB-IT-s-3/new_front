@@ -1,6 +1,7 @@
 <template lang="">
     <div class="Left"></div>
-    <h1>이것은 제목입니다 허허...</h1>
+    <h1>My Budget Tracker</h1>
+    <p>"Logging in is the gateway to your financial journey, where security meets access and your financial management begins."</p>
     <div class="Right">
         <!-- <ul>
             <li><input type="text" v-model="id" placeholder="✉ Enter your ID" /></li>
@@ -88,7 +89,19 @@ h1{
     font-size: 32px;
     position: absolute;
     top: 40%;
-    left: 13%;
+    left: 27%;
+    text-align: right;
+}
+p{
+    width: 33%;
+    color: rgba(90, 91, 45, 1);
+    font-family: Inika;
+    font-weight: bold;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 9%;
+    text-align: right;
 }
 .Right{
     width: 50%;
