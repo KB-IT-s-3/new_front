@@ -183,7 +183,8 @@
       "content": "커피",
       "amount": "1000",
       "deposit": false,
-      "category": "cafe"
+      "category": "cafe",
+      "selected": false
     }
   ],
   "user3": [

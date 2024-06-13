@@ -17,7 +17,7 @@ export default {
     setup() {
         let id = ref('');
         let pwd = ref('');
-        const url = 'http://localhost:3002/login';
+        const url = 'http://localhost:3002/UserList';
         const userStore = useUserStore();
         const router = useRouter()
 
@@ -27,8 +27,7 @@ export default {
                 const result = await requestList();
                 const user = result.find(user => user.id === id.value && user.pwd === pwd.value);
                 if (user) {
-                    console.log(user.key);
-                    userStore.setUser(user.key);    
+                    userStore.setUser(user);    
                     userStore.setLogin();
                     router.push('./home')
                     alert('로그인 성공');

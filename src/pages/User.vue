@@ -64,7 +64,7 @@ export default{
 
         const UpdateData = async(e)=>{
             try{
-                const response = await axios.put(`${url}/${NowUser.id}`, {age:NowUser.age, name:NowUser.name, email:NowUser.email, target:NowUser.target, gender:NowUser.gender, image:NowUser.image}) 
+                const response = await axios.put(`${url}/${NowUser.id}`, {id:NowUser.id, pwd:NowUser.pwd, key:NowUser.key, age:NowUser.age, name:NowUser.name, email:NowUser.email, target:NowUser.target, gender:NowUser.gender, image:NowUser.image}) 
                 const result = await requestList()
                 Object.assign(Lists, result) 
                 Object.assign(NowUser, Lists[usernumber-1])
@@ -104,12 +104,12 @@ export default{
     left: 85%;
 
 }
-.sidebar>.character{
+/* .sidebar>.character{
     width: 13%;
     position: absolute;
     top: 770px;
     left: 4%
-}
+} */
 
 
 .Image {
@@ -163,7 +163,7 @@ img{
 .Email_tag { top: 446px;  }
 .Target_tag { top: 564px; }
 
-
+/* 
 .sidebar {
     position: fixed;
     top: 0;
@@ -195,7 +195,6 @@ img{
     transform: scaleX(-1);
 }
 .User1Box, .User2Box, .User3Box, .User4Box{
-    /* width: 300px; */
     width:12%;
     height: 84px;
     background: rgba(255, 255, 255, 1);
@@ -210,7 +209,6 @@ img{
 .User4Box { top: 496px; left: 4%; }
 
 .User1Text, .User2Text, .User3Text, .User4Text{
-    /* width: 299px; */
     width:10%;
     color: rgba(90, 91, 46, 1);
     position: absolute;
@@ -223,7 +221,7 @@ img{
 .User1Text { top: 121px; left: 5%; }
 .User2Text { top: 251px; left: 5%; }
 .User3Text { top: 381px; left: 5%; }
-.User4Text { top: 511px; left: 5%; }
+.User4Text { top: 511px; left: 5%; } */
 
 
 
