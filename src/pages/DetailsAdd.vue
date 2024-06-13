@@ -39,12 +39,6 @@
             </table>
             <!-- 저장 버튼을 클릭하면 saveEntry 함수를 호출 -->
             <button id="save-button" @click="saveEntry" class="btn btn-success float-end">저장</button>
-            
-            <!-- Bootstrap 5 alert -->
-            <div v-if="showAlert" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-                가계부가 추가되었습니다.
-                <button type="button" class="btn-close" @click="showAlert = false"></button>
-            </div>
         </div>
     </div>
 </template>
@@ -56,7 +50,7 @@ import { useRouter } from 'vue-router';
 import { useUserStore } from "@/stores/userStore.js";
 
 export default {
-    setup() {
+    setup(props, {emit}) {
         // Vue Router를 사용하기 위해 useRouter를 가져옴
         const router = useRouter();
         const availableCategories = reactive({
@@ -83,7 +77,7 @@ export default {
         ]);
 
         // 상태 변수: alert 표시 여부
-        const showAlert = ref(false);
+        // const showAlert = ref(false);
 
         // 새로운 항목을 추가하는 함수
         const addEntry = () => {
@@ -99,9 +93,10 @@ export default {
             }
         };
 
-        // 입력된 항목들을 서버에 저장하는 함수
         const saveEntry = async () => {
             try {
+                // 저장된 항목들을 담을 배열
+                const savedEntries = []
                 const nonEmptyEntries = entries.filter(entry => {
                     return Object.values(entry).every(value => value.trim() != '');
                 });
@@ -125,14 +120,13 @@ export default {
                 // 각 항목을 순회하며 빈 데이터가 아닌 경우에만 서버에 전송
                 for (const entry of nonEmptyEntries) {
                     const response = await axios.post(`http://localhost:3000/${NowUser.value}`, entry);
-                    // 저장된 항목들을 출력
-                    console.log(response.data);
+                    savedEntries.push(response.data);
+                    emit('entryAdded');
                 }
+                console.log(savedEntries)
+                alert('가계부가 추가되었습니다.');
 
-                // 저장이 완료되면 알림창 표시
-                showAlert.value = true;
-
-                // Entries를 초기화해서 저장 후에는 입력한 데이터 삭제
+                // Entries를 초기화
                 entries.splice(0, entries.length);
             } catch (err) {
                 console.error('Error saving entries:', err);
@@ -152,8 +146,7 @@ export default {
             deleteEntry,
             saveEntry,
             availableCategories,
-            updateCategories,
-            showAlert // showAlert 변수를 setup 함수 내에서 반환
+            updateCategories
         };
     }
 };
@@ -176,6 +169,9 @@ export default {
 .data-table {
     width: 100%;
     border-collapse: collapse;
+}
+.button-row .btn {
+    width: 7%;
 }
 
 .data-table th,
