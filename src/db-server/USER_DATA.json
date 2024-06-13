@@ -1,65 +1,47 @@
 {
-    "login": [
-        {
-            "id": "admin1",
-            "pwd": "pwd1",
-            "key": "user1"
-        },
-        {
-            "id": "admin2",
-            "pwd": "pwd2",
-            "key": "user2"
-        },
-        {
-            "id": "admin3",
-            "pwd": "pwd3",
-            "key": "user3"
-        },
-        {
-            "id": "admin4",
-            "pwd": "pwd4",
-            "key": "user4"
-        }
-    ],
-
-  "user": [
+  "UserList": [
     {
-      "age": "27",
+      "id": "admin1",
+      "pwd": "pwd1",
+      "key": "user1",
       "name": "Age",
+      "age": "27",
       "email": "abcee@gmail.com",
-      "target": 29000,
       "gender": "Male",
-      "image": "../../public/user1.png",
-      "id": "1"
+      "target": 29000,
+      "image": "../../public/user1.png"
     },
     {
-      "id": "2",
-      "tag": "user2",
+      "id": "admin2",
+      "pwd": "pwd2",
+      "key": "user2",
       "name": "Bibi",
-      "email": "dvsdfg@gmail.com",
-      "target": 300000,
-      "gender": "Female",
       "age": "20",
+      "email": "dvsdfg@gmail.com",
+      "gender": "Female",
+      "target": 300000,
       "image": "../../public/user2.png"
     },
     {
-      "id": "3",
-      "tag": "user3",
+      "id": "admin3",
+      "pwd": "pwd3",
+      "key": "user3",
       "name": "Ccoli",
-      "email": "ggve@gmail.com",
-      "target": 111100,
-      "gender": "Male",
       "age": "31",
+      "email": "ggve@gmail.com",
+      "gender": "Male",
+      "target": 111100,
       "image": "../../public/user3.png"
     },
     {
-      "id": "4",
-      "tag": "user4",
+      "id": "admin4",
+      "pwd": "pwd4",
+      "key": "user4",
       "name": "Kiki",
-      "email": "htsf@gmail.com",
-      "target": 2122200,
-      "gender": "Female",
       "age": "25",
+      "email": "htsf@gmail.com",
+      "gender": "Male",
+      "target": 2122200,
       "image": "../../public/user4.png"
     }
   ]

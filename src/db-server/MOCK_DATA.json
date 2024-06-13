@@ -61,6 +61,30 @@
       "amount": "30000",
       "deposit": true,
       "category": "yongdon"
+    },
+    {
+      "id": "346f",
+      "date": "2024-06-13",
+      "content": "데이트비",
+      "amount": "30000",
+      "deposit": false,
+      "category": "food"
+    },
+    {
+      "id": "2254",
+      "date": "2024-06-13",
+      "content": "윈드서핑땡겨",
+      "amount": "100000",
+      "deposit": false,
+      "category": "leisure"
+    },
+    {
+      "id": "a570",
+      "date": "2024-06-13",
+      "content": "탈출기원",
+      "amount": "30000",
+      "deposit": false,
+      "category": "shopping"
     }
   ],
   "user2": [
@@ -151,7 +175,8 @@
       "content": "커피",
       "amount": "1000",
       "deposit": false,
-      "category": "cafe"
+      "category": "cafe",
+      "selected": false
     }
   ],
   "user3": [

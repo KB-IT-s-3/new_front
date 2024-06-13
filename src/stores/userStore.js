@@ -2,25 +2,30 @@ import { defineStore } from 'pinia';
 import { reactive } from 'vue';
 
 export const useUserStore = defineStore('user', ()=>{
-    const state = reactive({user: "user1", login: false})
+    const Login = reactive({login: false})
+    const User = reactive({})
     const setUser=(Nowuser) =>{
-            state.user = Nowuser;
+            Object.assign(User, Nowuser);
+            console.log(User)
         }
     const getUser = () => {
-            return state.user;
+            return User.key;
         };
+    const getUserAll = ()=>{
+            return User;
+    }
     const setLogin=() =>{
-            state.login = true;
+            Login.login = true;
             console.log("login");
         }
     const setLogout=() =>{
-            state.login = false;
+            Login.login = false;
             console.log("logout");
         }
     const getLogin = () => {
-            return state.login;
+            return Login.login;
         };
 
     
-    return {state, setUser, getUser, setLogin, setLogout, getLogin}
+    return {Login, User, setUser, getUser, getUserAll, setLogin, setLogout, getLogin}
 });
