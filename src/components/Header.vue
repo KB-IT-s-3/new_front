@@ -22,9 +22,9 @@
 </template>
 <script>
 import { useUserStore } from "@/stores/userStore.js";
-import { useRouter } from 'vue-router';
-import { ref, watch, reactive } from 'vue';
 import axios from 'axios';
+import { reactive, ref, watch } from 'vue';
+import { useRouter } from 'vue-router';
 export default {
     setup() {
 ////변수
@@ -114,86 +114,78 @@ export default {
 .Title {
     padding: 14px 24px;
     background: rgba(254, 255, 226, 1);
+    display: flex;
+    align-items: center;
 }
 
 .Title_text {
     color: rgba(90, 91, 45, 1);
     font-family: Inika;
     font-weight: bold;
-    font-size: 48px;
+    font-size: 32px;
     text-align: center;
+    white-space: nowrap;
 }
 
-.User_buttonText, .Home_buttonText, .Detail_buttonText {
+.Home_buttonText, .Detail_buttonText, .User_buttonText {
     color: rgba(90, 91, 46, 1);
-    position: absolute;
-    top:3.5%;
     font-family: Inter;
     font-weight: medium;
-    font-size: 25px;
-    transition: left 0.5s ease;
-}
-.Home_buttonText{
-    left: 66%;
-}
-.Detail_buttonText{
-    left: 76%;
-}
-.User_buttonText{
-    left: 86%;
-}
-.home-active{
-    left:56%;
-}
-.detail-active{
-    left:66%;
-}
-.user-active{
-    left:96%;
-}
-.User_buttonText:hover, .Home_buttonText:hover, .Detail_buttonText:hover{
+    font-size: 20px;
+    margin-left: 20px;
     cursor: pointer;
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.home-active, .detail-active, .user-active {
+    left: auto;
 }
 
 .sidebar>.character{
     width: 13%;
     position: absolute;
     top: 800px;
-    left: 4%
+    left: 4%;
 }
+
 .sidebar {
     position: fixed;
     top: 0;
     right: -100%;
     width: 100%;
     height: 100%;
-    background-color:rgba(254, 255, 226, 1);
+    background-color: rgba(254, 255, 226, 1);
     transition: right 0.5s ease;
 }
+
 .sidebar-active {
     right: -80%;
     background-color: rgba(251, 255, 156, 1);
 }
 
-
 .sidebar-content {
     padding: 20px;
 }
 
-.sidebarOut{
+.sidebarOut {
     position: absolute;
     top: 30px;
 }
-.sidebarOut>img{
+
+.sidebarOut>img {
     width: 5%;
     transform: scaleX(-1);
 }
 
-.logout{
+.logout {
     position: absolute;
-    width:4.5%;
+    width: 4.5%;
     top: 25px;
-    left:15%;
+    left: 15%;
     color: rgba(90, 91, 46, 1);
     border: 2px solid rgba(90, 91, 46, 1);
     border-radius: 8px;
@@ -211,32 +203,70 @@ export default {
     border: 1px solid rgba(90, 91, 46, 1);
     border-radius: 8px;
     color: rgba(90, 91, 46, 1);
-    position: absolute;
     font-family: Inika;
     font-weight: bold;
     font-size: 35px;
     text-align: center;
-    left: 0%;
     margin-left: 5%;
 }
-.Name_tag { top: 300px; } /*429*/ 
+
+.Name_tag { top: 300px; }
 .Age_tag { top: 400px; }
-.Gender_tag { top: 500px;  }
-.Email_tag { top: 600px;  font-size: 20px;}
+.Gender_tag { top: 500px; }
+.Email_tag { top: 600px; font-size: 20px; }
 .Target_tag { top: 700px; }
 
 .Image {
     width: 8%;
     background: rgba(253, 253, 253, 1);
     position: absolute;
-    top: 75px;  /*74*/
+    top: 75px;
     left: 7%;
     border: 1px solid rgba(90, 91, 46, 1);
     border-radius: 15px;
     display: flex;
 }
-img{
-    width: 100%
+
+img {
+    width: 100%;
+}
+
+/* 반응형 디자인 추가 */
+@media (max-width: 768px) {
+    .Title_text {
+        font-size: 24px;
+    }
+
+    .Home_buttonText, .Detail_buttonText, .User_buttonText {
+        font-size: 16px;
+        margin-left: 10px;
+    }
+
+    .logout {
+        width: 10%;
+        left: 10%;
+        font-size: 16px;
+    }
+
+    .Name_tag, .Age_tag, .Gender_tag, .Email_tag, .Target_tag {
+        width: 180px;
+        height: 50px;
+        font-size: 24px;
+    }
+
+    .Email_tag {
+        font-size: 16px;
+    }
+
+    .Image {
+        width: 15%;
+        left: 10%;
+    }
+
+    .sidebar>.character {
+        top: 700px;
+        left: 10%;
+    }
 }
 
 </style>
