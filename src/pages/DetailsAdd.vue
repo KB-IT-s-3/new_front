@@ -1,35 +1,35 @@
 <template>
-    <div class="container">
+    <div class="container" my-4>
         <div class="add-wrap">
             <!-- + 버튼을 클릭하면 addEntry 함수를 호출 -->
-            <div class="button-row">
-                <button class="delete-entry" @click="deleteEntry">-</button>
-                <button class="add-entry" @click="addEntry">+</button>
+            <div class="button-row d-flex justify-content-end">
+                <button class="btn btn-danger me-2" @click="deleteEntry">-</button>
+                <button class="btn btn-primary" @click="addEntry">+</button>
             </div>
-            <table class="data-table">
-                <thead>
+            <table class="table-bordered">
+                <thead class="table-light">
                     <tr>
-                        <th class="date-header">날짜</th>
-                        <th class="content-header">내용</th>
-                        <th class="amount-header">금액</th>
-                        <th class="deposit-header">수입/지출</th>
-                        <th class="category-header">카테고리</th>
+                        <th scope="col">날짜</th>
+                        <th scope="col">내용</th>
+                        <th scope="col">금액</th>
+                        <th scope="col">수입/지출</th>
+                        <th scope="col">카테고리</th>
                     </tr>
                 </thead>
                 <tbody class="entries">
-                    <tr v-for="(entry, index) in entries" :key="index" class="entry">
-                        <td><input type="date" v-model="entry.date" placeholder="날짜" required /></td>
-                        <td><input v-model="entry.content" placeholder="내용" required /></td>
-                        <td><input v-model="entry.amount" placeholder="금액" required /></td>
+                    <tr v-for="(entry, index) in entries" :key="index">
+                        <td><input type="date" v-model="entry.date" class="form-control" placeholder="날짜" required /></td>
+                        <td><input v-model="entry.content" placeholder="내용" class="form-control"  required /></td>
+                        <td><input v-model="entry.amount" placeholder="금액" class="form-control" required /></td>
                         <td>
-                            <select v-model="entry.deposit" @change="updateCategories(entry)">
+                            <select v-model="entry.deposit" @change="updateCategories(entry)" class="form-select">
                                 <option value="" selected>수입/지출 선택</option>
                                 <option value="수입">수입</option>
                                 <option value="지출">지출</option>
                             </select>
                         </td>
                         <td>
-                            <select v-model="entry.category">
+                            <select v-model="entry.category" class="form-select">
                                 <option value="" selected>카테고리 선택</option>
                                 <option v-for="category in availableCategories[entry.deposit]" :value="category.value">{{ category.label }}</option>
                             </select>
@@ -38,7 +38,7 @@
                 </tbody>
             </table>
             <!-- 저장 버튼을 클릭하면 saveEntry 함수를 호출 -->
-            <button id="save-button" @click="saveEntry" class="btn btn-success">저장</button>
+            <button id="save-button" @click="saveEntry" class="btn btn-success float-end">저장</button>
         </div>
     </div>
 
@@ -125,10 +125,9 @@ export default {
                 console.log(savedEntries)
                 alert('가계부가 추가되었습니다.');
 
-                // Entries를 초기화
+                // Entries를 초기화해서 저장 후에는 입력한 데이터 삭제
                 entries.splice(0, entries.length);
-
-                router.push(`/`);
+                location.reload();
             } catch (err) {
                 console.error('Error saving entries:', err);
             }
@@ -148,10 +147,6 @@ export default {
 }
 </script>
 <style scoped>
-.container {
-    max-width: none;
-}
-
 .add-wrap {
     width: 100%;
     padding: 10px;
@@ -165,14 +160,6 @@ export default {
     justify-content: flex-end;
 }
 
-.delete-entry {
-    margin-right: 5px;
-}
-
-.add-entry {
-    margin-left: 5px;
-}
-
 .data-table {
     width: 100%;
     border-collapse: collapse;
@@ -180,24 +167,7 @@ export default {
 
 .data-table th,
 .data-table td {
-    width: 20%;
-    border: 1px solid #ddd;
     text-align: center;
 }
 
-.data-table th {
-    background-color: rgba(251, 255, 156, 1);
-    color: rgba(90, 91, 46, 1);
-}
-
-input,
-select {
-    width: 100%;
-    height: 100%;
-}
-
-#save-button {
-    width: 10%;
-    align-self: flex-end;
-}
 </style>
