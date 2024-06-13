@@ -9,7 +9,6 @@
         <div class="sidebar-content">
             <div class="logout" @click = "Logout">Logout</div>
             <div class="sidebarOut" @click = "SidebarOff"><img src = "../../public/point.png"></div>
-
             <div class="Image"><img :src = "NowUser.image" alt="User Image"></div>
             <input class="Name_tag" v-model="NowUser.name" @change = "UpdateData"></input>
             <input class="Age_tag" v-model="NowUser.age" @change = "UpdateData"></input>
