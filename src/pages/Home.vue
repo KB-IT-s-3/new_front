@@ -2,9 +2,10 @@
   <div class="app">
     <div class="chart-info">
       <div class="chart pie-chart">
-        <button @click.stop="showMonth(previousMonth)">지난달 보기</button>
-        <button @click.stop="showMonth(currentMonth)">이번 달 보기</button>
-        <Pie :chart-data="pieChartData" :options="chartOptions" @click.stop="handleChartClick('pie')" />
+        <button :class="{ active: selectedMonth.value === previousMonth.value }" @click.stop="showMonth(previousMonth)">지난달 보기</button>
+        <button :class="{ active: selectedMonth.value === currentMonth.value }" @click.stop="showMonth(currentMonth)">이번 달 보기</button>
+        <Pie :chart-data="pieChartData" :options="chartOptions" />
+        <p v-if="selectedMonthName">{{ selectedMonthName }}의 지출 차트</p>
       </div>
       <div class="chart bar-chart" @click="handleChartClick('bar')">
         <Bar :chart-data="barChartData" :options="chartOptions" />
@@ -15,7 +16,11 @@
          @mouseover="onMouseOver"
          @mouseleave="onMouseLeave">
       <p v-if="isHovered">또 돈 쓸꺼야?</p>
-      <p v-else>당신의 지출 금액은 {{ totalAmount }} 원 입니다.<br>{{ remainingAmount }} 원 남았습니다.</p>
+      <p v-else>
+        당신의 지출 금액은 {{ totalAmount }} 원 입니다.<br>
+        <span v-if="remainingAmount >= 0">{{ remainingAmount }} 원 남았습니다.</span>
+        <span v-else>{{ Math.abs(remainingAmount) }} 원 초과되었습니다.</span>
+      </p>
     </div>
   </div>
 </template>
@@ -46,10 +51,12 @@ const userStore = useUserStore();
 const pieChartData = ref({
   labels: [],
   datasets: [{
-    data: [],
+    data: [0, 0, 0, 0, 0], // 빈 데이터
     backgroundColor: ['#673512', '#FF6384', '#36A2EB', '#FFCD56', '#FF9F40']
   }]
 });
+
+const selectedMonthName = ref('');
 
 //소비 정리 부분 라우터 연결
 const goToDetailsAdd = () => {
@@ -134,8 +141,6 @@ const processData = (data) => {
   barChartData.value.labels = categories.map(category => category.charAt(0).toUpperCase() + category.slice(1));
   barChartData.value.datasets[0].data = Object.values(categoryTotalsPrevious);
   barChartData.value.datasets[1].data = Object.values(categoryTotalsCurrent);
-
-  updatePieChart(selectedMonth.value, categoryTotalsPrevious, categoryTotalsCurrent);
 };
 
 const updatePieChart = (month, totalsPrevious, totalsCurrent) => {
@@ -143,9 +148,11 @@ const updatePieChart = (month, totalsPrevious, totalsCurrent) => {
   if (month === previousMonth.value) {
     pieChartData.value.labels = categories.map(category => category.charAt(0).toUpperCase() + category.slice(1));
     pieChartData.value.datasets[0].data = Object.values(totalsPrevious);
+    selectedMonthName.value = previousMonthName.value;
   } else if (month === currentMonth.value) {
     pieChartData.value.labels = categories.map(category => category.charAt(0).toUpperCase() + category.slice(1));
     pieChartData.value.datasets[0].data = Object.values(totalsCurrent);
+    selectedMonthName.value = currentMonthName.value;
   }
 };
 
@@ -156,9 +163,9 @@ const showMonth = (month) => {
   updatePieChart(month, totalsPrevious, totalsCurrent);
 };
 
-// const handleChartClick = (type) => {
-//   router.push(`/details?chart=${type}`);
-// };
+const handleChartClick = (type) => {
+  router.push(`/details?chart=${type}`);
+};
 
 onMounted(async () => {
   try {
@@ -272,6 +279,10 @@ button {
 
 button:hover {
   background-color: #ffcd56d1;
+}
+
+button.active {
+  background-color: #ffaa00; /* 활성화된 버튼의 색상 */
 }
 
 @media (max-width: 768px) {
