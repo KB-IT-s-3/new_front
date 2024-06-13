@@ -61,8 +61,8 @@
       </tbody>
     </table>
     <div class="totals d-flex justify-content-between my-3">
-      <span>지출: {{ totalExpense }}</span>
-      <span>수입: {{ totalIncome }}</span>
+      <span class="expense-text">지출: <span class="amount">{{ totalExpense }}</span></span>
+      <span class="income-text">수입: <span class="amount">{{ totalIncome }}</span></span>
     </div>
     <div class="button-container d-flex justify-content-between">
       <button @click="openModal" class="btn btn-primary">Add</button>
@@ -299,6 +299,21 @@ td {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+}
+
+.expense-text {
+  color: red;
+}
+
+.income-text {
+  color: blue;
+}
+
+.amount {
+  color: black;
+  border: 10px;
+  padding: 2px 5px;
+  border-radius: 4px;
 }
 
 .button-container {
