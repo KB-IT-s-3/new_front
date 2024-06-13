@@ -7,7 +7,7 @@
         <Pie :chart-data="pieChartData" :options="chartOptions" />
         <p v-if="selectedMonthName">{{ selectedMonthName }}의 지출 차트</p>
       </div>
-      <div class="chart bar-chart" @click="handleChartClick('bar')">
+      <div class="chart bar-chart">
         <Bar :chart-data="barChartData" :options="chartOptions" />
       </div>
     </div>
@@ -15,7 +15,7 @@
          @click="goToDetailsAdd"
          @mouseover="onMouseOver"
          @mouseleave="onMouseLeave">
-      <p v-if="isHovered">또 돈 쓸꺼야?</p>
+      <p v-if="isHovered">돈 많아? 너 부자야? 또 돈 쓴거야?</p>
       <p v-else>
         당신의 지출 금액은 {{ totalAmount }} 원 입니다.<br>
         <span v-if="remainingAmount >= 0">{{ remainingAmount }} 원 남았습니다.</span>
@@ -60,7 +60,7 @@ const selectedMonthName = ref('');
 
 //소비 정리 부분 라우터 연결
 const goToDetailsAdd = () => {
-  router.push('/detailsadd');
+  router.push('/details');
 };
 //커서 올라가면 바뀌도록 설정
 const onMouseOver = () => {
@@ -118,7 +118,7 @@ const previousMonthName = ref(new Date(now.getFullYear(), now.getMonth() - 1, 1)
 const processData = (data) => {
   const categories = ['커피', '음식', '레저', '저축', '쇼핑'];
   const categoryTotalsPrevious = { 'cafe': 0, 'food': 0, 'leisure': 0, 'saving': 0, 'shopping': 0 };
-  const categoryTotalsCurrent = { 'cafe': 0, 'food': 0, 'leisure': 0, 'saving': 0, 'shopping': 0 };
+  const categoryTotalsCurrent = { 'cafe': 0, 'food': 0, 'leisure': 0, 'savingv': 0, 'shopping': 0 };
 
   // 입금 내역과 지출 내역을 각각 필터링
   const depositData = data.filter(entry => entry.deposit);
