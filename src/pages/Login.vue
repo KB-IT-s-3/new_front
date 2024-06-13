@@ -1,12 +1,22 @@
 <template lang="">
-    <div class="Left">
-        <img src="../../public/character.png" class="character">
-    </div>
-    <div class="Rignt">
+    <div class="Left"></div>
+    <h1>이것은 제목입니다 허허...</h1>
+    <div class="Right">
+        <!-- <ul>
+            <li><input type="text" v-model="id" placeholder="✉ Enter your ID" /></li>
+            <li><input type="password" v-model="pwd" placeholder="🔑 Enter your password"/></li>
+            <li><button class="button" @click="loginSubmitHandler">Login</button></li>
+        </ul> -->
         <ul>
-            <li>아이디: <input type="text" v-model="id" /></li>
-            <li>비밀번호: <input type="password" v-model="pwd" /></li>
-            <li><button @click="loginSubmitHandler">로그인</button></li>
+            <li class="input-container">
+                <span class="icon">✉</span>
+                <input type="text" v-model="id" placeholder="Enter your ID" />
+            </li>
+            <li class="input-container">
+                <span class="icon">🔑</span>
+                <input type="password" v-model="pwd" placeholder="Enter your password" />
+            </li>
+            <li><button class="button" @click="loginSubmitHandler">로그인</button></li>
         </ul>
     </div>
 </template>
@@ -56,23 +66,75 @@ export default {
 <style scoped>
 ul {
     list-style-type: none;
-    position:absolute;
-    top:45%;
-    left:68%;
-}
-.Left{
     width: 50%;
-    height: 1200px;
-    border-right: 1px solid rgba(90, 91, 46, 1);
-    background: rgba(254, 255, 226, 1);
+    position:absolute;
+    top:40%;
+    left:30%;
+}
+.input-container {
+    position: relative;
+}
+.icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    font-size: 16px;
+}
+h1{
+    color: rgba(90, 91, 45, 1);
+    font-family: Inika;
+    font-weight: bold;
+    font-size: 32px;
+    position: absolute;
+    top: 40%;
+    left: 13%;
 }
 .Right{
     width: 50%;
-    height: 1200px;
-    
-    position: relative;
-    overflow: hidden;
+    height: 1024px;
+    position:absolute;
+    left:50%;
+    background-color: white;
 }
+.Left{
+    width: 50%;
+    height: 1204px;
+    background: rgba(252,255,178,1);
+    opacity: 1;
+    position: absolute;
+    top: 3%;
+    left: -12%;
+    border-radius: 50%;
+    transform: rotate(-34deg);
+
+}
+
+input {
+    width: 100%;
+    padding: 10px 10px 10px 30px;
+    font-size: 16px;
+    color: rgba(90, 91, 45, 1);
+    font-family: Inika;
+    font-weight: bold;
+    border: none;
+    border-bottom: 2px solid rgba(90, 91, 45, 1); 
+    outline: none;
+
+}
+input::placeholder {
+    color: #aaa; /* 플레이스홀더 색상 */
+}
+.button{
+    width: 30%;
+    margin-top: 20%;
+    margin-left: 40%;
+    font-family: Inika;
+    font-weight: bold;
+    font-size: 20px;
+    color: rgba(90, 91, 45, 1);
+}
+
 
 .character{
     position:absolute;
