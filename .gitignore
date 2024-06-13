@@ -31,3 +31,4 @@ coverage
 
 # MOCK_DATA.json
 src/db-server/MOCK_DATA.json
+src/db-server/USER_DATA.json
