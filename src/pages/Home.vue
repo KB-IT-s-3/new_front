@@ -2,8 +2,8 @@
   <div class="app">
     <div class="chart-info">
       <div class="chart pie-chart">
-        <button @click.stop="showMonth(previousMonth)">{{ previousMonthName }} 보기</button>
-        <button @click.stop="showMonth(currentMonth)">{{ currentMonthName }} 보기</button>
+        <button @click.stop="showMonth(previousMonth)">지난달 보기</button>
+        <button @click.stop="showMonth(currentMonth)">이번 달 보기</button>
         <Pie :chart-data="pieChartData" :options="chartOptions" @click.stop="handleChartClick('pie')" />
       </div>
       <div class="chart bar-chart" @click="handleChartClick('bar')">
@@ -68,7 +68,7 @@ const barChartData = ref({
   labels: [],
   datasets: [
     {
-      label: '저번 달 지출',
+      label: '지난달 지출',
       data: [],
       backgroundColor: 'rgba(75, 192, 192, 0.5)',
       borderColor: 'rgba(75, 192, 192, 1)',
