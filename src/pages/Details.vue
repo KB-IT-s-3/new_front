@@ -234,7 +234,11 @@ export default {
     const checkTargetExceeded = () => {
       const totalExpenses = totalExpense.value;
       if (totalExpenses > NowUserTarget) {
-        alert(`목표 금액을 초과했습니다!`);
+        showAlert.value = true;
+        alertMessage.value = `목표 금액 ${NowUserTarget}원을 ${totalExpenses - NowUserTarget}원 초과했습니다!`;
+      }
+      else {
+        showAlert.value = false;
       }
     };
 
