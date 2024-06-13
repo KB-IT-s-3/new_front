@@ -9,7 +9,7 @@
       "email": "abcee@gmail.com",
       "gender": "Male",
       "target": 29000,
-      "image": "../../public/user1.png"
+      "image": "/public/user1.png"
     },
     {
       "id": "admin2",
@@ -20,7 +20,7 @@
       "email": "dvsdfg@gmail.com",
       "gender": "Female",
       "target": 300000,
-      "image": "../../public/user2.png"
+      "image": "/public/user2.png"
     },
     {
       "id": "admin3",
@@ -31,7 +31,7 @@
       "email": "ggve@gmail.com",
       "gender": "Male",
       "target": 111100,
-      "image": "../../public/user3.png"
+      "image": "/public/user3.png"
     },
     {
       "id": "admin4",
@@ -42,7 +42,7 @@
       "email": "htsf@gmail.com",
       "gender": "Male",
       "target": 2122200,
-      "image": "../../public/user4.png"
+      "image": "/public/user4.png"
     }
   ]
 }
