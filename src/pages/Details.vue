@@ -133,13 +133,13 @@ export default {
     const totalExpense = computed(() => {
       return filteredItems.value
         .filter((item) => !item.deposit)
-        .reduce((total, item) => total + item.amount, 0);
+        .reduce((total, item) => total + parseFloat(item.amount), 0);
     });
 
     const totalIncome = computed(() => {
       return filteredItems.value
         .filter((item) => item.deposit)
-        .reduce((total, item) => total + item.amount, 0);
+        .reduce((total, item) => total + parseFloat(item.amount), 0);
     });
 
     const updateItems = async () => {
