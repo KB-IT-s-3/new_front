@@ -42,7 +42,7 @@ export default {
         const GoDetail = () => {
             if(userStore.getLogin() == true)
             {
-                router.push('./detailscombined')
+                router.push('./detailsCombined')
             }
         }
 

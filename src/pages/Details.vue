@@ -16,16 +16,16 @@
     </div>
     <table>
       <thead>
-      <tr>
-        <th>
-          <input type="checkbox" v-model="selectAll" @change="toggleAll" />
-        </th>
-        <th>날짜</th>
-        <th>내용</th>
-        <th>금액</th>
-        <th>수입/지출</th>
-        <th>카테고리</th>
-      </tr>
+        <tr>
+          <th>
+            <input type="checkbox" v-model="selectAll" @change="toggleAll" />
+          </th>
+          <th>날짜</th>
+          <th>내용</th>
+          <th>금액</th>
+          <th>수입/지출</th>
+          <th>카테고리</th>
+        </tr>
       </thead>
       <tbody>
         <tr v-for="(item, index) in filteredItems" :key="index">
@@ -64,6 +64,21 @@
       <button @click="updateItems">Update</button>
       <button @click="confirmDelete">Delete</button>
     </div>
+
+    <!-- 모달 열기 버튼 -->
+
+    <button @click="openModal">Modal</button>
+
+    <div class="modal-wrap" v-show="modalOpen">
+      <div class="modal-container">
+
+        <DetailsAdd @entryAdded="handleEntryAdded" />
+        <div class="modal-btn">
+          <button @click="closeModal">닫기</button>
+        </div>
+      </div>
+    </div>
+
     <img src="../../public/character.png" class="character">
   </div>
 </template>
@@ -72,14 +87,19 @@
 import { useUserStore } from "@/stores/userStore.js";
 import axios from "axios";
 import { computed, onMounted, reactive, ref } from 'vue';
+import DetailsAdd from './DetailsAdd.vue';
 
 export default {
+  components: {
+    DetailsAdd // DetailsAdd 컴포넌트를 등록합니다.
+  },
   setup() {
     const userStore = useUserStore();
     const searchTerm = ref("");
     const startDate = ref("");
     const endDate = ref("");
     const categoryFilter = ref("");
+    const modalOpen  = ref(false);
     const selectAll = ref(false); // 전체 선택 체크박스 상태
     const sortOrder = ref("asc"); // 정렬 순서 상태
     const state = reactive({
@@ -122,12 +142,12 @@ export default {
           (!categoryFilter.value || item.category === categoryFilter.value)
         );
       }).sort((a, b) => {
-          if (sortOrder.value === "asc") {
-            return new Date(a.date) - new Date(b.date);
-          } else {
-            return new Date(b.date) - new Date(a.date);
-          }
-        });
+        if (sortOrder.value === "asc") {
+          return new Date(a.date) - new Date(b.date);
+        } else {
+          return new Date(b.date) - new Date(a.date);
+        }
+      });
     });
 
     const totalExpense = computed(() => {
@@ -179,6 +199,22 @@ export default {
       sortOrder.value = sortOrder.value === "asc" ? "desc" : "asc";
     };
 
+    const openModal = () => {
+      modalOpen.value = true;
+    };
+
+    const closeModal = () => {
+      modalOpen.value = false;
+    };
+
+    
+
+    const handleEntryAdded = () => {
+      fetchData(); // 데이터 다시 로드
+      closeModal(); // 모달 닫기
+    };
+
+
     onMounted(fetchData);
 
     // 반환
@@ -198,6 +234,10 @@ export default {
       getCategories,
       allCategories,
       toggleSortOrder,
+      openModal,
+      closeModal,
+      handleEntryAdded,
+      modalOpen
     };
   },
 };
@@ -207,15 +247,15 @@ export default {
 .details {
   text-align: left;
   padding: 20px;
-  border-radius: 8px; 
+  border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.character{
-    width: 13%;
-    position: absolute;
-    top: 830px;
-    left: 85%;
+.character {
+  width: 13%;
+  position: absolute;
+  top: 830px;
+  left: 85%;
 
 }
 
@@ -263,5 +303,26 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.modal-wrap {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+/* modal or popup */
+.modal-container {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  background: #fafae6;
+  border-radius: 10px;
+  padding: 10px;
+  box-sizing: border-box;
 }
 </style>
