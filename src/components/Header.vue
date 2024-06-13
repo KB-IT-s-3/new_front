@@ -106,6 +106,7 @@ export default {
     align-items: center;
     padding: 0 20px;
     position: relative;
+    display: none;
 }
 .header-active{
     display: block;
@@ -200,7 +201,6 @@ export default {
 }
 .sidebarOut>img{
     width: 30%;
-    transform: scaleX(-1);
 }
 
 .logout{
