@@ -81,6 +81,7 @@ export default {
     const endDate = ref("");
     const categoryFilter = ref("");
     const selectAll = ref(false); // 전체 선택 체크박스 상태
+    const sortOrder = ref("asc"); // 정렬 순서 상태
     const state = reactive({
       items: [],
     });
@@ -120,7 +121,13 @@ export default {
           (!endDate.value || new Date(item.date) <= new Date(endDate.value)) &&
           (!categoryFilter.value || item.category === categoryFilter.value)
         );
-      });
+      }).sort((a, b) => {
+          if (sortOrder.value === "asc") {
+            return new Date(a.date) - new Date(b.date);
+          } else {
+            return new Date(b.date) - new Date(a.date);
+          }
+        });
     });
 
     const totalExpense = computed(() => {
@@ -168,6 +175,10 @@ export default {
       return [...availableCategories.수입, ...availableCategories.지출];
     });
 
+    const toggleSortOrder = () => {
+      sortOrder.value = sortOrder.value === "asc" ? "desc" : "asc";
+    };
+
     onMounted(fetchData);
 
     // 반환
@@ -186,6 +197,7 @@ export default {
       toggleAll,
       getCategories,
       allCategories,
+      toggleSortOrder,
     };
   },
 };
