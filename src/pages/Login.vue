@@ -3,11 +3,6 @@
     <h1>My Budget Tracker</h1>
     <p>"Logging in is the gateway to your financial journey, where security meets access and your financial management begins."</p>
     <div class="Right">
-        <!-- <ul>
-            <li><input type="text" v-model="id" placeholder="✉ Enter your ID" /></li>
-            <li><input type="password" v-model="pwd" placeholder="🔑 Enter your password"/></li>
-            <li><button class="button" @click="loginSubmitHandler">Login</button></li>
-        </ul> -->
         <ul>
             <li class="input-container">
                 <span class="icon">✉</span>
@@ -136,7 +131,7 @@ input {
 
 }
 input::placeholder {
-    color: #aaa; /* 플레이스홀더 색상 */
+    color: #aaa; 
 }
 .button{
     width: 30%;

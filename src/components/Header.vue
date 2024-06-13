@@ -77,9 +77,6 @@ export default {
 //// 사이드 바 사용자 정보 업데이트
         const UpdateData = async(e)=>{
             console.log(NowUser)
-            // console.log(`${url}/${NowUser.item}`)
-            // console.log(`${url}/${NowUser.key}`)
-            // console.log(`${url}/${NowUser.value.key}`)
             try{
                 const response = await axios.put(`${url}/${NowUser.id}`, {id:NowUser.id, pwd:NowUser.pwd, key:NowUser.key, name:NowUser.name, age:NowUser.age, email:NowUser.email, gender:NowUser.gender, target:NowUser.target, image:NowUser.image}) 
                 console.log(response)
