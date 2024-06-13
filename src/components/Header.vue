@@ -1,5 +1,5 @@
 <template>
-    <div class="Guide">
+    <div :class="['Guide', { 'header-active': isHeaderActive }]">
         <div class="Title" @click="GoMain"><span class="Title_text">{{title}}</span></div>
         <span :class="['Home_buttonText', { 'home-active': isSidebarActive }]" @click="GoHome">Home</span>
         <span :class="['Detail_buttonText', { 'detail-active': isSidebarActive }]" @click="GoDetail">Detail</span>
@@ -32,23 +32,18 @@ export default {
         const userStore = useUserStore();
         const title = ref('My Budget Tracker');
         const isSidebarActive = ref(false);
+        const isHeaderActive = ref(false);
         const url = 'http://localhost:3002/UserList'
         const NowUser = reactive([])
 
 ////라우터 이동
         const GoHome = () => {
-            if(userStore.getLogin() == true)
-            {
-                SidebarOff()
-                router.push('./home')
-            }
+            SidebarOff()
+            router.push('./home')
         }
         const GoDetail = () => {
-            if(userStore.getLogin() == true)
-            {
-                SidebarOff()
-                router.push('./details')
-            }
+            SidebarOff()
+            router.push('./details')
         }
         const Logout = ()=>{
             userStore.setLogout();
@@ -62,9 +57,11 @@ export default {
                 const List = userStore.getUserAll()
                 Object.assign(NowUser, List);
                 title.value = `${NowUser.name}'s Budget Tracker`;
+                isHeaderActive.value = true;
 
             } else {
                 title.value = 'My Budget Tracker';
+                isHeaderActive.value=false;
             }
         });
 
@@ -91,7 +88,7 @@ export default {
                 }
         }
 
-        return { GoHome, GoDetail, title, Logout, SidebarOn, SidebarOff, isSidebarActive, NowUser, UpdateData }
+        return { GoHome, GoDetail, title, Logout, SidebarOn, SidebarOff, isSidebarActive, NowUser, UpdateData, isHeaderActive }
     }
 }
 </script>
@@ -109,10 +106,15 @@ export default {
     align-items: center;
     padding: 0 20px;
     border-bottom: 2px solid rgba(90, 91, 45, 1);
+    display: none;
+}
+.header-active{
+    display: block;
 }
 
 .Title {
-    padding: 14px 24px;
+    padding: 5px 24px;
+    width: 38%;
     background: rgba(254, 255, 226, 1);
     display: flex;
     align-items: center;
@@ -131,8 +133,28 @@ export default {
     color: rgba(90, 91, 46, 1);
     font-family: Inter;
     font-weight: medium;
-    font-size: 20px;
-    margin-left: 20px;
+    font-size: 25px;
+    transition: left 0.5s ease;
+}
+.Home_buttonText{
+    left: 66%;
+}
+.Detail_buttonText{
+    left: 76%;
+}
+.User_buttonText{
+    left: 86%;
+}
+.home-active{
+    left:56%;
+}
+.detail-active{
+    left:66%;
+}
+.user-active{
+    left:96%;
+}
+.User_buttonText:hover, .Home_buttonText:hover, .Detail_buttonText:hover, .sidebarOut, .logout{
     cursor: pointer;
 }
 
@@ -173,11 +195,11 @@ export default {
 
 .sidebarOut {
     position: absolute;
+    width: 5%;
     top: 30px;
 }
-
-.sidebarOut>img {
-    width: 5%;
+.sidebarOut>img{
+    width: 30%;
     transform: scaleX(-1);
 }
 

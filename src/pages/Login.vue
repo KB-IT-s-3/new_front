@@ -1,5 +1,8 @@
 <template lang="">
-    <div>
+    <div class="Left">
+        <img src="../../public/character.png" class="character">
+    </div>
+    <div class="Rignt">
         <ul>
             <li>아이디: <input type="text" v-model="id" /></li>
             <li>비밀번호: <input type="password" v-model="pwd" /></li>
@@ -53,5 +56,28 @@ export default {
 <style scoped>
 ul {
     list-style-type: none;
+    position:absolute;
+    top:45%;
+    left:68%;
 }
+.Left{
+    width: 50%;
+    height: 1200px;
+    border-right: 1px solid rgba(90, 91, 46, 1);
+    background: rgba(254, 255, 226, 1);
+}
+.Right{
+    width: 50%;
+    height: 1200px;
+    
+    position: relative;
+    overflow: hidden;
+}
+
+.character{
+    position:absolute;
+    top:10%;
+    left:35%;
+}
+
 </style>
