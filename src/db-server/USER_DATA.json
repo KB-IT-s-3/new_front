@@ -9,7 +9,7 @@
       "email": "abcee@gmail.com",
       "gender": "Male",
       "target": 29000,
-      "image": "../public/user1.png"
+      "image": "assets/user1.png"
     },
     {
       "id": "admin2",
