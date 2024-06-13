@@ -105,17 +105,18 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
-    border-bottom: 2px solid rgba(90, 91, 45, 1);
-    display: none;
+    position: relative;
 }
 .header-active{
     display: block;
 }
 
 .Title {
-    padding: 5px 24px;
-    width: 38%;
+    padding: 0px 0px;
+    flex-grow: 1;
     background: rgba(254, 255, 226, 1);
+    max-width: 60%;  /* 선의 위치를 맞춤 */
+    position: relative; 
 }
 
 .Title_text {
@@ -126,23 +127,33 @@ export default {
     text-align: center;
 }
 
+.Title::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;  /* 선을 타이틀 밑에 배치 */
+    width: 130%;  /* 선의 길이를 설정 */
+    border-bottom: 2px solid rgba(90, 91, 45, 1);
+}
+
 .User_buttonText, .Home_buttonText, .Detail_buttonText {
     color: rgba(90, 91, 46, 1);
+    margin-top: 10px;
     position: absolute;
     top:3.5%;
     font-family: Inter;
-    font-weight: medium;
-    font-size: 25px;
+    font-weight: large;
+    font-size: 30px;
     transition: left 0.5s ease;
 }
 .Home_buttonText{
-    left: 66%;
+    left: 55%;
+    margin-right: 20px
 }
 .Detail_buttonText{
-    left: 76%;
+    left: 70%;
 }
 .User_buttonText{
-    left: 86%;
+    left: 85%;
 }
 .home-active{
     left:56%;
@@ -240,6 +251,28 @@ export default {
 }
 img{
     width: 100%
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .Title {
+        max-width: 100%;
+    }
+
+    .Title_text {
+        font-size: 24px;
+    }
+
+    .User_buttonText, .Home_buttonText, .Detail_buttonText {
+        font-size: 16px; 
+        margin-left: 5px;
+        margin-top: 5px;
+    }
+
+    .Title::after {
+        left: 0;
+        width: 100%;
+    }
 }
 
 </style>
