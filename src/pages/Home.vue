@@ -51,7 +51,7 @@ const userStore = useUserStore();
 const pieChartData = ref({
   labels: [],
   datasets: [{
-    data: [0, 0, 0, 0, 0], // 빈 데이터
+    data: [0, 0, 0, 0, 1], // 빈 데이터
     backgroundColor: ['#673512', '#FF6384', '#36A2EB', '#FFCD56', '#FF9F40']
   }]
 });
@@ -116,7 +116,7 @@ const currentMonthName = ref(now.toLocaleString('default', { month: 'long' })); 
 const previousMonthName = ref(new Date(now.getFullYear(), now.getMonth() - 1, 1).toLocaleString('default', { month: 'long' })); // 저번 달 이름
 
 const processData = (data) => {
-  const categories = ['cafe', 'food', 'leisure', 'saving', 'shopping'];
+  const categories = ['커피', '음식', '레저', '저축', '쇼핑'];
   const categoryTotalsPrevious = { 'cafe': 0, 'food': 0, 'leisure': 0, 'saving': 0, 'shopping': 0 };
   const categoryTotalsCurrent = { 'cafe': 0, 'food': 0, 'leisure': 0, 'saving': 0, 'shopping': 0 };
 
@@ -144,7 +144,7 @@ const processData = (data) => {
 };
 
 const updatePieChart = (month, totalsPrevious, totalsCurrent) => {
-  const categories = ['cafe', 'food', 'leisure', 'saving', 'shopping'];
+  const categories = ['커피', '음식', '레저', '저축', '쇼핑'];
   if (month === previousMonth.value) {
     pieChartData.value.labels = categories.map(category => category.charAt(0).toUpperCase() + category.slice(1));
     pieChartData.value.datasets[0].data = Object.values(totalsPrevious);
