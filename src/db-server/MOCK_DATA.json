@@ -68,7 +68,26 @@
       "content": "6월의 용돈이다",
       "amount": "30000",
       "deposit": true,
-      "category": "yongdon"
+      "category": "yongdon",
+      "selected": false
+    },
+    {
+      "id": "346f",
+      "date": "2024-06-13",
+      "content": "데이트비",
+      "amount": 30000,
+      "deposit": false,
+      "category": "food",
+      "selected": false
+    },
+    {
+      "id": "2254",
+      "date": "2024-06-13",
+      "content": "윈드서핑땡겨",
+      "amount": "100000",
+      "deposit": false,
+      "category": "leisure",
+      "selected": false
     }
   ],
   "user2": [

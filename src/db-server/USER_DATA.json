@@ -10,6 +10,7 @@
       "gender": "Male",
       "target": 29000,
       "image": "/assets/user1.png"
+
     },
     {
       "id": "admin2",
@@ -21,6 +22,7 @@
       "gender": "Female",
       "target": 300000,
       "image": "../public/user2.png"
+
     },
     {
       "id": "admin3",
