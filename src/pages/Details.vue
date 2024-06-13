@@ -1,26 +1,36 @@
 <template>
-  <div class="details">
-    <div class="search">
-      <input type="text" v-model="searchTerm" placeholder="검색" />
-      <input type="date" v-model="startDate" placeholder="시작 날짜" />
-      <span> ~ </span>
-      <input type="date" v-model="endDate" placeholder="종료 날짜" />
-      <select v-model="categoryFilter">
-        <option value="">전체</option>
-        <option value="food">외식</option>
-        <option value="cafe">카페</option>
-        <option value="saving">저축</option>
-        <option value="leisure">레저</option>
-        <option value="shopping">쇼핑</option>
-      </select>
+  <div class="details container mt-4">
+    <div class="search row mb-3">
+      <div class="col">
+        <input type="text" v-model="searchTerm" class="form-control" placeholder="검색" />
+      </div>
+      <div class="col">
+        <input type="date" v-model="startDate" class="form-control" placeholder="시작 날짜" />
+      </div>
+      <div class="col-auto d-flex align-items-center">
+        <span> ~ </span>
+      </div>
+      <div class="col">
+        <input type="date" v-model="endDate" class="form-control" placeholder="종료 날짜" />
+      </div>
+      <div class="col">
+        <select v-model="categoryFilter" class="form-select">
+          <option value="">전체</option>
+          <option value="food">외식</option>
+          <option value="cafe">카페</option>
+          <option value="saving">저축</option>
+          <option value="leisure">레저</option>
+          <option value="shopping">쇼핑</option>
+        </select>
+      </div>
     </div>
-    <table>
-      <thead>
+    <table class="table table-hover">
+      <thead class="thead-light">
         <tr>
           <th>
             <input type="checkbox" v-model="selectAll" @change="toggleAll" />
           </th>
-          <th>날짜</th>
+          <th @click="toggleSortOrder">날짜</th>
           <th>내용</th>
           <th>금액</th>
           <th>수입/지출</th>
@@ -30,23 +40,17 @@
       <tbody>
         <tr v-for="(item, index) in filteredItems" :key="index">
           <td><input type="checkbox" v-model="item.selected" /></td>
+          <td><input type="date" v-model="item.date" class="form-control"></td>
+          <td><input type="text" v-model="item.content" class="form-control"></td>
+          <td><input type="number" v-model="item.amount" class="form-control"></td>
           <td>
-            <input type="date" v-model="item.date">
-          </td>
-          <td>
-            <input type="text" v-model="item.content">
-          </td>
-          <td>
-            <input type="number" v-model="item.amount">
-          </td>
-          <td>
-            <select v-model="item.deposit">
+            <select v-model="item.deposit" class="form-select">
               <option :value="true">수입</option>
               <option :value="false">지출</option>
             </select>
           </td>
           <td>
-            <select v-model="item.category">
+            <select v-model="item.category" class="form-select">
               <option value="">카테고리 선택</option>
               <option v-for="category in getCategories(item.deposit)" :key="category.value" :value="category.value">
                 {{ category.label }}
@@ -56,30 +60,28 @@
         </tr>
       </tbody>
     </table>
-    <div class="totals">
+    <div class="totals d-flex justify-content-between my-3">
       <span>지출: {{ totalExpense }}</span>
       <span>수입: {{ totalIncome }}</span>
     </div>
-    <div class="actions">
-      <button @click="updateItems">Update</button>
-      <button @click="confirmDelete">Delete</button>
+    <div class="actions d-flex justify-content-end">
+      <button @click="updateItems" class="btn btn-warning">Update</button>
+      <button @click="confirmDelete" class="btn btn-danger">Delete</button>
     </div>
 
     <!-- 모달 열기 버튼 -->
-
-    <button @click="openModal">Modal</button>
+    <button @click="openModal" class="btn btn-primary mt-3">Modal</button>
 
     <div class="modal-wrap" v-show="modalOpen">
-      <div class="modal-container">
-
+      <div class="modal-container p-3">
         <DetailsAdd @entryAdded="handleEntryAdded" />
-        <div class="modal-btn">
-          <button @click="closeModal">닫기</button>
+        <div class="modal-btn mt-3">
+          <button @click="closeModal" class="btn btn-secondary">닫기</button>
         </div>
       </div>
     </div>
 
-    <img src="../../public/character.png" class="character">
+    <img src="../../public/character.png" class="character img-fluid">
   </div>
 </template>
 
@@ -244,6 +246,11 @@ export default {
 </script>
 
 <style>
+
+body {
+  background-color: rgba(254, 255, 226, 1); /* 페이지 전체의 배경색 설정 */
+}
+
 .details {
   text-align: left;
   padding: 20px;
