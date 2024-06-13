@@ -64,13 +64,16 @@
       <span>지출: {{ totalExpense }}</span>
       <span>수입: {{ totalIncome }}</span>
     </div>
-    <div class="actions d-flex justify-content-end">
-      <button @click="updateItems" class="btn btn-warning">Update</button>
-      <button @click="confirmDelete" class="btn btn-danger">Delete</button>
+    <div class="button-container d-flex justify-content-between">
+      <button @click="openModal" class="btn btn-primary">Add</button>
+      <div class="actions d-flex">
+        <button @click="updateItems" class="btn btn-warning">Update</button>
+        <button @click="confirmDelete" class="btn btn-danger">Delete</button>
+      </div>
     </div>
 
     <!-- 모달 열기 버튼 -->
-    <button @click="openModal" class="btn btn-primary">추가</button>
+    <!-- <button @click="openModal" class="btn btn-primary">추가</button> -->
     <div class="modal-wrap" v-show="modalOpen">
       <div class="modal-container p-3">
         <DetailsAdd @entryAdded="handleEntryAdded" />
@@ -80,7 +83,7 @@
       </div>
     </div>
 
-    <img src="../../public/character.png" class="character img-fluid">
+    <!-- <img src="../../public/character.png" class="character img-fluid"> -->
   </div>
 </template>
 
@@ -298,10 +301,16 @@ td {
   margin-bottom: 20px;
 }
 
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  width: 100%;
+}
+
 .actions {
   display: flex;
   gap: 10px;
-  margin-top: 20px;
 }
 
 button {
