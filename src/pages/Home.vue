@@ -2,8 +2,8 @@
   <div class="app">
     <div class="chart-info">
       <div class="chart pie-chart">
-        <button @click.stop="showMonth('May')">5월 보기</button>
-        <button @click.stop="showMonth('June')">6월 보기</button>
+        <button @click.stop="showMonth(previousMonth)">{{ previousMonthName }} 보기</button>
+        <button @click.stop="showMonth(currentMonth)">{{ currentMonthName }} 보기</button>
         <Pie :chart-data="pieChartData" :options="chartOptions" @click.stop="handleChartClick('pie')" />
       </div>
       <div class="chart bar-chart" @click="handleChartClick('bar')">
@@ -15,9 +15,8 @@
          @mouseover="onMouseOver"
          @mouseleave="onMouseLeave">
       <p v-if="isHovered">또 돈 쓸꺼야?</p>
-      <p v-else>당신의 소비 금액은 {{ totalAmount }} 원 입니다.<br>{{ remainingAmount }} 원 남았습니다.</p>
+      <p v-else>당신의 지출 금액은 {{ totalAmount }} 원 입니다.<br>{{ remainingAmount }} 원 남았습니다.</p>
     </div>
-    <img src="../../public/character.png" class="character">
   </div>
 </template>
 
@@ -69,14 +68,14 @@ const barChartData = ref({
   labels: [],
   datasets: [
     {
-      label: '5월 소비',
+      label: '저번 달 지출',
       data: [],
       backgroundColor: 'rgba(75, 192, 192, 0.5)',
       borderColor: 'rgba(75, 192, 192, 1)',
       borderWidth: 1
     },
     {
-      label: '6월 소비',
+      label: '이번 달 지출',
       data: [],
       backgroundColor: 'rgba(153, 102, 255, 0.5)',
       borderColor: 'rgba(153, 102, 255, 1)',
@@ -99,54 +98,67 @@ const chartOptions = ref({
 });
 
 const totalAmount = ref(0);
-const remainingAmount = ref(1000000); // 예시로 1,000,000원을 설정
-const selectedMonth = ref('May'); // 초기 선택 월은 5월로 설정
+const remainingAmount = ref(0); // 초기 남은 금액 설정
+const selectedMonth = ref(''); // 초기 선택 월은 빈 값으로 설정
+
+// 현재 시각 기준으로 이번 달과 저번 달을 계산
+const now = new Date();
+const currentMonth = ref(now.getMonth() + 1); // 이번 달 (0부터 시작하므로 1을 더함)
+const previousMonth = ref(now.getMonth() === 0 ? 12 : now.getMonth()); // 저번 달 (1월의 경우 12월로 설정)
+const currentMonthName = ref(now.toLocaleString('default', { month: 'long' })); // 이번 달 이름
+const previousMonthName = ref(new Date(now.getFullYear(), now.getMonth() - 1, 1).toLocaleString('default', { month: 'long' })); // 저번 달 이름
 
 const processData = (data) => {
   const categories = ['cafe', 'food', 'leisure', 'saving', 'shopping'];
-  const categoryTotalsMay = { 'cafe': 0, 'food': 0, 'leisure': 0, 'saving': 0, 'shopping': 0 };
-  const categoryTotalsJune = { 'cafe': 0, 'food': 0, 'leisure': 0, 'saving': 0, 'shopping': 0 };
+  const categoryTotalsPrevious = { 'cafe': 0, 'food': 0, 'leisure': 0, 'saving': 0, 'shopping': 0 };
+  const categoryTotalsCurrent = { 'cafe': 0, 'food': 0, 'leisure': 0, 'saving': 0, 'shopping': 0 };
 
-  totalAmount.value = data.reduce((sum, entry) => sum + entry.amount, 0);
-  remainingAmount.value -= totalAmount.value;
+  // 입금 내역과 지출 내역을 각각 필터링
+  const depositData = data.filter(entry => entry.deposit);
+  const expenseData = data.filter(entry => !entry.deposit);
 
-  data.forEach(entry => {
+  // 입금 내역의 총 금액 계산
+  const totalDeposit = depositData.reduce((sum, entry) => sum + Number(entry.amount), 0);
+  totalAmount.value = expenseData.reduce((sum, entry) => sum + Number(entry.amount), 0);
+  remainingAmount.value = totalDeposit - totalAmount.value;
+
+  expenseData.forEach(entry => {
     const month = new Date(entry.date).getMonth() + 1; // 월 추출 (0부터 시작하므로 1을 더함)
-    if (month === 5 && categoryTotalsMay[entry.category] !== undefined) {
-      categoryTotalsMay[entry.category] += entry.amount;
-    } else if (month === 6 && categoryTotalsJune[entry.category] !== undefined) {
-      categoryTotalsJune[entry.category] += entry.amount;
+    if (month === previousMonth.value && categoryTotalsPrevious[entry.category] !== undefined) {
+      categoryTotalsPrevious[entry.category] += Number(entry.amount);
+    } else if (month === currentMonth.value && categoryTotalsCurrent[entry.category] !== undefined) {
+      categoryTotalsCurrent[entry.category] += Number(entry.amount);
     }
   });
 
   barChartData.value.labels = categories.map(category => category.charAt(0).toUpperCase() + category.slice(1));
-  barChartData.value.datasets[0].data = Object.values(categoryTotalsMay);
-  barChartData.value.datasets[1].data = Object.values(categoryTotalsJune);
+  barChartData.value.datasets[0].data = Object.values(categoryTotalsPrevious);
+  barChartData.value.datasets[1].data = Object.values(categoryTotalsCurrent);
 
-  updatePieChart(selectedMonth.value, categoryTotalsMay, categoryTotalsJune);
+  updatePieChart(selectedMonth.value, categoryTotalsPrevious, categoryTotalsCurrent);
 };
 
-const updatePieChart = (month, totalsMay, totalsJune) => {
+const updatePieChart = (month, totalsPrevious, totalsCurrent) => {
   const categories = ['cafe', 'food', 'leisure', 'saving', 'shopping'];
-  if (month === 'May') {
+  if (month === previousMonth.value) {
     pieChartData.value.labels = categories.map(category => category.charAt(0).toUpperCase() + category.slice(1));
-    pieChartData.value.datasets[0].data = Object.values(totalsMay);
-  } else if (month === 'June') {
+    pieChartData.value.datasets[0].data = Object.values(totalsPrevious);
+  } else if (month === currentMonth.value) {
     pieChartData.value.labels = categories.map(category => category.charAt(0).toUpperCase() + category.slice(1));
-    pieChartData.value.datasets[0].data = Object.values(totalsJune);
+    pieChartData.value.datasets[0].data = Object.values(totalsCurrent);
   }
 };
 
 const showMonth = (month) => {
   selectedMonth.value = month;
-  const totalsMay = barChartData.value.datasets[0].data;
-  const totalsJune = barChartData.value.datasets[1].data;
-  updatePieChart(month, totalsMay, totalsJune);
+  const totalsPrevious = barChartData.value.datasets[0].data;
+  const totalsCurrent = barChartData.value.datasets[1].data;
+  updatePieChart(month, totalsPrevious, totalsCurrent);
 };
 
-const handleChartClick = (type) => {
-  router.push(`/details?chart=${type}`);
-};
+// const handleChartClick = (type) => {
+//   router.push(`/details?chart=${type}`);
+// };
 
 onMounted(async () => {
   try {
@@ -183,14 +195,6 @@ onMounted(async () => {
   box-sizing: border-box;
 }
 
-.character{
-    width: 13%;
-    position: absolute;
-    top: 780px;
-    left: 85%;
-
-}
-
 .header-title {
   display: flex;
   justify-content: space-between;
@@ -222,8 +226,8 @@ h1 {
 
 .chart-info {
   display: flex;
-  justify-content: center; /* Center align the charts */
-  gap: 20px; /* Add gap between the charts */
+  justify-content: center; /* Center align the charts /
+gap: 20px; / Add gap between the charts */
   width: 100%;
   height: 100%;
   margin-bottom: 1px;
@@ -233,20 +237,20 @@ h1 {
   width: 45%;
   max-width: 500px;
   margin: 10px;
-  height: 250px; /* 높이를 250px로 줄였습니다 */
-  cursor: pointer; /* 차트에 커서가 올라가면 포인터로 변경 */
+  height: 250px; /* 높이를 250px로 줄였습니다 /
+cursor: pointer; / 차트에 커서가 올라가면 포인터로 변경 */
 }
 
 .spending-info {
   background: rgba(255, 255, 255, 1);
   padding: 20px;
   border-radius: 100px;
-  border: 2px solid black; /* 태두리를 까맣게 설정 */
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
-  text-align: center;
-  width: 50%;
-  margin-bottom: 100px;
-  cursor: pointer; /* spending-info에 커서가 올라가면 포인터로 변경 */
+  border: 2px solid black; /* 태두리를 까맣게 설정 /
+box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+text-align: center;
+width: 50%;
+margin-bottom: 100px;
+cursor: pointer; / spending-info에 커서가 올라가면 포인터로 변경 */
 }
 
 .spending-info p {
