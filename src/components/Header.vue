@@ -1,16 +1,21 @@
 <template>
     <div class="Guide">
         <div class="Title" @click="GoMain"><span class="Title_text">{{title}}</span></div>
-        <div class="Home_button" @click="GoHome"><span class="Home_buttonText">Home</span></div>
-        <div class="Detail_button" @click="GoDetail"><span class="Detail_buttonText">Detail</span></div>
-        <div class="User_button" @click="GoUser"><span class="User_buttonText">User</span></div>
+        <span class="Home_buttonText" @click="GoHome">Home</span>
+        <span class="Detail_buttonText" @click="GoDetail">Detail</span>
+        <span class="User_buttonText" @click="SidebarOn">User</span>
     </div>
-    <div class="sidebar">
+    <div :class="['sidebar', { 'sidebar-active': isSidebarActive }]">
         <div class="sidebar-content">
             <div class="logout" @click = "Logout">Logout</div>
-        </div>
-        <div class="Point">
-            <img src = "../../public/point.png">
+            <div class="sidebarOut" @click = "SidebarOff">out</div>
+
+            <div class="Image"><img :src = "NowUser.image" alt="User Image"></div>
+            <input class="Name_tag" v-model="NowUser.name" @change = "UpdateData"></input>
+            <input class="Age_tag" v-model="NowUser.age" @change = "UpdateData"></input>
+            <input class="Gender_tag" v-model="NowUser.gender" @change = "UpdateData"></input>
+            <input class="Email_tag" v-model="NowUser.email" @change = "UpdateData"></input>
+            <input class="Target_tag" v-model="NowUser.target" @change = "UpdateData"></input>
         </div>
         <img src="../../public/character.png" class="character">
     </div>
@@ -18,46 +23,75 @@
 <script>
 import { useUserStore } from "@/stores/userStore.js";
 import { useRouter } from 'vue-router';
-import { ref, watch } from 'vue';
+import { ref, watch, reactive } from 'vue';
 import axios from 'axios';
 export default {
     setup() {
-        //My Budget Tracker
+////변수
         const router = useRouter()
         const userStore = useUserStore();
         const title = ref('My Budget Tracker');
+        const isSidebarActive = ref(false);
+        const url = 'http://localhost:3002/UserList'
+        const NowUser = reactive([])
 
+////라우터 이동
         const GoHome = () => {
             if(userStore.getLogin() == true)
             {
+                SidebarOff()
                 router.push('./home')
-            }
-        }
-        const GoUser = () => {
-            if(userStore.getLogin() == true)
-            {
-                router.push('./user')
             }
         }
         const GoDetail = () => {
             if(userStore.getLogin() == true)
             {
+                SidebarOff()
                 router.push('./detailscombined')
             }
         }
+        const Logout = ()=>{
+            userStore.setLogout();
+            SidebarOff()
+            router.push('./')
+        }
 
-        const url = 'http://localhost:3002/user'
-        
+////로그인 여부 파악& header lock& 현재 유저 정보 받아오기
         watch(() => userStore.getLogin(), (newVal) => {
             if (newVal) {
-                const username = userStore.getUser()
-                title.value = `${username}'s Budget Tracker`;
+                const List = userStore.getUserAll()
+                Object.assign(NowUser, List);
+                title.value = `${NowUser.name}'s Budget Tracker`;
+
             } else {
                 title.value = 'My Budget Tracker';
             }
         });
 
-        return { GoHome, GoUser, GoDetail, title }
+        
+////사이드바 제어
+        const SidebarOn = () => {
+            isSidebarActive.value = true;
+        };
+        const SidebarOff = () => {
+            isSidebarActive.value = false;
+        };
+
+//// 사이드 바 사용자 정보 업데이트
+        const UpdateData = async(e)=>{
+            console.log(NowUser)
+            // console.log(`${url}/${NowUser.item}`)
+            // console.log(`${url}/${NowUser.key}`)
+            // console.log(`${url}/${NowUser.value.key}`)
+            try{
+                const response = await axios.put(`${url}/${NowUser.id}`, {id:NowUser.id, pwd:NowUser.pwd, key:NowUser.key, name:NowUser.name, age:NowUser.age, email:NowUser.email, gender:NowUser.gender, target:NowUser.target, image:NowUser.image}) 
+                console.log(response)
+            }catch(err){
+                    alert(err.response) 
+                }
+        }
+
+        return { GoHome, GoDetail, title, Logout, SidebarOn, SidebarOff, isSidebarActive, NowUser, UpdateData }
     }
 }
 </script>
@@ -90,15 +124,6 @@ export default {
     text-align: center;
 }
 
-.User_button, .Home_button, .Detail_button{
-    padding: 14px 24px;
-    margin-right: 40px;
-    border-radius: 8px;
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
-    background: rgba(251, 255, 226, 1);
-    border :2px solid rgba(90, 91, 45, 1);
-}
-
 .User_buttonText, .Home_buttonText, .Detail_buttonText {
     color: rgba(90, 91, 46, 1);
     font-family: Inter;
@@ -108,10 +133,6 @@ export default {
 .User_buttonText:hover, .Home_buttonText:hover, .Detail_buttonText:hover{
     cursor: pointer;
 }
-/* .User_button:hover{
-    transition: transform 0.3s ease;
-    transform: scale(1.1);
-} */
 
 .sidebar>.character{
     width: 13%;
@@ -122,62 +143,56 @@ export default {
 .sidebar {
     position: fixed;
     top: 0;
-    right: -98%;
+    right: -100%;
     width: 100%;
     height: 100%;
     background-color:rgba(254, 255, 226, 1);
     transition: right 0.5s ease;
 }
-.sidebar:hover {
+.sidebar-active {
     right: -80%;
     background-color: rgba(251, 255, 156, 1);
 }
-.sidebar-content>span:hover{
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    transform: scale(1.1);
-}
+
 
 .sidebar-content {
     padding: 20px;
 }
-.Point{
-    position: relative;
-    top: 420px;
-}
-.Point>img{
-    width: 2%;
-    transform: scaleX(-1);
-}
-.User1Box, .User2Box, .User3Box, .User4Box{
-    /* width: 300px; */
-    width:12%;
-    height: 84px;
+
+.Name_tag, .Age_tag, .Gender_tag, .Email_tag, .Target_tag {
+    width: 357px;
+    height: 66px;
     background: rgba(255, 255, 255, 1);
-    opacity: 1;
     position: absolute;
     border: 1px solid rgba(90, 91, 46, 1);
     border-radius: 8px;
-}
-.User1Box { top: 106px; left: 4%; }
-.User2Box { top: 236px; left: 4%; }
-.User3Box { top: 366px; left: 4%; }
-.User4Box { top: 496px; left: 4%; }
-
-.User1Text, .User2Text, .User3Text, .User4Text{
-    /* width: 299px; */
-    width:10%;
     color: rgba(90, 91, 46, 1);
     position: absolute;
-    font-family: Inter;
-    font-weight: Medium;
-    font-size: 250%;
-    opacity: 1;
+    font-family: Inika;
+    font-weight: bold;
+    font-size: 35px;
     text-align: center;
+    left: 0%;
+    margin-left: 5%;
 }
-.User1Text { top: 121px; left: 5%; }
-.User2Text { top: 251px; left: 5%; }
-.User3Text { top: 381px; left: 5%; }
-.User4Text { top: 511px; left: 5%; }
+.Name_tag { top: 74px; } 
+.Age_tag { top: 203px; }
+.Gender_tag { top: 332px;  }
+.Email_tag { top: 446px;  }
+.Target_tag { top: 564px; }
+
+.Image {
+    width: 10%;
+    background: rgba(253, 253, 253, 1);
+    position: absolute;
+    top: 74px;  /*74*/
+    left: 7%;
+    border: 1px solid rgba(90, 91, 46, 1);
+    border-radius: 15px;
+    display: flex;
+}
+img{
+    width: 100%
+}
 
 </style>
