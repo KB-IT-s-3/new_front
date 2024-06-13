@@ -64,6 +64,10 @@
       <span class="expense-text">지출: <span class="amount">{{ totalExpense }}</span></span>
       <span class="income-text">수입: <span class="amount">{{ totalIncome }}</span></span>
     </div>
+    <!-- 경고(alert) 알림을 위한 함수로 구현 -->
+    <div v-if="showAlert" class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>주의!</strong> {{ alertMessage }}
+    </div>
     <div class="button-container d-flex justify-content-between">
       <button @click="openModal" class="btn btn-primary">Add</button>
       <div class="actions d-flex">
@@ -90,7 +94,7 @@
 <script>
 import { useUserStore } from "@/stores/userStore.js";
 import axios from "axios";
-import { computed, onMounted, reactive, ref } from 'vue';
+import { computed, onMounted, reactive, ref, watch } from 'vue';
 import DetailsAdd from './DetailsAdd.vue';
 
 export default {
@@ -104,12 +108,16 @@ export default {
     const startDate = ref("");
     const endDate = ref("");
     const categoryFilter = ref("");
-    const modalOpen  = ref(false);
+    const modalOpen = ref(false);
     const selectAll = ref(false); // 전체 선택 체크박스 상태
     const sortOrder = ref("asc"); // 정렬 순서 상태
     const state = reactive({
       items: [],
     });
+
+    const target = ref(0);
+    const showAlert = ref(false);
+    const alertMessage = ref('');
 
     const availableCategories = reactive({
       수입: [
@@ -127,7 +135,9 @@ export default {
       ]
     });
 
+
     const NowUser = userStore.getUser();
+    const NowUserTarget = userStore.getUserAll().target;
 
     const fetchData = async () => {
       try {
@@ -172,6 +182,8 @@ export default {
         await axios.put(`http://localhost:3000/${NowUser}/${item.id}`, item);
       }
       alert('수정되었습니다!');
+      await fetchData();
+      checkTargetExceeded();
     };
 
     const deleteItems = async () => {
@@ -179,7 +191,8 @@ export default {
       for (const item of selectedItems) {
         await axios.delete(`http://localhost:3000/${NowUser}/${item.id}`);
       }
-      fetchData(); // Reload data
+      await fetchData(); // Reload data
+      checkTargetExceeded();
     };
 
     const toggleAll = () => {
@@ -212,15 +225,33 @@ export default {
       modalOpen.value = false;
     };
 
-    
-
-    const handleEntryAdded = () => {
-      fetchData(); // 데이터 다시 로드
+    const handleEntryAdded = async () => {
+      await fetchData(); // 데이터 다시 로드
+      checkTargetExceeded();
       closeModal(); // 모달 닫기
     };
 
+    const checkTargetExceeded = () => {
+      const totalExpenses = totalExpense.value;
+      if (totalExpenses > NowUserTarget) {
+        alert(`목표 금액을 초과했습니다!`);
+      }
+    };
 
-    onMounted(fetchData);
+    onMounted(() => {
+      fetchData();
+      // 목표 금액 데이터 가져오기 (user_data.json에서 가져와서 target에 할당)
+      axios.get(`http://localhost:3002/UserList`)
+        .then(response => {
+          target.value = NowUserTarget;
+          checkTargetExceeded();
+        })
+        .catch(error => {
+          console.error('Error fetching target data:', error);
+        });
+    }
+
+  );
 
     // 반환
     return {
@@ -242,16 +273,19 @@ export default {
       openModal,
       closeModal,
       handleEntryAdded,
-      modalOpen
+      modalOpen,
+      showAlert,
+      alertMessage,
+      checkTargetExceeded
     };
   },
 };
 </script>
 
 <style>
-
 body {
-  background-color: rgba(254, 255, 226, 1); /* 페이지 전체의 배경색 설정 */
+  background-color: rgba(254, 255, 226, 1);
+  /* 페이지 전체의 배경색 설정 */
 }
 
 .details {
@@ -326,6 +360,7 @@ td {
 .actions {
   display: flex;
   gap: 10px;
+  margin-top: 20px;
 }
 
 button {
@@ -344,6 +379,7 @@ button {
   height: 100%;
   background: rgba(0, 0, 0, 0.4);
 }
+
 /* modal or popup */
 .modal-container {
   position: relative;

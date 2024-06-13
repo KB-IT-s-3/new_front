@@ -27,5 +27,5 @@ export const useUserStore = defineStore('user', ()=>{
         };
 
     
-    return {Login, User, setUser, getUser, getUserAll, setLogin, setLogout, getLogin}
+    return {Login, User, getTarget, setUser, getUser, getUserAll, setLogin, setLogout, getLogin}
 });

@@ -67,7 +67,7 @@
       "id": "346f",
       "date": "2024-06-13",
       "content": "데이트비",
-      "amount": "30000",
+      "amount": 30000,
       "deposit": false,
       "category": "food",
       "selected": false
@@ -79,15 +79,6 @@
       "amount": "100000",
       "deposit": false,
       "category": "leisure",
-      "selected": false
-    },
-    {
-      "id": "a570",
-      "date": "2024-06-13",
-      "content": "탈출기원",
-      "amount": "30000",
-      "deposit": false,
-      "category": "shopping",
       "selected": false
     }
   ],
