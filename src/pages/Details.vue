@@ -73,7 +73,7 @@
     </div>
 
     <!-- 모달 열기 버튼 -->
-
+    <button @click="openModal" class="btn btn-primary">추가</button>
     <div class="modal-wrap" v-show="modalOpen">
       <div class="modal-container p-3">
         <DetailsAdd @entryAdded="handleEntryAdded" />
@@ -95,7 +95,8 @@ import DetailsAdd from './DetailsAdd.vue';
 
 export default {
   components: {
-    DetailsAdd // DetailsAdd 컴포넌트를 등록합니다.
+    // DetailsAdd 컴포넌트를 등록합니다.
+    DetailsAdd
   },
   setup() {
     const userStore = useUserStore();
