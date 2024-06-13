@@ -136,6 +136,7 @@ export default {
     cursor: pointer;
 }
 
+
 .nav-buttons {
     display: flex;
     align-items: center;
