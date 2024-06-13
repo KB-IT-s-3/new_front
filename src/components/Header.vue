@@ -1,14 +1,14 @@
 <template>
     <div class="Guide">
         <div class="Title" @click="GoMain"><span class="Title_text">{{title}}</span></div>
-        <span class="Home_buttonText" @click="GoHome">Home</span>
-        <span class="Detail_buttonText" @click="GoDetail">Detail</span>
-        <span class="User_buttonText" @click="SidebarOn">User</span>
+        <span :class="['Home_buttonText', { 'home-active': isSidebarActive }]" @click="GoHome">Home</span>
+        <span :class="['Detail_buttonText', { 'detail-active': isSidebarActive }]" @click="GoDetail">Detail</span>
+        <span :class="['User_buttonText', { 'user-active': isSidebarActive }]" @click="SidebarOn">User</span>
     </div>
     <div :class="['sidebar', { 'sidebar-active': isSidebarActive }]">
         <div class="sidebar-content">
             <div class="logout" @click = "Logout">Logout</div>
-            <div class="sidebarOut" @click = "SidebarOff">out</div>
+            <div class="sidebarOut" @click = "SidebarOff"><img src = "../../public/point.png"></div>
 
             <div class="Image"><img :src = "NowUser.image" alt="User Image"></div>
             <input class="Name_tag" v-model="NowUser.name" @change = "UpdateData"></input>
@@ -47,7 +47,7 @@ export default {
             if(userStore.getLogin() == true)
             {
                 SidebarOff()
-                router.push('./detailscombined')
+                router.push('./details')
             }
         }
         const Logout = ()=>{
@@ -126,9 +126,30 @@ export default {
 
 .User_buttonText, .Home_buttonText, .Detail_buttonText {
     color: rgba(90, 91, 46, 1);
+    position: absolute;
+    top:3.5%;
     font-family: Inter;
     font-weight: medium;
     font-size: 25px;
+    transition: left 0.5s ease;
+}
+.Home_buttonText{
+    left: 66%;
+}
+.Detail_buttonText{
+    left: 76%;
+}
+.User_buttonText{
+    left: 86%;
+}
+.home-active{
+    left:56%;
+}
+.detail-active{
+    left:66%;
+}
+.user-active{
+    left:96%;
 }
 .User_buttonText:hover, .Home_buttonText:hover, .Detail_buttonText:hover{
     cursor: pointer;
@@ -137,7 +158,7 @@ export default {
 .sidebar>.character{
     width: 13%;
     position: absolute;
-    top: 770px;
+    top: 800px;
     left: 4%
 }
 .sidebar {
@@ -159,8 +180,31 @@ export default {
     padding: 20px;
 }
 
+.sidebarOut{
+    position: absolute;
+    top: 30px;
+}
+.sidebarOut>img{
+    width: 5%;
+    transform: scaleX(-1);
+}
+
+.logout{
+    position: absolute;
+    width:4.5%;
+    top: 25px;
+    left:15%;
+    color: rgba(90, 91, 46, 1);
+    border: 2px solid rgba(90, 91, 46, 1);
+    border-radius: 8px;
+    font-family: Inter;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}
+
 .Name_tag, .Age_tag, .Gender_tag, .Email_tag, .Target_tag {
-    width: 357px;
+    width: 220px;
     height: 66px;
     background: rgba(255, 255, 255, 1);
     position: absolute;
@@ -175,17 +219,17 @@ export default {
     left: 0%;
     margin-left: 5%;
 }
-.Name_tag { top: 74px; } 
-.Age_tag { top: 203px; }
-.Gender_tag { top: 332px;  }
-.Email_tag { top: 446px;  }
-.Target_tag { top: 564px; }
+.Name_tag { top: 300px; } /*429*/ 
+.Age_tag { top: 400px; }
+.Gender_tag { top: 500px;  }
+.Email_tag { top: 600px;  font-size: 20px;}
+.Target_tag { top: 700px; }
 
 .Image {
-    width: 10%;
+    width: 8%;
     background: rgba(253, 253, 253, 1);
     position: absolute;
-    top: 74px;  /*74*/
+    top: 75px;  /*74*/
     left: 7%;
     border: 1px solid rgba(90, 91, 46, 1);
     border-radius: 15px;
