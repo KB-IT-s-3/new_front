@@ -143,7 +143,7 @@ export default {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/${NowUser}`);
+        const response = await axios.get(`https://2697-121-130-103-204.ngrok-free.app/${NowUser}`);
         state.items = response.data.map((item) => ({ ...item, selected: false }));
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -181,7 +181,7 @@ export default {
 
     const updateItems = async () => {
       for (const item of state.items) {
-        await axios.put(`http://localhost:3000/${NowUser}/${item.id}`, item);
+        await axios.put(`https://2697-121-130-103-204.ngrok-free.app/${NowUser}/${item.id}`, item);
       }
       alert('수정되었습니다!');
       await fetchData();
@@ -191,7 +191,7 @@ export default {
     const deleteItems = async () => {
       const selectedItems = state.items.filter((item) => item.selected);
       for (const item of selectedItems) {
-        await axios.delete(`http://localhost:3000/${NowUser}/${item.id}`);
+        await axios.delete(`https://2697-121-130-103-204.ngrok-free.app/${NowUser}/${item.id}`);
       }
       await fetchData(); // Reload data
       checkTargetExceeded();
@@ -271,7 +271,7 @@ export default {
     onMounted(() => {
       fetchData();
       // 목표 금액 데이터 가져오기 (user_data.json에서 가져와서 target에 할당)
-      axios.get(`http://localhost:3002/UserList`)
+      axios.get(`https://3fed-121-130-103-204.ngrok-free.app/UserList`)
         .then(response => {
           checkTargetExceeded();
         })
