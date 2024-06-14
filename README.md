@@ -1,3 +1,4 @@
+# Pig Budget
 
 ### Project
 
@@ -7,7 +8,8 @@
 ### URL
 https://pigbudget.netlify.app/
 
-![GIFMaker_me](https://github.com/KB-IT-s-3/new_front/assets/83260809/89ab6933-4d1e-42f2-9a20-359a88a08d0d)
+<img src="https://github.com/KB-IT-s-3/new_front/assets/83260809/89ab6933-4d1e-42f2-9a20-359a88a08d0d" width="500">
+
 
 ### 1. Home Screen
 <img width="1485" alt="image" src="https://github.com/KB-IT-s-3/new_front/assets/83260809/67d7e00f-ea62-4822-8a58-b32d0ef7fbc5">
