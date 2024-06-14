@@ -64,7 +64,7 @@ const selectedMonthName = ref('');
 
 //소비 정리 부분 라우터 연결
 const goToDetailsAdd = () => {
-  router.push('/detailsadd');
+  router.push('/details');
 };
 //커서 올라가면 바뀌도록 설정
 const onMouseOver = () => {
