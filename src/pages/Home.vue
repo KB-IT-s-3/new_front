@@ -19,7 +19,7 @@
          @click="goToDetailsAdd"
          @mouseover="onMouseOver"
          @mouseleave="onMouseLeave">
-      <p v-if="isHovered">또 돈 쓸꺼야?</p>
+      <p v-if="isHovered">너 돈 많아? 너 부자야? 돈을 또 썼다고?</p>
       <p v-else>
         당신의 지출 금액은 {{ totalAmount }} 원 입니다.<br>
         <span v-if="remainingAmount >= 0">수입 대비{{ remainingAmount }} 원 남았습니다.</span>
