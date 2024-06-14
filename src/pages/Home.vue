@@ -11,7 +11,7 @@
         <Pie :chart-data="pieChartData" :options="chartOptions"/>
         <p v-if="selectedMonthName">{{ selectedMonthName }}의 지출 차트</p>
       </div>
-      <div class="chart bar-chart" @click="handleChartClick('bar')">
+      <div class="chart bar-chart">
         <Bar :chart-data="barChartData" :options="chartOptions"/>
       </div>
     </div>
@@ -172,9 +172,6 @@ const showMonth = (month) => {
   updatePieChart(month, totalsPrevious, totalsCurrent);
 };
 
-const handleChartClick = (type) => {
-  router.push(`/details?chart=${type}`);
-};
 
 onMounted(async () => {
   try {
