@@ -19,15 +19,6 @@
       "selected": false
     },
     {
-      "date": "2024-05-29",
-      "content": "용돈 저축",
-      "amount": 15610,
-      "deposit": false,
-      "category": "saving",
-      "id": "7290",
-      "selected": false
-    },
-    {
       "date": "2024-05-19",
       "content": "돈 주음",
       "amount": 27030,
@@ -43,15 +34,6 @@
       "deposit": false,
       "category": "food",
       "id": "48d1",
-      "selected": false
-    },
-    {
-      "date": "2024-06-03",
-      "content": "옷사기",
-      "amount": 98160,
-      "deposit": false,
-      "category": "shopping",
-      "id": "f346",
       "selected": false
     },
     {
@@ -72,22 +54,12 @@
       "selected": false
     },
     {
-      "id": "346f",
-      "date": "2024-06-13",
-      "content": "데이트비",
-      "amount": 30000,
+      "id": "54d5",
+      "date": "2024-06-06",
+      "content": "호캉스",
+      "amount": "500000",
       "deposit": false,
-      "category": "food",
-      "selected": false
-    },
-    {
-      "id": "2254",
-      "date": "2024-06-13",
-      "content": "윈드서핑땡겨",
-      "amount": 100000,
-      "deposit": false,
-      "category": "leisure",
-      "selected": true
+      "category": "leisure"
     }
   ],
   "user2": [
