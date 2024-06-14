@@ -63,6 +63,13 @@ export default {
                 isHeaderActive.value=false;
             }
         });
+////유저 이름 변경 파악& title 이름 수정
+        watch(()=>userStore.getTargerChange(),(newVal) => {
+            const List = userStore.getUserAll()
+            Object.assign(NowUser, List);
+            title.value = `${NowUser.name}'s Budget Tracker`;
+            isHeaderActive.value = true;
+        })
 
         
 ////사이드바 제어
@@ -77,7 +84,7 @@ export default {
         const UpdateData = async(e)=>{
             try{
                 const response = await axios.put(`${url}/${NowUser.id}`, {id:NowUser.id, pwd:NowUser.pwd, key:NowUser.key, name:NowUser.name, age:NowUser.age, email:NowUser.email, gender:NowUser.gender, target:NowUser.target, image:NowUser.image}) 
-                userStore.setTargetChange(NowUser.target)
+                userStore.setTargetChange(NowUser.target, NowUser.name)
             }catch(err){
                     alert(err.response) 
                 }

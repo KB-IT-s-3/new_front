@@ -20,18 +20,18 @@
       "email": "dvsdfg@gmail.com",
       "gender": "Female",
       "target": "300000",
-      "image": "../public/user2.png"
+      "image": "../../public/user2.png"
     },
     {
       "id": "admin3",
       "pwd": "pwd3",
       "key": "user3",
-      "name": "Ccoli",
+      "name": "Ccol",
       "age": "31",
       "email": "ggve@gmail.com",
       "gender": "Male",
       "target": "111100",
-      "image": "../public/user3.png"
+      "image": "../../public/user3.png"
     },
     {
       "id": "admin4",
@@ -42,7 +42,7 @@
       "email": "htsf@gmail.com",
       "gender": "Male",
       "target": "2122200",
-      "image": "../public/user4.png"
+      "image": "../../public/user4.png"
     }
   ]
 }

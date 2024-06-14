@@ -280,7 +280,8 @@
       "amount": 44170,
       "deposit": false,
       "category": "leisure",
-      "id": "2c5c"
+      "id": "2c5c",
+      "selected": false
     },
     {
       "date": "2024-05-16",
@@ -288,7 +289,8 @@
       "amount": 34050,
       "deposit": false,
       "category": "food",
-      "id": "6924"
+      "id": "6924",
+      "selected": false
     },
     {
       "date": "2024-05-06",
@@ -296,7 +298,8 @@
       "amount": 63120,
       "deposit": false,
       "category": "shopping",
-      "id": "0725"
+      "id": "0725",
+      "selected": false
     },
     {
       "date": "2024-06-20",
@@ -304,15 +307,17 @@
       "amount": 39990,
       "deposit": true,
       "category": "salary",
-      "id": "5c7f"
+      "id": "5c7f",
+      "selected": false
     },
     {
-      "date": "2024-06-23",
+      "date": "2024-06-01",
       "content": "커피",
       "amount": 40680,
       "deposit": false,
       "category": "cafe",
-      "id": "1702"
+      "id": "1702",
+      "selected": false
     },
     {
       "date": "2024-05-31",
@@ -320,15 +325,17 @@
       "amount": 17020,
       "deposit": false,
       "category": "food",
-      "id": "9f07"
+      "id": "9f07",
+      "selected": false
     },
     {
-      "date": "2024-06-31",
+      "date": "2024-06-11",
       "content": "용돈",
       "amount": 60270,
       "deposit": true,
       "category": "yongdon",
-      "id": "ceef"
+      "id": "ceef",
+      "selected": false
     },
     {
       "date": "2024-05-10",
@@ -336,7 +343,8 @@
       "amount": 9080,
       "deposit": false,
       "category": "cafe",
-      "id": "6aee"
+      "id": "6aee",
+      "selected": false
     },
     {
       "date": "2024-05-18",
@@ -344,7 +352,8 @@
       "amount": 31900,
       "deposit": false,
       "category": "cafe",
-      "id": "6ec8"
+      "id": "6ec8",
+      "selected": false
     },
     {
       "date": "2024-05-04",
@@ -352,7 +361,8 @@
       "amount": 59680,
       "deposit": false,
       "category": "saving",
-      "id": "8203"
+      "id": "8203",
+      "selected": false
     }
   ]
 }

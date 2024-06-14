@@ -18,6 +18,7 @@
 </template>
 
 <script>
+//저장된 아이디는 admin1~4 / 비번은 pwd1~4
 import { ref } from 'vue';
 import axios from 'axios';
 import { useUserStore } from "@/stores/userStore.js";
