@@ -1,4 +1,9 @@
 
+### Project
+
+📍 MZ 세대의 불필요한 지출 습관 개선 Solution
+
+
 ### URL
 https://pigbudget.netlify.app/
 
