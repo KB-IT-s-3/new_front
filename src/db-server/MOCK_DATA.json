@@ -134,7 +134,7 @@
       "content": "커피",
       "amount": "1000",
       "deposit": false,
-      "category": "cafe",
+      "category": "food",
       "selected": false
     },
     {
@@ -154,7 +154,8 @@
       "amount": 70010,
       "deposit": false,
       "category": "shopping",
-      "id": "f01e"
+      "id": "f01e",
+      "selected": false
     },
     {
       "date": "2024-05-04",
@@ -162,7 +163,8 @@
       "amount": 91700,
       "deposit": false,
       "category": "cafe",
-      "id": "b3ab"
+      "id": "b3ab",
+      "selected": false
     },
     {
       "date": "2024-05-21",
@@ -170,7 +172,8 @@
       "amount": 46710,
       "deposit": false,
       "category": "food",
-      "id": "f242"
+      "id": "f242",
+      "selected": false
     },
     {
       "date": "2024-06-10",
@@ -178,7 +181,8 @@
       "amount": 559100,
       "deposit": true,
       "category": "salary",
-      "id": "a669"
+      "id": "a669",
+      "selected": false
     },
     {
       "date": "2024-05-11",
@@ -186,7 +190,8 @@
       "amount": 36730,
       "deposit": false,
       "category": "leisure",
-      "id": "a46e"
+      "id": "a46e",
+      "selected": false
     },
     {
       "date": "2024-06-02",
@@ -194,7 +199,8 @@
       "amount": 69580,
       "deposit": false,
       "category": "leisure",
-      "id": "87e9"
+      "id": "87e9",
+      "selected": false
     },
     {
       "date": "2024-06-05",
@@ -202,7 +208,8 @@
       "amount": 36190,
       "deposit": false,
       "category": "food",
-      "id": "9c0b"
+      "id": "9c0b",
+      "selected": false
     },
     {
       "date": "2024-06-20",
@@ -210,7 +217,8 @@
       "amount": 62600,
       "deposit": false,
       "category": "cafe",
-      "id": "9297"
+      "id": "9297",
+      "selected": false
     },
     {
       "date": "2024-06-22",
@@ -218,15 +226,17 @@
       "amount": 71830,
       "deposit": false,
       "category": "food",
-      "id": "0b3a"
+      "id": "0b3a",
+      "selected": false
     },
     {
       "date": "2024-05-12",
       "content": "로또",
       "amount": 5484000,
       "deposit": true,
-      "category": "Lotto",
-      "id": "a98b"
+      "category": "lotto",
+      "id": "a98b",
+      "selected": false
     },
     {
       "id": "b454",
@@ -234,7 +244,8 @@
       "content": "데이트",
       "amount": "30000",
       "deposit": false,
-      "category": "cafe"
+      "category": "cafe",
+      "selected": false
     },
     {
       "id": "0061",
@@ -242,7 +253,8 @@
       "content": "로또",
       "amount": "30000",
       "deposit": true,
-      "category": "Lotto"
+      "category": "lotto",
+      "selected": false
     }
   ],
   "user4": [
