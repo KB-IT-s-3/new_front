@@ -113,7 +113,7 @@ export default {
       items: [],
     });
 
-    const target = ref(0);
+
     const showAlert = ref(false);
     const alertMessage = ref('');
 
@@ -232,15 +232,25 @@ export default {
     
     watch(()=>userStore.getTargetChange(),(newVal) => {
       if(newVal){
-        checkTargetExceeded();
+        checkTargetExceededAdd();
       }
       else{
-        checkTargetExceeded();
+        checkTargetExceededAdd();
       }
       
   })
 
     const checkTargetExceeded = () => {
+      const totalExpenses = totalExpense.value;
+      if (totalExpenses > NowUserTarget) {
+        showAlert.value = true;
+        alertMessage.value = `목표 금액 ${NowUserTarget}원을 ${totalExpenses - NowUserTarget}원 초과했습니다!`;
+      }
+      else {
+        showAlert.value = false;
+      }
+    };
+    const checkTargetExceededAdd = () => {
       const NewUserTarget = userStore.getTargetValue();
       const totalExpenses = totalExpense.value;
       if (totalExpenses > NewUserTarget) {
@@ -252,12 +262,12 @@ export default {
       }
     };
 
+
     onMounted(() => {
       fetchData();
       // 목표 금액 데이터 가져오기 (user_data.json에서 가져와서 target에 할당)
       axios.get(`http://localhost:3002/UserList`)
         .then(response => {
-          target.value = NowUserTarget;
           checkTargetExceeded();
         })
         .catch(error => {

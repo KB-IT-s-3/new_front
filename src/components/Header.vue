@@ -58,7 +58,7 @@ export default {
                 title.value = `${NowUser.name}'s Budget Tracker`;
                 isHeaderActive.value = true;
 
-            } else {
+            } else {    
                 title.value = 'My Budget Tracker';
                 isHeaderActive.value=false;
             }
