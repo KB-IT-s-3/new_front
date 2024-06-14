@@ -1,3 +1,21 @@
+
+### URL
+https://pigbudget.netlify.app/
+
+
+### 1. Initial Screen
+(https://github.com/KB-IT-s-3/new_front/assets/83260809/c1df773b-f5e5-459b-9aad-add0bf2d1bb2)
+
+### 2. Main Screen
+(https://github.com/KB-IT-s-3/new_front/assets/83260809/57dad21d-a2da-4ca3-98ad-8d89cb353a99)
+
+### 3. User Screen
+(https://github.com/KB-IT-s-3/new_front/assets/83260809/85d96ff5-2589-43e0-bd71-c3289de0c3dd)
+
+### ERD
+(https://github.com/KB-IT-s-3/new_front/assets/83260809/df605d4e-d996-475e-832f-a0c6340c617c)
+
+
 ### 커밋컨벤션
 | 태그이름    | 내용         |
 |---------|------------|
@@ -13,7 +31,3 @@
 | `Chore`	  | 빌드 태스트 업데이트, 패키지 매니저를 설정하는 경우(프로덕션 코드 변경 X)|
 | `Rename`  |파일 혹은 폴더명을 수정하거나 옮기는 작업만인 경우|
 | `Remove`  | 파일을 삭제하는 작업만 수행한 경우|
-
-
-### URL
-https://pigbudget.netlify.app/
