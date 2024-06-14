@@ -2,34 +2,38 @@
   <div class="app">
     <div class="chart-info">
       <div class="chart pie-chart">
-        <button :class="{ active: selectedMonth.value === previousMonth.value }" @click.stop="showMonth(previousMonth)">지난달 보기</button>
-        <button :class="{ active: selectedMonth.value === currentMonth.value }" @click.stop="showMonth(currentMonth)">이번 달 보기</button>
-        <Pie :chart-data="pieChartData" :options="chartOptions" />
+        <button :class="{ active: selectedMonth.value === previousMonth.value }" @click.stop="showMonth(previousMonth)">
+          지난달 보기
+        </button>
+        <button :class="{ active: selectedMonth.value === currentMonth.value }" @click.stop="showMonth(currentMonth)">이번
+          달 보기
+        </button>
+        <Pie :chart-data="pieChartData" :options="chartOptions"/>
         <p v-if="selectedMonthName">{{ selectedMonthName }}의 지출 차트</p>
       </div>
-      <div class="chart bar-chart">
-        <Bar :chart-data="barChartData" :options="chartOptions" />
+      <div class="chart bar-chart" @click="handleChartClick('bar')">
+        <Bar :chart-data="barChartData" :options="chartOptions"/>
       </div>
     </div>
     <div class="spending-info"
          @click="goToDetailsAdd"
          @mouseover="onMouseOver"
          @mouseleave="onMouseLeave">
-      <p v-if="isHovered">돈 많아? 너 부자야? 또 돈 쓴거야?</p>
+      <p v-if="isHovered">또 돈 쓸꺼야?</p>
       <p v-else>
         당신의 지출 금액은 {{ totalAmount }} 원 입니다.<br>
-        <span v-if="remainingAmount >= 0">{{ remainingAmount }} 원 남았습니다.</span>
-        <span v-else>{{ Math.abs(remainingAmount) }} 원 초과되었습니다.</span>
+        <span v-if="remainingAmount >= 0">수입 대비{{ remainingAmount }} 원 남았습니다.</span>
+        <span v-else>수입 대비 {{ Math.abs(remainingAmount) }} 원 초과되었습니다.</span>
       </p>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
-import { Pie, Bar } from 'vue-chartjs';
-import { useUserStore } from "@/stores/userStore";
+import {ref, onMounted} from 'vue';
+import {useRouter} from 'vue-router';
+import {Pie, Bar} from 'vue-chartjs';
+import {useUserStore} from "@/stores/userStore";
 import {
   Chart as ChartJS,
   Title,
@@ -60,7 +64,7 @@ const selectedMonthName = ref('');
 
 //소비 정리 부분 라우터 연결
 const goToDetailsAdd = () => {
-  router.push('/details');
+  router.push('/detailsadd');
 };
 //커서 올라가면 바뀌도록 설정
 const onMouseOver = () => {
@@ -112,17 +116,17 @@ const selectedMonth = ref(''); // 초기 선택 월은 빈 값으로 설정
 const now = new Date();
 const currentMonth = ref(now.getMonth() + 1); // 이번 달 (0부터 시작하므로 1을 더함)
 const previousMonth = ref(now.getMonth() === 0 ? 12 : now.getMonth()); // 저번 달 (1월의 경우 12월로 설정)
-const currentMonthName = ref(now.toLocaleString('default', { month: 'long' })); // 이번 달 이름
-const previousMonthName = ref(new Date(now.getFullYear(), now.getMonth() - 1, 1).toLocaleString('default', { month: 'long' })); // 저번 달 이름
+const currentMonthName = ref(now.toLocaleString('default', {month: 'long'})); // 이번 달 이름
+const previousMonthName = ref(new Date(now.getFullYear(), now.getMonth() - 1, 1).toLocaleString('default', {month: 'long'})); // 저번 달 이름
 
 const processData = (data) => {
-  const categories = ['커피', '음식', '레저', '저축', '쇼핑'];
-  const categoryTotalsPrevious = { 'cafe': 0, 'food': 0, 'leisure': 0, 'saving': 0, 'shopping': 0 };
-  const categoryTotalsCurrent = { 'cafe': 0, 'food': 0, 'leisure': 0, 'savingv': 0, 'shopping': 0 };
+  const categories = ['cafe', 'food', 'leisure', 'saving', 'shopping'];
+  const categoryTotalsPrevious = {'cafe': 0, 'food': 0, 'leisure': 0, 'saving': 0, 'shopping': 0};
+  const categoryTotalsCurrent = {'cafe': 0, 'food': 0, 'leisure': 0, 'saving': 0, 'shopping': 0};
 
   // 입금 내역과 지출 내역을 각각 필터링
-  const depositData = data.filter(entry => entry.deposit);
-  const expenseData = data.filter(entry => !entry.deposit);
+  const depositData = data.filter(entry => entry.deposit !== false);
+  const expenseData = data.filter(entry => entry.deposit === false);
 
   // 입금 내역의 총 금액 계산
   const totalDeposit = depositData.reduce((sum, entry) => sum + Number(entry.amount), 0);
@@ -144,7 +148,7 @@ const processData = (data) => {
 };
 
 const updatePieChart = (month, totalsPrevious, totalsCurrent) => {
-  const categories = ['커피', '음식', '레저', '저축', '쇼핑'];
+  const categories = ['cafe', 'food', 'leisure', 'saving', 'shopping'];
   if (month === previousMonth.value) {
     pieChartData.value.labels = categories.map(category => category.charAt(0).toUpperCase() + category.slice(1));
     pieChartData.value.datasets[0].data = Object.values(totalsPrevious);
@@ -238,8 +242,9 @@ h1 {
 
 .chart-info {
   display: flex;
-  justify-content: center; /* Center align the charts /
-gap: 20px; / Add gap between the charts */
+  justify-content: center;
+  /* Center align the charts /
+ gap: 20px; / Add gap between the charts */
   width: 100%;
   height: 100%;
   margin-bottom: 1px;
@@ -249,21 +254,22 @@ gap: 20px; / Add gap between the charts */
   width: 45%;
   max-width: 500px;
   margin: 10px;
-  height: 250px; /* 높이를 250px로 줄였습니다 /
-cursor: pointer; / 차트에 커서가 올라가면 포인터로 변경 */
+  height: 250px;
+  /* 높이를 250px로 줄였습니다 /
+ cursor: pointer; / 차트에 커서가 올라가면 포인터로 변경 */
 }
 
 .spending-info {
   position: absolute;
   bottom: 20px;
-    background: rgba(255, 255, 255, 1);
-    padding: 20px;
-    border-radius: 100px;
-    border: 2px solid black;
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
-    text-align: center;
-    width: 50%;
-    cursor: pointer;
+  background: rgba(255, 255, 255, 1);
+  padding: 20px;
+  border-radius: 100px;
+  border: 2px solid black;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  width: 50%;
+  cursor: pointer;
 }
 
 .spending-info p {
@@ -307,8 +313,9 @@ button.active {
   }
 
   .chart {
-    width: 100%; /* 작은 화면에서는 차트가 가로로 꽉 차도록 설정 /
-height: auto; / 차트의 높이를 자동으로 설정 */
+    width: 100%;
+    /* 작은 화면에서는 차트가 가로로 꽉 차도록 설정 /
+   height: auto; / 차트의 높이를 자동으로 설정 */
   }
 
   .spending-info {
