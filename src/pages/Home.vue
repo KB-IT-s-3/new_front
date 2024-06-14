@@ -30,20 +30,11 @@
 </template>
 
 <script setup>
-import {ref, onMounted} from 'vue';
+import {onMounted, ref} from 'vue';
 import {useRouter} from 'vue-router';
-import {Pie, Bar} from 'vue-chartjs';
+import {Bar, Pie} from 'vue-chartjs';
 import {useUserStore} from "@/stores/userStore";
-import {
-  Chart as ChartJS,
-  Title,
-  Tooltip,
-  Legend,
-  ArcElement,
-  BarElement,
-  CategoryScale,
-  LinearScale
-} from 'chart.js';
+import {ArcElement, BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip} from 'chart.js';
 import axios from 'axios';
 
 const isHovered = ref(false);
@@ -124,20 +115,29 @@ const processData = (data) => {
   const categoryTotalsPrevious = {'cafe': 0, 'food': 0, 'leisure': 0, 'saving': 0, 'shopping': 0};
   const categoryTotalsCurrent = {'cafe': 0, 'food': 0, 'leisure': 0, 'saving': 0, 'shopping': 0};
 
-  // 입금 내역과 지출 내역을 각각 필터링
-  const depositData = data.filter(entry => entry.deposit !== false);
-  const expenseData = data.filter(entry => entry.deposit === false);
+// 특정 월(6월)의 입금 내역과 지출 내역을 각각 필터링
+  const depositDataCurrentMonth = data.filter(entry => entry.deposit !== false && new Date(entry.date).getMonth() + 1 === currentMonth.value);
+  const expenseDataCurrentMonth = data.filter(entry => entry.deposit === false && new Date(entry.date).getMonth() + 1 === currentMonth.value);
 
-  // 입금 내역의 총 금액 계산
-  const totalDeposit = depositData.reduce((sum, entry) => sum + Number(entry.amount), 0);
-  totalAmount.value = expenseData.reduce((sum, entry) => sum + Number(entry.amount), 0);
+  // 특정 월(6월)의 입금 내역의 총 금액 계산
+  const totalDeposit = depositDataCurrentMonth.reduce((sum, entry) => sum + Number(entry.amount), 0);
+
+  // 특정 월(6월)의 지출 내역의 총 금액 계산
+  const totalExpenseCurrentMonth = expenseDataCurrentMonth.reduce((sum, entry) => sum + Number(entry.amount), 0);
+
+  totalAmount.value = totalExpenseCurrentMonth;
   remainingAmount.value = totalDeposit - totalAmount.value;
 
-  expenseData.forEach(entry => {
-    const month = new Date(entry.date).getMonth() + 1; // 월 추출 (0부터 시작하므로 1을 더함)
-    if (month === previousMonth.value && categoryTotalsPrevious[entry.category] !== undefined) {
+  // 이전 달과 현재 달의 지출을 계산하여 카테고리별로 합산
+  const expenseDataPreviousMonth = data.filter(entry => entry.deposit === false && new Date(entry.date).getMonth() + 1 === previousMonth.value);
+  expenseDataPreviousMonth.forEach(entry => {
+    if (categoryTotalsPrevious[entry.category] !== undefined) {
       categoryTotalsPrevious[entry.category] += Number(entry.amount);
-    } else if (month === currentMonth.value && categoryTotalsCurrent[entry.category] !== undefined) {
+    }
+  });
+
+  expenseDataCurrentMonth.forEach(entry => {
+    if (categoryTotalsCurrent[entry.category] !== undefined) {
       categoryTotalsCurrent[entry.category] += Number(entry.amount);
     }
   });
