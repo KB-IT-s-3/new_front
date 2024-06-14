@@ -7,14 +7,18 @@
 ### URL
 https://pigbudget.netlify.app/
 
+![GIFMaker_me](https://github.com/KB-IT-s-3/new_front/assets/83260809/89ab6933-4d1e-42f2-9a20-359a88a08d0d)
 
-### 1. Initial Screen
+### 1. Home Screen
+<img width="1485" alt="image" src="https://github.com/KB-IT-s-3/new_front/assets/83260809/67d7e00f-ea62-4822-8a58-b32d0ef7fbc5">
+
+### 2. Initial Screen
 <img width="1492" alt="image" src="https://github.com/KB-IT-s-3/new_front/assets/83260809/c1df773b-f5e5-459b-9aad-add0bf2d1bb2">
 
-### 2. Main Screen
+### 3. Main Screen
 <img width="1492" alt="image" src="https://github.com/KB-IT-s-3/new_front/assets/83260809/57dad21d-a2da-4ca3-98ad-8d89cb353a99">
 
-### 3. User Screen
+### 4. User Screen
 <img width="295" alt="image" src="https://github.com/KB-IT-s-3/new_front/assets/83260809/85d96ff5-2589-43e0-bd71-c3289de0c3dd">
 
 ### ERD
