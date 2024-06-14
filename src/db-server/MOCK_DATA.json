@@ -1,17 +1,8 @@
 {
   "user1": [
     {
-      "date": "2024-06-12",
-      "content": "6월 용돈",
-      "amount": 90400,
-      "deposit": true,
-      "category": "yongdon",
-      "id": "9a6e",
-      "selected": false
-    },
-    {
       "date": "2024-06-18",
-      "content": "아아",
+      "content": "하이",
       "amount": 88000,
       "deposit": false,
       "category": "cafe",
@@ -52,15 +43,6 @@
       "amount": "30000",
       "deposit": true,
       "category": "yongdon",
-      "selected": false
-    },
-    {
-      "id": "54d5",
-      "date": "2024-06-06",
-      "content": "호캉스",
-      "amount": "500000",
-      "deposit": false,
-      "category": "leisure",
       "selected": false
     }
   ],

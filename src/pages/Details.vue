@@ -69,7 +69,7 @@
       <span class="income-text">수입: <span class="amount">{{ totalIncome }}</span></span>
     </div>
     <!-- 경고(alert) 알림을 위한 함수로 구현 -->
-    <div v-if="showAlert" class="alert alert-warning alert-dismissible fade show custom-alert" role="alert">
+    <div v-if="showAlert" class="alert alert-warning alert-dismissible fade show" role="alert">
       <strong>주의!</strong> {{ alertMessage }}
     </div>
     <div class="button-container d-flex justify-content-between">
@@ -143,7 +143,7 @@ export default {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://2697-121-130-103-204.ngrok-free.app/${NowUser}`);
+        const response = await axios.get(`http://localhost:3000/${NowUser}`);
         state.items = response.data.map((item) => ({ ...item, selected: false }));
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -181,7 +181,7 @@ export default {
 
     const updateItems = async () => {
       for (const item of state.items) {
-        await axios.put(`https://2697-121-130-103-204.ngrok-free.app/${NowUser}/${item.id}`, item);
+        await axios.put(`http://localhost:3000/${NowUser}/${item.id}`, item);
       }
       alert('수정되었습니다!');
       await fetchData();
@@ -191,7 +191,7 @@ export default {
     const deleteItems = async () => {
       const selectedItems = state.items.filter((item) => item.selected);
       for (const item of selectedItems) {
-        await axios.delete(`https://2697-121-130-103-204.ngrok-free.app/${NowUser}/${item.id}`);
+        await axios.delete(`http://localhost:3000/${NowUser}/${item.id}`);
       }
       await fetchData(); // Reload data
       checkTargetExceeded();
@@ -271,7 +271,7 @@ export default {
     onMounted(() => {
       fetchData();
       // 목표 금액 데이터 가져오기 (user_data.json에서 가져와서 target에 할당)
-      axios.get(`https://3fed-121-130-103-204.ngrok-free.app/UserList`)
+      axios.get(`http://localhost:3002/UserList`)
         .then(response => {
           checkTargetExceeded();
         })
@@ -426,35 +426,6 @@ button {
   height: calc(2.25rem + 8px); /* 높이를 조정하여 다른 input 요소와 일치시킴 */
   padding: 0.375rem 0.75rem; /* 패딩을 조정하여 일관된 높이를 유지 */
   font-size: 1rem; /* 폰트 크기 조정 */
-}
-
-.custom-alert {
-  width: 80%;
-    margin: 0 0 10 0; 
-}
-
-@media (max-width: 1200px) {
-  .custom-alert {
-    width: 80%; 
-  }
-}
-
-@media (max-width: 992px) {
-  .custom-alert {
-    width: 80%; 
-  }
-}
-
-@media (max-width: 768px) {
-  .custom-alert {
-    width: 70%;
-  }
-}
-
-@media (max-width: 576px) {
-  .custom-alert {
-    width: 60%
-  }
 }
 
 </style>
