@@ -8,13 +8,8 @@
       "age": "27",
       "email": "abcee@gmail.com",
       "gender": "Male",
-<<<<<<< HEAD
-      "target": "29000",
-      "image": "/assets/user1.png"
-=======
       "target": "290000",
       "image": "/user1.png"
->>>>>>> 41e83843f14b881db46944f340d68a8ded2b45b1
     },
     {
       "id": "admin2",
@@ -24,13 +19,8 @@
       "age": "20",
       "email": "dvsdfg@gmail.com",
       "gender": "Female",
-<<<<<<< HEAD
-      "target": "30000",
-      "image": "../../public/user2.png"
-=======
       "target": "300000",
       "image": "/user2.png"
->>>>>>> 41e83843f14b881db46944f340d68a8ded2b45b1
     },
     {
       "id": "admin3",

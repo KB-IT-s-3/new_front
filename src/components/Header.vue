@@ -66,10 +66,7 @@ export default {
 ////유저 이름 변경 파악& title 이름 수정
         watch(()=>userStore.getTargetChange(),(newVal) => {
             console.log("test")
-            const List = userStore.getUserAll()
-            Object.assign(NowUser, List);
             title.value = `${NowUser.name}'s Budget Tracker`;
-            isHeaderActive.value = true;
         })
 
         
