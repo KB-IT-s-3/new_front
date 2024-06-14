@@ -42,7 +42,8 @@
       "content": "ex2",
       "amount": "1000",
       "deposit": true,
-      "category": "yongdon"
+      "category": "yongdon",
+      "selected": false
     },
     {
       "id": "22b3",
@@ -59,7 +60,8 @@
       "content": "호캉스",
       "amount": "500000",
       "deposit": false,
-      "category": "leisure"
+      "category": "leisure",
+      "selected": false
     }
   ],
   "user2": [
@@ -243,6 +245,22 @@
       "deposit": true,
       "category": "Lotto",
       "id": "a98b"
+    },
+    {
+      "id": "b454",
+      "date": "2024-06-14",
+      "content": "데이트",
+      "amount": "30000",
+      "deposit": false,
+      "category": "cafe"
+    },
+    {
+      "id": "0061",
+      "date": "2024-06-14",
+      "content": "로또",
+      "amount": "30000",
+      "deposit": true,
+      "category": "Lotto"
     }
   ],
   "user4": [
