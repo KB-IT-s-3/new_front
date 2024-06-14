@@ -1,3 +1,26 @@
+
+### Project
+
+📍 MZ 세대의 불필요한 지출 습관 개선 Solution
+
+
+### URL
+https://pigbudget.netlify.app/
+
+
+### 1. Initial Screen
+<img width="1492" alt="image" src="https://github.com/KB-IT-s-3/new_front/assets/83260809/c1df773b-f5e5-459b-9aad-add0bf2d1bb2">
+
+### 2. Main Screen
+<img width="1492" alt="image" src="https://github.com/KB-IT-s-3/new_front/assets/83260809/57dad21d-a2da-4ca3-98ad-8d89cb353a99">
+
+### 3. User Screen
+<img width="295" alt="image" src="https://github.com/KB-IT-s-3/new_front/assets/83260809/85d96ff5-2589-43e0-bd71-c3289de0c3dd">
+
+### ERD
+<img width="610" alt="image" src="https://github.com/KB-IT-s-3/new_front/assets/83260809/df605d4e-d996-475e-832f-a0c6340c617c">
+
+
 ### 커밋컨벤션
 | 태그이름    | 내용         |
 |---------|------------|

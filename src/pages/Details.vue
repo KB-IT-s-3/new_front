@@ -21,6 +21,10 @@
           <option value="saving">저축</option>
           <option value="leisure">레저</option>
           <option value="shopping">쇼핑</option>
+          <option value="yongdon">용돈</option>
+          <option value="salary">월급</option>
+          <option value="lotto">로또</option>
+          <option value="etc">기타</option>
         </select>
       </div>
     </div>
@@ -241,21 +245,22 @@ export default {
   })
 
     const checkTargetExceeded = () => {
-      const totalExpenses = totalExpense.value;
-      if (totalExpenses > NowUserTarget) {
+      const totalExpensesValue = parseInt(totalExpense.value, 10);
+      if (totalExpensesValue > NowUserTarget) {
         showAlert.value = true;
-        alertMessage.value = `목표 금액 ${NowUserTarget}원을 ${totalExpenses - NowUserTarget}원 초과했습니다!`;
+        alertMessage.value = `목표 금액 ${NowUserTarget}원을 ${totalExpensesValue - NowUserTarget}원 초과했습니다!`;
       }
       else {
         showAlert.value = false;
       }
     };
+
     const checkTargetExceededAdd = () => {
-      const NewUserTarget = userStore.getTargetValue();
-      const totalExpenses = totalExpense.value;
-      if (totalExpenses > NewUserTarget) {
+      const NewUserTarget = parseInt(userStore.getTargetValue(), 10);
+      const totalExpensesValue = parseInt(totalExpense.value, 10);
+      if (totalExpensesValue > NewUserTarget) {
         showAlert.value = true;
-        alertMessage.value = `목표 금액 ${NewUserTarget}원을 ${totalExpenses - NewUserTarget}원 초과했습니다!`;
+        alertMessage.value = `목표 금액 ${NewUserTarget}원을 ${totalExpensesValue - NewUserTarget}원 초과했습니다!`;
       }
       else {
         showAlert.value = false;
@@ -415,6 +420,12 @@ button {
   border-radius: 10px;
   padding: 10px;
   box-sizing: border-box;
+}
+
+.form-select {
+  height: calc(2.25rem + 8px); /* 높이를 조정하여 다른 input 요소와 일치시킴 */
+  padding: 0.375rem 0.75rem; /* 패딩을 조정하여 일관된 높이를 유지 */
+  font-size: 1rem; /* 폰트 크기 조정 */
 }
 
 </style>

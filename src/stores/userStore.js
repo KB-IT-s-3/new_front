@@ -8,11 +8,13 @@ export const useUserStore = defineStore('user', ()=>{
     const setTargetChange = (nowtarget)=>{
         TargetChange.value = nowtarget;
         TargetChange.change = !TargetChange.change;
+        console.log('setTargetChange:', TargetChange);  // 디버깅용 로그
     }
     const getTargetChange = ()=>{
         return TargetChange.change;
     }
     const getTargetValue = ()=>{
+        console.log('getTargetValue:', TargetChange.value);  // 디버깅용 로그
         return TargetChange.value;
     }
     const setUser=(Nowuser) =>{
