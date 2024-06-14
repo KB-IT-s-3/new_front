@@ -64,7 +64,8 @@ export default {
             }
         });
 ////유저 이름 변경 파악& title 이름 수정
-        watch(()=>userStore.getTargerChange(),(newVal) => {
+        watch(()=>userStore.getTargetChange(),(newVal) => {
+            console.log("test")
             const List = userStore.getUserAll()
             Object.assign(NowUser, List);
             title.value = `${NowUser.name}'s Budget Tracker`;
@@ -84,7 +85,7 @@ export default {
         const UpdateData = async(e)=>{
             try{
                 const response = await axios.put(`${url}/${NowUser.id}`, {id:NowUser.id, pwd:NowUser.pwd, key:NowUser.key, name:NowUser.name, age:NowUser.age, email:NowUser.email, gender:NowUser.gender, target:NowUser.target, image:NowUser.image}) 
-                userStore.setTargetChange(NowUser.target, NowUser.name)
+                userStore.setTargetChange(NowUser.target)
             }catch(err){
                     alert(err.response) 
                 }

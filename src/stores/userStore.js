@@ -9,10 +9,10 @@ export const useUserStore = defineStore('user', ()=>{
         TargetChange.value = nowtarget;
         TargetChange.change = !TargetChange.change;
     }
-    const getTargerChange = ()=>{
+    const getTargetChange = ()=>{
         return TargetChange.change;
     }
-    const getTargerValue = ()=>{
+    const getTargetValue = ()=>{
         return TargetChange.value;
     }
     const setUser=(Nowuser) =>{
@@ -40,5 +40,5 @@ export const useUserStore = defineStore('user', ()=>{
         };
 
     
-    return {Login, User, setUser, getUser, getUserAll, gettarget, setLogin, setLogout, getLogin, TargetChange, setTargetChange, getTargerChange, getTargerValue}
+    return {Login, User, setUser, getUser, getUserAll, gettarget, setLogin, setLogout, getLogin, TargetChange, setTargetChange, getTargetChange, getTargetValue}
 });

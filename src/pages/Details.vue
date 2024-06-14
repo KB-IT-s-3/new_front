@@ -230,7 +230,7 @@ export default {
     };
 
     
-    watch(()=>userStore.getTargerChange(),(newVal) => {
+    watch(()=>userStore.getTargetChange(),(newVal) => {
       if(newVal){
         checkTargetExceeded();
       }
@@ -241,7 +241,7 @@ export default {
   })
 
     const checkTargetExceeded = () => {
-      const NewUserTarget = userStore.getTargerValue();
+      const NewUserTarget = userStore.getTargetValue();
       const totalExpenses = totalExpense.value;
       if (totalExpenses > NewUserTarget) {
         showAlert.value = true;
