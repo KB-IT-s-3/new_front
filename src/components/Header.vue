@@ -26,7 +26,7 @@ import { reactive, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 export default {
     setup() {
-////변수
+////변수 선언
         const router = useRouter()
         const userStore = useUserStore();
         const title = ref('My Budget Tracker');

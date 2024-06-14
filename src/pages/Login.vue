@@ -24,13 +24,14 @@ import { useUserStore } from "@/stores/userStore.js";
 import { useRouter } from 'vue-router';
 export default {
     setup() {
+////변수 선언
         let id = ref('');
         let pwd = ref('');
         const url = 'http://localhost:3002/UserList';
         const userStore = useUserStore();
         const router = useRouter()
 
-
+////아이디& 비번 확인
         const loginSubmitHandler = async () => {
             try {
                 const result = await requestList();
@@ -48,7 +49,7 @@ export default {
                 alert('로그인 요청 중 문제가 발생했습니다. 나중에 다시 시도하세요.');
             }
         };
-
+////json으로 부터 로그인 정보 받기
         const requestList = async () => {
             const response = await axios.get(url);
             return response.data;
